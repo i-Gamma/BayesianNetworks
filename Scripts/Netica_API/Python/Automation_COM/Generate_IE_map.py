@@ -147,7 +147,7 @@ os.chdir(dir_robin + dir_datos)
 data_type = {"total":"bn_ie_tabfinal_20150830.csv",
               "sample":"bn_train_20150830_sin_NA_Boosted.csv"}
 #data = pd.read_csv(u"bn_ie_tabfinal_20150830.csv", na_values = "*")
-data = pd.read_csv(datqa_type["sample"], na_values = "*")
+data = pd.read_csv(data_type["sample"], na_values = "*")
 data_table = data[node_lst.keys()]
 del data
 
