@@ -40,17 +40,17 @@ def process_on_data_table(lic_arch, net_file_name, data_table):
     integrity_val = []
     for j in xrange(data_table.shape[0]):
         net.RetractFindings()
-        for nd in data_table.columns:
-            if nd != "zz_delt_vp" and pd.notnull(data_table[nd][j]):
-                node_lst[nd].EnterValue(data_table[nd][j])
-                # Get mean and standard deviation
-                expected_val = node_lst["zz_delt_vp"].GetExpectedValue()
+        # Use list comprehension to improve performance
+        [node_lst[nd].EnterValue(data_table[nd][j]) for nd
+         in data_table.columns
+         if nd != "zz_delt_vp" and pd.notnull(data_table[nd][j])]
+        # Get mean and standard deviation
+        expected_val = node_lst["zz_delt_vp"].GetExpectedValue()
         integrity_val.append(1 - expected_val[0] / 18)
-#        print u"Valor esperado: {0},  ---> {1}".format(1 - expected_val[0] / 18, j)
+#        print u"Valor esperado: {0},  ---> {1}".format(1-expected_val[0]/18, j)
     # Se libera el espacio de momoria usado por la red
     net.Delete()
     return integrity_val
-
 
 def on_toy():
     """
@@ -132,29 +132,20 @@ driver = dataset.GetDriver()
 
 # prediction table (pixels are rows, columns are variables)
 names = files.keys()
-# data_table = pp = pd.DataFrame(index=xrange(cols*rows), columns=names)
-
-#for b in xrange(len(files)):
-#    image, rows, cols, bands = readtif(dir_tif + files.values()[b])
-#    band = image.GetRasterBand(1)
-#    band = band.ReadAsArray(0, 0, cols, rows).astype(float)
-#    band = [b1 if b1 > -999 else -999 for b1 in np.ravel(band)]
-#    data_table[names[b]] = np.ravel(band)
 
 # read table using pandas
 os.chdir(dir_robin + dir_datos)
-# Allows to choos between data file types, sample is about 2k cases
-data_type = {"total":"bn_ie_tabfinal_20150830.csv",
-              "sample":"bn_train_20150830_sin_NA_Boosted.csv"}
-#data = pd.read_csv(u"bn_ie_tabfinal_20150830.csv", na_values = "*")
-data = pd.read_csv(data_type["sample"], na_values = "*")
+# Allows to choos between data file types, sample is about 20k cases
+data_type = {"total": "bn_ie_tabfinal_20150830.csv",
+             "sample": "bn_train_20150830_sin_NA_Boosted.csv"}
+data = pd.read_csv(data_type["sample"], na_values="*")
 data_table = data[node_lst.keys()]
 del data
 
-### insert process to predict using data_table
+# insert process to predict using data_table
 ie_map = process_on_data_table(netica_dir, net_file_name, data_table)
 
-### write ie_map to disk
+# write ie_map to disk
 output_name = dir_tif + "filename.tif"
 
 outData = createtif(driver, rows, cols, 1, output_name)
