@@ -5,6 +5,13 @@ library("rgdal")
 machine_set_up <- function ()
 {
   users <- dir("c:/users")
+  if (("Miguel" %in% users) & !("equihu" %in% users))
+  {
+    # set working directory
+    dir_maps <- "C:/Users/Miguel/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/mapas/"
+    dir_work <- gsub("mapas", "Datos_para_mapeo", dir_maps)
+    setwd(dir_work)
+  }
   if ("miguel.equihua" %in% users)
   {
     # set working directory
