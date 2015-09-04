@@ -7,7 +7,7 @@ library("rgdal")
 setwd("E:/data/Miguel/Integridad")
 
 # load train data
-train_data = read.table("bn_ie_tabfinal_20150826.csv",sep=",",header=TRUE)
+train_data = read.table("bn_ie_tabfinal_20150830.csv",sep=",",header=TRUE)
 
 # head of train data
 head(train_data)
