@@ -39,7 +39,7 @@ train_data <- read.table("bn_ie_tabfinal_20150830.csv",sep=",",header=TRUE)
 head(train_data)
 
 # load BN prediction
-IE_data <- "IE_Naive_Step_n5_zvh31_peinada_sin_medias_oct2_EMBB - copia.txt"
+IE_data <- "EI_Naive_Step_n10_zvh31_peinada_sin_medias_oct4_Salida.txt"
 bn_output <- read.table(IE_data, sep=",",header=TRUE)
 length(bn_output[,1])
 
