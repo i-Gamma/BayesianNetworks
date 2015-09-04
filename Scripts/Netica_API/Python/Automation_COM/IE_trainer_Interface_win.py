@@ -7,7 +7,8 @@ Created on Sat Aug 08 13:31:05 2015
 
 import wx
 import os
-from funciones import xl_out, learn_method, pyNetica, Netica_RB_EcoInt
+from IE_trainer_funciones import xl_out, learn_method, pyNetica 
+from IE_trainer_funciones import Netica_RB_EcoInt
 
 
 def entrena_red(self, analisis, zvh, base, equipo):
