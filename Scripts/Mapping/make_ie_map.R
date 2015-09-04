@@ -7,9 +7,15 @@ machine_set_up <- function ()
   users <- dir("c:/users")
   if ("miguel.equihua" %in% users)
   {
-    equipo <- "escritorio_miguel"
     # set working directory
     dir_maps <- "C:/Users/miguel.equihua/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/mapas/"
+    dir_work <- gsub("mapas", "Datos_para_mapeo", dir_maps)
+    setwd(dir_work)
+  }
+  if ("octavio.maqueo" %in% users)
+  {
+    # set working directory
+    dir_maps <- "D:/Dropbox/Datos Redes Bayesianas/Datos Redes Bayesianas/mapas/"
     dir_work <- gsub("mapas", "Datos_para_mapeo", dir_maps)
     setwd(dir_work)
   }
@@ -18,8 +24,6 @@ machine_set_up <- function ()
 }
 
 dir_maps <- machine_set_up()
-
-
 
 # load train data
 train_data <- read.table("bn_ie_tabfinal_20150830.csv",sep=",",header=TRUE)
