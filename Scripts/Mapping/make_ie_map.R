@@ -32,7 +32,8 @@ train_data <- read.table("bn_ie_tabfinal_20150830.csv",sep=",",header=TRUE)
 head(train_data)
 
 # load BN prediction
-bn_output <- read.table("IE_Naive_Step_n5_zvh31_peinada_sin_medias_oct2_EMBB - copia.txt",sep=",",header=TRUE)
+IE_data <- "IE_Naive_Step_n5_zvh31_peinada_sin_medias_oct2_EMBB - copia.txt"
+bn_output <- read.table(IE_data, sep=",",header=TRUE)
 length(bn_output[,1])
 
 # ie
@@ -55,6 +56,6 @@ plot (ie_raster)
 
 # write to disk
 
-tif_file <- paste(dir_maps, "IE_Naive_Step_n5_zvh31_peinada_sin_medias_oct2_EMBB - copia.txt.tif", sep="")
+tif_file <- paste(dir_maps, gsub("txt", "tif", IE_data), sep="")
 ie <- writeRaster(ie_raster, filename=tif_file, format="GTiff", overwrite=TRUE)
 
