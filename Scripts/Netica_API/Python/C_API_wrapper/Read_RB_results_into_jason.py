@@ -7,7 +7,7 @@ Created on Sat Sep 05 21:00:06 2015
 
 import os
 import re
-import json
+import pyperclip
 
 os.listdir(".")
 
@@ -83,5 +83,4 @@ for d in networks:
     js_txt = js_txt +  u"}\n"
     js_txt = js_txt +  u"```\n"
 
-import pyperclip
 pyperclip.copy(js_txt)
