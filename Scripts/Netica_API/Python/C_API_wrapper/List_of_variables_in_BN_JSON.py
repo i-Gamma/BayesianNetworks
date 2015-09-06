@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jul 10 19:26:09 2015
-
-Read the zvh network with nodes without links and arranges it
-by vairable type by rows
+Created on Sat Sep 05 16:42:54 2015
 
 @author: Miguel
 """
+
 import os
 import re
 import logging
@@ -134,76 +132,70 @@ logger.info(mesg.value)
 print '\n'*2 + '#' * 40 + '\nOpening Netica:'
 print mesg.value
 
-net_p = ReadNet(net_dsk[0], env_p)  # net_p
+for net in net_dsk:
+    net_p = ReadNet(net, env_p)  # net_p
 
-# TODO API function to wrap!!!
-file_name = c_char_p(libN.GetNetFileName_bn(net_p))
-net_name = c_char_p(libN.GetNetName_bn(net_p))
+    # TODO API function to wrap!!!
+    file_name = c_char_p(libN.GetNetFileName_bn(net_p))
+    net_name = c_char_p(libN.GetNetName_bn(net_p))
 
-"""
-get net nodes
-"""
-# (const net_bn* net, const char options[])
-zerochar_type = c_char*0
-nl_p = GetNetNodes(net_p)  # nl_p
+    """
+    get net nodes
+    """
+    # (const net_bn* net, const char options[])
+    zerochar_type = c_char*0
+    nl_p = GetNetNodes(net_p)  # nl_p
 
-"""
-get number of nodes
-"""
-# (const nodelist_bn* nodes)
-nnodes = c_int(libN.LengthNodeList_bn(nl_p))  # nnodes
+    """
+    get number of nodes
+    """
+    # (const nodelist_bn* nodes)
+    nnodes = c_int(libN.LengthNodeList_bn(nl_p))  # nnodes
 
-# Collect all node names in network
-node_names = {"gral": {}, "infys": {}, "pp": {}, "pt": {},
-              "tm": {}, "tr": {}, "tx": {}}
-for i in range(nnodes.value):
-    node_p = c_void_p(libN.NthNode_bn(nl_p, i))  # node_p
-    name = c_char_p(libN.GetNodeName_bn(node_p))  # name
-    if re.search(r"^[xyZzdC]", name.value):
-        if name.value is "y": name.value = "latitude"
-        node_names["gral"][name.value] = node_p
-    elif re.search(r"(^ntre|^Diam|^Alt|^Ins|^Sin|^prob|^Psn|^Gpp)",
-                   name.value):
-        node_names["infys"][name.value] = node_p
-    elif re.search(r"^ppt[0-1]{1}", name.value):
-        node_names["pp"][name.value] = node_p
-    elif re.search(r"^pptm", name.value):
-        node_names["pt"][name.value] = node_p
-    elif re.search(r"^tma", name.value):
-        node_names["tx"][name.value] = node_p
-    elif re.search(r"^tmi", name.value):
-        node_names["tm"][name.value] = node_p
-    else:
-        node_names["tr"][name.value] = node_p
+    # Collect all node names in network
+    node_names = {"gral": {}, "infys": {}, "pp": {}, "pt": {},
+                  "tm": {}, "tr": {}, "tx": {}}
+    for i in range(nnodes.value):
+        node_p = c_void_p(libN.NthNode_bn(nl_p, i))  # node_p
+        name = c_char_p(libN.GetNodeName_bn(node_p))  # name
+        if re.search(r"^[xyZzdC]", name.value):
+            if name.value is "y": name.value = "latitude"
+            node_names["gral"][name.value] = node_p
+        elif re.search(r"(^ntre|^Diam|^Alt|^Ins|^Sin|^prob|^Psn|^Gpp)",
+                       name.value):
+            node_names["infys"][name.value] = node_p
+        elif re.search(r"^ppt[0-1]{1}", name.value):
+            node_names["pp"][name.value] = node_p
+        elif re.search(r"^pptm", name.value):
+            node_names["pt"][name.value] = node_p
+        elif re.search(r"^tma", name.value):
+            node_names["tx"][name.value] = node_p
+        elif re.search(r"^tmi", name.value):
+            node_names["tm"][name.value] = node_p
+        else:
+            node_names["tr"][name.value] = node_p
 
- a1 = sorted(node_names["gral"].keys() + node_names["infys"].keys())
- a1 = ["{\"" + nodo + "\": \"0.0\"}" for nodo in a1]
+        a1 = sorted(node_names["gral"].keys() + node_names["infys"].keys())
+        a1 = ["    {\"" + nodo + "\": \"0.0\"}" for nodo in a1]
 
-print file_name
-",\n".join(a1)
-
-"""
-Set node position and sort nodes
-"""
-y = 0
-for node in sorted(node_names):
-    j, items = 0, "    "
-    y = y + 30
-    for k in sorted(node_names[node].keys()):
-        if len(items) > 100:
-            y = y + 30
-            j, items = 0, "    "
-        # y = 30 * (list(sorted(node_names.keys())).index(node) + 1)
-        x = j * 21 + len(items) * 8 + len(k) * 4
-        libN.SetNodeVisPosition_bn(node_names[node][k], None,
-                                   c_double(x), c_double(y))
-        items = items + k
-        j = j + 1
-
-net_dsk_nuevo = my_dir + datos_dir + "VariablesD.neta"
-SaveNet(net_dsk_nuevo, env_p, net_p)
-print net_dsk_nuevo
-
-# Close Netica instance of network before finishing
-res, mesg = CloseNetica(env_p)
-print "Netica ended with this messge: {0}".format(mesg.value)
+    print "\n\n"
+    print "##### " + re.sub(".neta", "",os.path.basename(file_name.value))
+    print "\n"
+    print "```javascript"
+    print "{\"" + re.sub(".neta", "",os.path.basename(file_name.value)) + "\":{"
+    print "\"Description\": \"Poner aquí la descripción del modelo en cuestión\","
+    print "\"Training_data_set\": \"data\","
+    print "\"Results\": ["
+    print "    {\"Absolute error (rms)\": \"0.0\"},"
+    print "    {\"Error rate (%)\": \"0.0\"},"
+    print "    {\"Logarithmic loss\": \"0.0\"},"
+    print "    {\"Quadratic loss\": \"0.0\"},"
+    print "    {\"Spherical payoff\": \"0.0\"}"
+    print "      ],"
+    print "\"Variables (variance reduction)\": ["
+    print ",\n".join(a1)
+    print "      ]"
+    print " }"
+    print "}"
+    print "```"
+net_dsk_ref = [re.sub("/", r"\\", f) for f in net_dsk]
