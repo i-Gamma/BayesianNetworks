@@ -1,0 +1,341 @@
+
+Could not register COM interface, because not permitted access (maybe you need to run with administrator privileges?)
+
+Netica 5.19 Win (CoGFMs64), (C) 1992-2015 Norsys Software Corp.
+
+The license being used is +EquihuaM/InstEco_MX/120,310-6-A/(security part removed).
+It enables the graphical and programming interfaces.
+The file location of the executable running this program is:  C:\Program Files\Netica\Netica 519\Netica.exe
+
+Command Line:  "C:\Users\miguel.equihua\Documents\0-GIT\Publicaciones y proyectos\BayesianNetworks\redes_ajuste_MyO\EI_TAN_zvh31_con_medias_EM_boo_1_sin_lat.neta"
+Compiled to 16 cliques, with total table size (including sepsets) of 3.63276e+06.
+Do you want to change the number of states to 31 (there are 28)?  
+This will lose CPT tables, but adding/deleting states by right-clicking wouldn't. (yes/NO)   --> YES
+Case file to learn CPTs from:  C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\set_de_Entrenamiento\bn_train_20150830_sin_NA_Boosted.csv
+Enter degree (normal is 1):  1
+[2683]  Case file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\set_de_Entrenamiento\bn_train_20150830_sin_NA_Boosted.csv' referred to these nodes not in Bayes net 'EI_TAN_zvh31_con_medias_EM_boo':  Cgl, yeardate, x, y, DiametroNormal_media, DiametroNormal_mediana, DiametroCopa_mediana, DiametroCopa_desvabs, AlturaTotal_media, AlturaTotal_mediana, AlturaTotal_desvabs, AlturaFusteLimpio_mediana, AlturaFusteLimpio_desvest, Insectos, SinVigor, ppt01, ppt02, ppt03, ppt04, ppt05, ppt06, ppt07, .
+
+Doing EM Learning, hold down <ctrl> + <mouse button> to stop ...
+Case file to learn CPTs from:  C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\set_de_Entrenamiento\bn_train_20150830_sin_NA_Boosted.csv
+Remove existing node CPT and experience tables first? (yes/no)   --> YES
+Enter degree (normal is 1):  1
+[2683]  Case file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\set_de_Entrenamiento\bn_train_20150830_sin_NA_Boosted.csv' referred to these nodes not in Bayes net 'EI_TAN_zvh31_con_medias_EM_boo':  Cgl, yeardate, x, y, DiametroNormal_media, DiametroNormal_mediana, DiametroCopa_mediana, DiametroCopa_desvabs, AlturaTotal_media, AlturaTotal_mediana, AlturaTotal_desvabs, AlturaFusteLimpio_mediana, AlturaFusteLimpio_desvest, Insectos, SinVigor, ppt01, ppt02, ppt03, ppt04, ppt05, ppt06, ppt07, .
+
+Doing EM Learning, hold down <ctrl> + <mouse button> to stop ...
+  Iteration   Log Likelihood   Change %
+          0   56.5362       
+          1   37.3736          33.8945
+          2   37.311           0.1673
+          3   37.2983          0.0342
+          4   37.2938          0.0120
+          5   37.2915          0.0061
+          6   37.2902          0.0037
+          7   37.2893          0.0024
+          8   37.2887          0.0016
+          9   37.2882          0.0012
+         10   37.2879          0.0009
+         11   37.2877          0.0007
+         12   37.2875          0.0005
+         13   37.2873          0.0004
+         14   37.2872          0.0003
+         15   37.2871          0.0002
+         16   37.2871          0.0002
+         17   37.287           0.0001
+         18   37.287           0.0001
+         19   37.287           0.0001
+         20   37.2869          0.0001
+         21   37.2869          0.0001
+         22   37.2869          0.0000
+         23   37.2869          0.0000
+         24   37.2869          0.0000
+         25   37.2868          0.0000
+         26   37.2868          0.0000
+         27   37.2868          0.0000
+         28   37.2868          0.0000
+         29   37.2868          0.0000
+         30   37.2868          0.0000
+         31   37.2868          0.0000
+         32   37.2868          0.0000
+         33   37.2868          0.0000
+         34   37.2868          0.0000
+         35   37.2868          0.0000
+         36   37.2868          0.0000
+         37   37.2868          0.0000
+         38   37.2868          0.0000
+         39   37.2868          0.0000
+         40   37.2868          0.0000
+         41   37.2868          0.0000
+         42   37.2868          0.0000
+         43   37.2868          0.0000
+         44   37.2868          0.0000
+         45   37.2868          0.0000
+         46   37.2868          0.0000
+         47   37.2868          0.0000
+         48   37.2868          0.0000
+-------------------------------------------------------------------------
+
+Sensitivity of 'zz_delt_vp' to a finding at another node:
+
+Node                     Variance    Percent   Mutual      Percent   Variance of 
+----                     Reduction             Info                  Beliefs     
+zz_delt_vp               15.78       100       2.83295     100       0.6506157   
+proporcion_pastizal      0.5806      3.68      0.13047     4.61      0.0127702   
+proporcion_agricultura   0.5488      3.48      0.12655     4.47      0.0099209   
+Gpp_1km_wetstd           0.2266      1.44      0.03427     1.21      0.0028425   
+AlturaFusteLimpio_media  0.2093      1.33      0.07918     2.79      0.0068320   
+proporcion_asentamientos 0.1854      1.17      0.01791     0.632     0.0001351   
+proporcion_bosques       0.1806      1.14      0.25938     9.16      0.0135958   
+DiametroNormal_desvabs   0.155       0.983     0.05289     1.87      0.0023472   
+AlturaFusteLimpio_desvab 0.1463      0.927     0.06984     2.47      0.0049553   
+AlturaTotal_desvest      0.1462      0.927     0.06618     2.34      0.0038802   
+DiametroNormal_desvest   0.1338      0.848     0.04047     1.43      0.0013324   
+ntree_fixed              0.1289      0.817     0.06481     2.29      0.0045418   
+PsnNet_1km_std           0.1014      0.643     0.02265     0.8       0.0014403   
+PsnNet_1km_drymean       0.08729     0.553     0.02049     0.723     0.0013466   
+prob_hojarasca           0.08417     0.533     0.02516     0.888     0.0013797   
+DiametroCopa_desvest     0.05381     0.341     0.02367     0.836     0.0005177   
+proporcion_matorrales    0.03488     0.221     0.07909     2.79      0.0128861   
+PsnNet_1km_wetstd        0.03485     0.221     0.00852     0.301     0.0002941   
+DiametroCopa_media       0.03105     0.197     0.01903     0.672     0.0003905   
+PsnNet_1km_mean          0.01403     0.0889    0.00875     0.309     0.0004051   
+PsnNet_1km_drystd        0.002881    0.0183    0.00413     0.146     0.0001066   
+Gpp_1km_mean             0.002342    0.0148    0.00522     0.184     0.0001746   
+prob_plaga               0.001074    0.00681   0.00099     0.0349    0.0000530   
+prob_arip_pie            0.001069    0.00678   0.00861     0.304     0.0003912   
+zvh_31                   0           0         0.00000     0         0.0000000   
+dem30_mean1000           0           0         0.00000     0         0.0000000   
+
+Case file for testing:  C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\set_de_Entrenamiento\bn_train_20150830_sin_NA_Boosted.csv
+Case file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\set_de_Entrenamiento\bn_train_20150830_sin_NA_Boosted.csv' referred to these nodes not in Bayes net 'EI_TAN_zvh31_con_medias_EM_boo':
+  Cgl, yeardate, x, y, DiametroNormal_media, DiametroNormal_mediana, DiametroCopa_mediana, DiametroCopa_desvabs, AlturaTotal_media, AlturaTotal_mediana, AlturaTotal_desvabs, AlturaFusteLimpio_mediana, AlturaFusteLimpio_desvest, Insectos, SinVigor, ppt01, ppt02, ppt03, ppt04, ppt05, ppt06, ppt07, ppt08, ppt09, ppt10, ppt11, ppt12, tmax01, tmax02, tmax03, tmax04, tmax05, tmax06, tmax07, tmax08, tmax09, tmax10, tmax11, tmax12, tmin01, tmin02, tmin03, tmin04, tmin05, tmin06, tmin07, tmin08, tmin09, tmin10, tmin11, tmin12, dem30_sd1000, Gpp_1km_drymean, Gpp_1km_drystd, Gpp_1km_std, Gpp_1km_wetmean, PsnNet_1km_wetmean, zvh, Zvh_8ph, pptmax01, pptmax02, pptmax03, pptmax04, pptmax05, pptmax06, pptmax07, pptmax08, pptmax09, pptmax10, pptmax11, pptmax12, tx_tm01, tx_tm02, tx_tm03, tx_tm04, tx_tm05, tx_tm06, tx_tm07, tx_tm08, tx_tm09, tx_tm10, tx_tm11, tx_tm12, proporcion_agua, proporcion_VegNoMaderosa
+Read 21394 cases, and used 21394 of them to test net.
+
+For zz_delt_vp:
+--------------
+
+Confusion:
+  .......................................................................Predicted......................................................................
+  0 to 1  1 to 2  2 to 3  3 to 4  4 to 5  5 to 6  6 to 7  7 to 8  8 to 9  9 to 1  10 to   11 to   12 to   13 to   14 to   15 to   16 to   17 to   18 to     Actual
+  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------    ------
+    5933     130      83      70      32     371       0     458       0       0     100       0      36       7       0       4       9       0       3    0 to 1
+     423     749      18      18       2      93       0      87       0       0      10       0      15       2       0       0       1       0       0    1 to 2
+     213      13     576      15      12      58       0      98       0       0      21       0      10       1       0       0       1       0       0    2 to 3
+     144      14       8     635       2      51       0      64       0       0      15       0       4       0       0       0       0       0       0    3 to 4
+      28       3       1       2     199       9       0      15       0       0       8       0       5       0       0       0       0       0       0    4 to 5
+     663      13      38      36      10    2414       0     440       0       0      69       0      28       1       0       0       0       0       0    5 to 6
+       0       0       0       0       0       0       9       0       0       0       0       0       0       0       0       0       0       0       0    6 to 7
+     651      69      48      46      15     317       0    2890       0       0     163       0      70       2       0       0       0       0       0    7 to 8
+       0       0       0       0       0       0       0       0      10       0       0       0       0       0       0       0       1       0       0    8 to 9
+       0       0       0       0       0       0       0       0       0      36       0       0       0       0       0       0       0       0       0    9 to 10
+      53      12       7       3       6      41       0      82       0       0     921       0      21       1       0       0       0       0       0    10 to 11
+       2       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0    11 to 12
+      38       5       3       1       2      42       0      43       0       0      16       0     775       2       0       0       0       0       0    12 to 13
+       7       0       0       1       0       1       0       3       0       0       2       0      10     130       0       0       0       0       1    13 to 14
+       0       0       0       0       0       0       0       0       0       0       0       0       0       0       4       0       0       0       0    14 to 15
+       1       0       0       0       0       0       0       0       0       0       0       0       0       0       0      15       2       0       0    15 to 16
+       4       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0      39       0       0    16 to 17
+       2       0       0       0       0       0       0       1       0       0       0       0       0       0       0       0       1      27       7    17 to 18
+       1       0       0       0       0       0       0       1       0       0       1       0       0       0       0       0       0       1      95    18 to 19
+
+Testing Real Value:
+  Absolute error:      mean = 1.536        max = 18.43         rms = 2.309
+  Error / std dev:     mean = 118.2 %      max = 2871 %
+  Distribution within:  0-1 std dev      1-2 std dev     2-3 std dev     >3 std dev
+                        48.4 %           45 %            3.8 %           2.81 %
+
+Error rate = 27.61%
+
+Scoring Rule Results:
+  Logarithmic loss = 0.6944
+  Quadratic loss   = 0.3734
+  Spherical payoff = 0.7766
+
+Calibration:
+  0 to 1     0-0.001:  0    | 0.001-0.01:0   | 0.01-0.2: 2.16 | 0.2-0.5:  2.72 | 0.5-1:    3.05 | 1-2:      4.3  | 2-5:      7.79 | 5-10:     11.3 | 10-15:    17.5 | 15-20:    20.6 | 
+             20-25:    22.8 | 25-30:    31   | 30-40:    33.3 | 40-50:    40   | 50-60:    49.5 | 60-70:    52.1 | 70-75:    63.3 | 75-80:    63.4 | 80-85:    70.6 | 85-90:    78.7 | 
+             90-95:    81.6 | 95-98:    91.1 | 98-99.8:  96.8 | 99.8-100: 100  | 100-100:  100  | 
+  1 to 2     0-0.001:  0    | 0.001-0.005:0  | 0.005-0.2:0.28 | 0.2-1:    2.34 | 1-2:      2.67 | 2-5:      7.45 | 5-10:     12.3 | 10-15:    14.1 | 15-20:    22   | 20-30:    28.1 | 
+             30-50:    39.2 | 50-80:    60.9 | 80-99.9:  84.3 | 99.9-100: 100  | 
+  2 to 3     0-0.001:  0    | 0.001-0.005:0.184|0.005-0.05:0  | 0.05-0.5: 0.805| 0.5-1:    1.97 | 1-2:      2.86 | 2-5:      6.97 | 5-10:     11.5 | 10-15:    17.3 | 15-25:    22.3 | 
+             25-40:    28.8 | 40-70:    50   | 70-99.9:  83.9 | 99.9-100: 100  | 
+  3 to 4     0-0.001:  0    | 0.001-0.005:0  | 0.005-0.05:1.23| 0.05-0.5: 1.42 | 0.5-2:    2.81 | 2-5:      5.47 | 5-10:     9.17 | 10-20:    19.2 | 20-40:    31.9 | 40-75:    52.6 | 
+             75-99.8:  87.5 | 99.8-100: 100  | 
+  4 to 5     0-0.001:  0    | 0.001-0.005:0  | 0.005-0.05:0   | 0.05-0.5: 0.279| 0.5-5:    4.58 | 5-40:     15.6 | 40-100:   70.6 | 
+  5 to 6     0-0.001:  0.00891|0.001-0.005:1.11|0.005-0.05:1.02|0.05-0.5: 3.86 | 0.5-1:    6.6  | 1-2:      8.86 | 2-5:      10.6 | 5-10:     17.5 | 10-15:    21.8 | 15-20:    30.6 | 
+             20-25:    33   | 25-30:    39   | 30-40:    41.7 | 40-50:    48   | 50-60:    56.7 | 60-70:    61.4 | 70-80:    67.6 | 80-90:    66.3 | 90-98:    79.8 | 98-100:   98.6 | 
+             100-100:  100  | 
+  6 to 7     0-0.001:  0    | 0.001-0.01:0   | 0.01-100: 4.92 | 
+  7 to 8     0-0.001:  0    | 0.001-0.005:0  | 0.005-0.1:0.449| 0.1-0.5:  2.04 | 0.5-1:    3.5  | 1-2:      5.19 | 2-5:      7.98 | 5-10:     12.1 | 10-15:    15.7 | 15-20:    21.4 | 
+             20-25:    24.8 | 25-30:    26.8 | 30-40:    33.9 | 40-50:    39   | 50-60:    46.5 | 60-70:    53.8 | 70-80:    60   | 80-90:    68.8 | 90-98:    84.8 | 98-100:   99.1 | 
+             100-100:  100  | 
+  8 to 9     0-0:      0    | 0-0.001:  0    | 0.001-0.002:0  | 0.002-0.005:0  | 0.005-0.02:0   | 0.02-0.5: 0    | 0.5-100:  31.4 | 
+  9 to 10    0-0.001:  0    | 0.001-0.005:0  | 0.005-0.05:0   | 0.05-100: 23.2 | 
+  10 to 11   0-0.001:  0.00633|0.001-0.005:0 | 0.005-0.02:0   | 0.02-0.1: 0.247| 0.1-0.2:  2.03 | 0.2-0.5:  1.36 | 0.5-2:    3.89 | 2-5:      5.2  | 5-10:     10.7 | 10-20:    14.3 | 
+             20-40:    23   | 40-70:    35.1 | 70-95:    67.7 | 95-100:   93.6 | 100-100:  100  | 
+  11 to 12   0-0.001:  0    | 0.001-100:1.1  | 
+  12 to 13   0-0.001:  0    | 0.001-0.005:0.505|0.005-0.05:0.656|0.05-0.5:2.54 | 0.5-2:    1.92 | 2-5:      5.02 | 5-15:     11.3 | 15-50:    27.7 | 50-95:    60.3 | 95-100:   95.8 | 
+             100-100:  100  | 
+  13 to 14   0-0.001:  0    | 0.001-0.005:0  | 0.005-0.05:0.246|0.05-0.2: 0.781| 0.2-20:   3.95 | 20-100:   79.9 | 
+  14 to 15   0-0.001:  0    | 0.001-100:2.84 | 
+  15 to 16   0-0.001:  0    | 0.001-100:4.36 | 100-100:  100  | 
+  16 to 17   0-0:      0    | 0-0.001:  0    | 0.001-0.02:0   | 0.02-100: 23.4 | 
+  17 to 18   0-0.001:  0    | 0.001-0.002:0  | 0.002-0.005:0  | 0.005-0.05:0   | 0.05-100: 21.8 | 
+  18 to 19   0-0:      0    | 0-0.001:  0    | 0.001-100:28.2 | 100-100:  100  | 
+  Total      0-0:      0    | 0-0.001:  0.000612|0.001-0.002:0.0862|0.002-0.005:0.166|0.005-0.01:0.105|0.01-0.02:0.119|0.02-0.05:0.421|0.05-0.1:0.972|0.1-0.2: 1.36 | 0.2-0.5:  2.2  | 
+             0.5-1:    3.12 | 1-2:      4.52 | 2-5:      7.36 | 5-10:     12   | 10-15:    16.9 | 15-20:    22.6 | 20-25:    26   | 25-30:    30   | 30-40:    34.7 | 40-50:    40.8 | 
+             50-60:    49.9 | 60-70:    54.8 | 70-75:    62.5 | 75-80:    64.5 | 80-85:    68.5 | 85-90:    75.9 | 90-95:    81.2 | 95-98:    88.5 | 98-99:    93.8 | 99-99.5:  96.3 | 
+             99.5-99.8:96.3 | 99.8-100: 99.8 | 100-100:  100  | 
+
+Times Surprised (percentage):
+               .................Predicted Probability....................
+  State        < 1%             < 10%             > 90%             > 99%
+  -----        ----             -----             -----             -----
+  0 to 1       0.40 (26/6474)   2.89 (268/9274)   4.81 (156/3245)   0.19 (4/2079)
+  1 to 2       0.07 (11/16011)   1.14 (208/18276)   4.92 (22/447)   0.33 (1/299)
+  2 to 3       0.08 (14/17213)   0.94 (182/19417)   1.32 (4/304)    0.48 (1/209)
+  3 to 4       0.10 (19/18350)   0.52 (103/19754)   1.93 (7/363)    0.82 (2/245)
+  4 to 5       0.02 (5/20409)   0.15 (32/20873)   6.06 (8/132)      0.00 (0/78)
+  5 to 6       0.41 (54/13047)   2.21 (337/15238)   6.72 (87/1295)   0.70 (6/852)
+  6 to 7       0.00 (0/21334)   0.00 (0/21340)    0.00 (0/9)        0.00 (0/9)
+  7 to 8       0.44 (40/9053)   3.12 (411/13159)   4.41 (71/1609)   0.09 (1/1125)
+  8 to 9       0.00 (0/21329)   0.00 (0/21337)    0.00 (0/10)       0.00 (0/10)
+  9 to 10      0.00 (0/21301)   0.00 (0/21315)    0.00 (0/35)       0.00 (0/33)
+  10 to 11     0.13 (24/18310)   0.49 (95/19362)   7.30 (50/685)    3.39 (16/472)
+  11 to 12     0.00 (0/21334)   0.00 (1/21348)    0.00 (0/0)        0.00 (0/0)
+  12 to 13     0.12 (24/19270)   0.30 (60/19999)   7.07 (46/651)    0.91 (4/441)
+  13 to 14     0.03 (7/21025)   0.05 (10/21146)   1.77 (2/113)      0.00 (0/87)
+  14 to 15     0.00 (0/21345)   0.00 (0/21347)    0.00 (0/4)        0.00 (0/4)
+  15 to 16     0.00 (1/21279)   0.00 (1/21326)    0.00 (0/13)       0.00 (0/13)
+  16 to 17     0.00 (1/21254)   0.00 (1/21283)    3.57 (1/28)       4.76 (1/21)
+  17 to 18     0.00 (1/21258)   0.03 (6/21313)    0.00 (0/23)       0.00 (0/23)
+  18 to 19     0.00 (0/21232)   0.00 (1/21236)    7.14 (7/98)       2.22 (1/45)
+  Total        0.06 (227/350828)   0.47 (1716/368343)   5.09 (461/9064)   0.61 (37/6045)
+
+Sensitivity of Test:
+  0 to 1     0     100    | 2     99.3   | 5     98.2   | 10    96.3   | 15    94.2   | 20    92.3   | 25    90.4   | 30    88     | 40    83.1   | 50    78     | 60    71.9   | 
+             70    66.1   | 75    60.6   | 80    55.6   | 85    49.7   | 90    42.7   | 95    36     | 98    31     | 99    28.7   | 99.5  27.3   | 99.8  26     | 99.9  25     | 
+             100   1.48   | 100   0      | 
+  1 to 2     0     100    | 2     98.4   | 5     93.9   | 10    85.3   | 15    76.5   | 20    69.9   | 25    63.9   | 30    60.4   | 40    53.9   | 50    49     | 60    44.5   | 
+             70    40.1   | 75    37     | 80    34.8   | 85    32.7   | 90    30     | 95    25.5   | 98    22.4   | 99    21     | 99.5  19.7   | 99.8  18.2   | 100   2.19   | 
+             100   0      | 
+  2 to 3     0     100    | 2     97.2   | 5     90.7   | 10    82.1   | 15    75.3   | 20    69.4   | 25    65.5   | 30    62.2   | 40    57     | 50    52.3   | 60    46.8   | 
+             70    41.7   | 75    39.1   | 80    36.1   | 85    33.1   | 90    29.5   | 95    24.8   | 98    21.3   | 99.5  18.9   | 99.9  17.2   | 100   1.67   | 100   0      | 
+  3 to 4     0     100    | 1     98     | 5     93.5   | 10    89     | 15    84.5   | 20    81     | 25    77.5   | 30    74.2   | 40    68.6   | 50    63.2   | 60    57.5   | 
+             70    53     | 75    49.4   | 80    47.1   | 85    42.9   | 90    38     | 95    33.5   | 98    28.9   | 99    25.9   | 99.5  23.4   | 99.8  21.7   | 100   3.63   | 
+             100   0      | 
+  4 to 5     0     100    | 2     95.6   | 5     91.5   | 10    88.1   | 20    81.5   | 30    77.4   | 40    73     | 50    68.5   | 60    62.6   | 70    58.1   | 80    53.7   | 
+             90    45.9   | 95    38.9   | 98    32.6   | 99    28.9   | 99.9  24.1   | 100   5.93   | 100   0      | 
+  5 to 6     0     100    | 0.5   99.1   | 2     97.4   | 5     94.9   | 10    90.9   | 15    87.1   | 20    83.2   | 25    79.6   | 30    75.5   | 40    68.2   | 50    61     | 
+             60    53.2   | 70    46.1   | 75    42.4   | 80    39.2   | 85    36     | 90    32.5   | 95    28.3   | 98    24.6   | 99    22.8   | 99.5  21.8   | 99.8  20.5   | 
+             99.9  19.3   | 100   1.7    | 100   0      | 
+  6 to 7     0     100    | 100   0      | 
+  7 to 8     0     100    | 1     99.1   | 2     98.1   | 5     94.9   | 10    90.4   | 15    86     | 20    82.2   | 25    78.5   | 30    75.4   | 40    68.9   | 50    62.8   | 
+             60    56.8   | 70    50.1   | 75    46.9   | 80    43.2   | 85    39.9   | 90    36     | 95    31.5   | 98    28     | 99    26.3   | 99.5  24.9   | 99.8  23.6   | 
+             99.9  22.5   | 100   1.69   | 100   0      | 
+  8 to 9     0     100    | 100   0      | 
+  9 to 10    0     100    | 99.8  77.8   | 100   22.2   | 100   0      | 
+  10 to 11   0     100    | 1     97.9   | 5     94.7   | 10    91.7   | 15    89     | 20    87.5   | 25    85.6   | 30    84.1   | 40    80.6   | 50    77.6   | 60    74.2   | 
+             70    69.1   | 75    66.3   | 80    62.9   | 85    59.5   | 90    55.4   | 95    49.8   | 98    44.4   | 99    39.8   | 99.5  37     | 99.8  34.2   | 99.9  32.7   | 
+             100   4.97   | 100   0      | 
+  12 to 13   0     100    | 0.5   98     | 5     95.4   | 10    93.5   | 15    91.5   | 20    89.3   | 30    86.5   | 40    84.7   | 50    81.9   | 60    79.3   | 70    74.8   | 
+             80    71.2   | 85    68.7   | 90    65.3   | 95    58.9   | 98    52.1   | 99    47.1   | 99.5  42.6   | 99.8  37.9   | 99.9  35.6   | 100   4.1    | 100   0      | 
+  13 to 14   0     100    | 2     93.5   | 25    87.7   | 50    82.6   | 75    76.8   | 90    71.6   | 95    66.5   | 98    60.6   | 99.5  54.8   | 99.9  48.4   | 100   15.5   | 
+             100   0      | 
+  15 to 16   0     100    | 100   27.8   | 100   0      | 
+  16 to 17   0     100    | 60    74.4   | 95    53.5   | 100   11.6   | 100   0      | 
+  17 to 18   0     100    | 40    73.7   | 100   18.4   | 100   0      | 
+  18 to 19   0     100    | 80    91.9   | 95    66.7   | 98    48.5   | 99.9  40.4   | 100   13.1   | 100   0      | 
+
+-------------------------------------------------------------------------------
+
+----------------------------------------------------
+EI_TAN_zvh31_con_medias_EM_boo        15/09/06 15:29
+
+       26   Nodes          (not including constants)
+        0   Decision nodes
+        0   Utility nodes
+        0   Constant nodes
+        0   Title or text notation entries
+            ----------------------------------------
+       46   Links                 (not disconnected)
+        0   Disconnected links
+        0   Time delay links
+        0   Directed cycles         (without delays)
+       21   Loops     (disregarding link directions)
+        1   Separate networks   (ignoring constants)
+            ----------------------------------------
+  1650636   Conditional probabilities total
+        0   Decision conditions
+            ----------------------------------------
+        0   Findings nodes (not including constants)
+        0   Negative or likelihood findings nodes
+----------------------------------------------------
+
+Control File (Cancel to Skip):  C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv
+
+**2418** [Is this a control file?]   Unknown function 'x', on line 1 of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+Control File (Cancel to Skip):  C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\control.txt
+
+**2411** First argument 'zz_delt_vp_1' is not the name of a node in Bayes net EI_TAN_zvh31_con_medias_EM_boo, on line 1 of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\control.txt'.
+Control File (Cancel to Skip):  C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\control.txt
+
+**2411** First argument 'zz_delt_vp_1' is not the name of a node in Bayes net EI_TAN_zvh31_con_medias_EM_boo, on line 1 of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\control.txt'.
+Control File (Cancel to Skip):  C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\control.txt
+Case file to process:  C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv
+Output cases to:  C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\EI_TAN_zvh31_con_medias_EM_boo_1_sin_lat.txt
+Case file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv' referred to these nodes not in net 'EI_TAN_zvh31_con_medias_EM_boo':
+  x, y, AlturaFusteLimpio_desvest, AlturaFusteLimpio_mediana, AlturaTotal_desvabs, AlturaTotal_media, AlturaTotal_mediana, dem30_sd1000, DiametroCopa_desvabs, DiametroCopa_mediana, DiametroNormal_media, DiametroNormal_mediana, Gpp_1km_drymean, Gpp_1km_drystd, Gpp_1km_std, Gpp_1km_wetmean, latitude, proporcion_agua, proporcion_VegNoMaderosa, PsnNet_1km_wetmean, zvh_31_lcc, zz_delt_vp
+Value -10.1756 for variable 'dem30_mean1000' is out of bounds (as defined in node properties), in line 2254 (char 167) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'  --> Expand All
+[2454]  Range of variable 'dem30_mean1000' expanded to include -10.1756, to read line 2254 (char 167) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_std' expanded to include 168.464, to read line 84821 (char 523) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_std' expanded to include 183.5, to read line 85648 (char 510) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_std' expanded to include 183.98, to read line 86476 (char 528) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_std' expanded to include 186.507, to read line 87304 (char 520) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_std' expanded to include 195.946, to read line 88967 (char 529) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_wetstd' expanded to include 214.024, to read line 88967 (char 564) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'prob_hojarasca' expanded to include 0.019, to read line 109241 (char 485) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'prob_hojarasca' expanded to include 0.014, to read line 167973 (char 446) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_std' expanded to include 197.606, to read line 197382 (char 530) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_wetstd' expanded to include 216.525, to read line 197382 (char 565) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_mean' expanded to include -1.67544, to read line 557341 (char 321) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_mean' expanded to include -1.76106, to read line 558544 (char 322) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_mean' expanded to include -2.76577, to read line 558546 (char 323) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_mean' expanded to include -7.55455, to read line 570525 (char 321) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_mean' expanded to include 244.5, to read line 806278 (char 319) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'Gpp_1km_mean' expanded to include 762.87, to read line 806410 (char 212) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'Gpp_1km_mean' expanded to include 773.551, to read line 807649 (char 210) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -10.9514, to read line 1000247 (char 88) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -12.9813, to read line 1000248 (char 92) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -14.9795, to read line 1001249 (char 94) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -16.5253, to read line 1001250 (char 95) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -19.993, to read line 1002248 (char 96) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -32.6415, to read line 1049569 (char 295) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -21.4044, to read line 1078100 (char 92) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'Gpp_1km_mean' expanded to include 777.638, to read line 1157295 (char 213) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'Gpp_1km_wetstd' expanded to include 363.099, to read line 1192552 (char 240) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'prob_plaga' expanded to include 0.037, to read line 1231993 (char 274) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'prob_plaga' expanded to include 0.036, to read line 1233158 (char 276) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'prob_plaga' expanded to include 0.035, to read line 1251718 (char 276) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -38.1296, to read line 1305121 (char 314) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_mean' expanded to include -13.8478, to read line 1320058 (char 337) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drystd' expanded to include 151.193, to read line 1339057 (char 313) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drystd' expanded to include 155.579, to read line 1340223 (char 314) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_mean' expanded to include -18.7754, to read line 1356292 (char 319) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -40.5636, to read line 1374294 (char 292) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -51.3091, to read line 1387642 (char 295) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drystd' expanded to include 156.107, to read line 1387642 (char 313) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drystd' expanded to include 157.686, to read line 1392520 (char 313) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -53.6182, to read line 1404680 (char 288) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -58.1455, to read line 1413420 (char 291) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -61.8571, to read line 1427344 (char 293) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drystd' expanded to include 162.618, to read line 1427344 (char 311) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drystd' expanded to include 164.08, to read line 1436151 (char 312) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_mean' expanded to include -38.7681, to read line 1544685 (char 333) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'Gpp_1km_mean' expanded to include 794.467, to read line 1544982 (char 210) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'Gpp_1km_mean' expanded to include 796.825, to read line 1546249 (char 210) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'Gpp_1km_mean' expanded to include 802.766, to read line 1547516 (char 212) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'Gpp_1km_mean' expanded to include 809.11, to read line 1548784 (char 210) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'Gpp_1km_mean' expanded to include 816.555, to read line 1551325 (char 210) of file 'C:\Users\miguel.equihua\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+All 1947580 cases from file 'bn_ie_tabfinal_20150830.csv' were processed, and output sent to file 'EI_TAN_zvh31_con_medias_EM_boo_1_sin_lat.txt'.
+ ...
+Save File As:  C:\Users\miguel.equihua\Documents\0-GIT\Publicaciones y proyectos\BayesianNetworks\redes_ajuste_MyO\EI_TAN_zvh31_con_medias_EM_boo_1_sin_lat.txt
