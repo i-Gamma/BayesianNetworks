@@ -1,0 +1,14 @@
+
+Couldn't completely enter Netica into the Windows Registry (App Paths info skipped), because: Acceso denegado.  (try running Netica once by right-clicking Netica executable icon and choosing 'Run as Administrator').
+
+Netica 5.15 Win (CoGFIn64), (C) 1992-2014 Norsys Software Corp.
+
+The license being used is +EquihuaM/InstEco_MX/120-6-A/(security part removed).
+It enables the graphical interface, but not the programming interface.
+The file location of the executable running this program is:  C:\Program Files\Netica\Netica 515\Netica.exe
+
+Command Line:  "C:\Users\Miguel\Documents\0 Versiones\2 Proyectos\BayesianNetworks\redes_ajuste_MyO\EI_Naive_Step_n5_zvh31_peinada_sin_medias_oct2_EMBB - copia.neta"
+Compiled to 18 cliques, with total table size (including sepsets) of 7.98e+06.
+
+**2760** Some node(s) (e.g. prob_hojarasca) don't have conditional probability tables (CPTs) (they will be taken as having uniform probabilities).
+Save File As:  C:\Users\Miguel\Documents\0 Versiones\2 Proyectos\BayesianNetworks\redes_ajuste_MyO\EI_Naive_Step_n5_zvh31_peinada_sin_medias_oct2_EMBB - copia.txt
