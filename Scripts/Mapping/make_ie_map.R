@@ -47,7 +47,7 @@ head(train_data)
 
 maps <- dir()[grepl("^EI", dir())]
 
-for (IE_data in maps)
+for (IE_data in maps[c(3:10)])
 {
   # load BN prediction
   bn_output <- read.table(IE_data, sep=",",header=TRUE)
@@ -60,7 +60,7 @@ for (IE_data in maps)
   
   # ie map
   ie_map_df = data.frame(x=train_data$x, y=train_data$y, ie=ie)
-  coordinates(ie_map_df) <- ~ie_map_df$x + ie_map_df$y
+  coordinates(ie_map_df) <- ~ x + y
   gridded(ie_map_df) <- TRUE
   ie_raster <- raster(ie_map_df)
   

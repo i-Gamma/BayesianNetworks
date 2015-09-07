@@ -51,9 +51,9 @@ for net_name in results_files:
     networks[net]["Variables (variance reduction)"] = sensibility
 
 js_txt = u""
-sec_1 = [u"Absolute error (rms)", u"Error rate (%)",
+error_rates = [u"Absolute error (rms)", u"Error rate (%)",
          u"Logarithmic loss", u"Quadratic loss", u"Spherical payoff"]
-for d in networks:
+for d in sorted(networks):
     js_txt = js_txt + u"\n\n"
     js_txt = js_txt + u"##### " + d + "\n"
     js_txt = js_txt + u"\n"
@@ -64,7 +64,7 @@ for d in networks:
     js_txt = js_txt + (u"\"Training_data_set\": \"" +
                        u"bn_train_20150830_sin_NA_Boosted.csv\",\n")
     js_txt = js_txt + u"\"Results\": [\n"
-    for v in sec_1:
+    for v in error_rates:
         if v != sec_1[-1]:
             js_txt = js_txt + (u"    {\"" + v + u"\": " + u"\"" +
                                networks[d][v] + "\"},\n")
