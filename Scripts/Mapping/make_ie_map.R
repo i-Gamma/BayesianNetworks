@@ -23,14 +23,14 @@ machine_set_up <- function ()
   {
     # set working directory
     dir_maps <- "C:/Users/octavio.maqueo/Dropbox/Datos Redes Bayesianas/mapas/"
-    dir_work <- gsub("mapas", "Datos_para_mapeo", dir_maps)
+    dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
     setwd(dir_work)
   }
   if ("lap.octavio" %in% users)
   {
     # set working directory
     dir_maps <- "D:/Dropbox/Datos Redes Bayesianas/Datos Redes Bayesianas/mapas/"
-    dir_work <- gsub("mapas", "Datos_para_mapeo", dir_maps)
+    dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
     setwd(dir_work)
   }
   
