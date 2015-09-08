@@ -1,0 +1,280 @@
+
+Couldn't completely enter Netica into the Windows Registry (App Paths info skipped), because: Acceso denegado.  (try running Netica once by right-clicking Netica executable icon and choosing 'Run as Administrator').
+
+Netica 5.15 Win (CoGFIn64), (C) 1992-2014 Norsys Software Corp.
+
+The license being used is +EquihuaM/InstEco_MX/120-6-A/(security part removed).
+It enables the graphical interface, but not the programming interface.
+The file location of the executable running this program is:  C:\Program Files\Netica\Netica 515\Netica.exe
+
+Command Line:  "C:\Users\Miguel\Documents\0 Versiones\2 Proyectos\BayesianNetworks\redes_ajuste_MyO\EI_Naive_Step_n10_zvh31_boosted_oct3Cb.neta"
+Compiled to 8 cliques, with total table size (including sepsets) of 1.05832e+06.
+Case file to use:  C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\set_de_Entrenamiento\bn_train_20150830_sin_NA_Boosted.csv
+Enter desired number of states:  5
+Enter percent degree of rounding for thresholds: 
+(0 - 100):  20
+Compiled to 8 cliques, with total table size (including sepsets) of 1.05832e+06.
+
+**2760** Some node(s) (e.g. dem30_mean1000) don't have conditional probability tables (CPTs) (they will be taken as having uniform probabilities).
+Case file to learn CPTs from:  C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\set_de_Entrenamiento\bn_train_20150830_sin_NA_Boosted.csv
+Remove existing node CPT and experience tables first? (yes/no)   --> YES
+Enter degree (normal is 1):  1
+[2683]  Case file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\set_de_Entrenamiento\bn_train_20150830_sin_NA_Boosted.csv' referred to these nodes not in Bayes net 'EI_Naive_Step_n10_zvh31_booste':  Cgl, yeardate, x, DiametroNormal_media, DiametroNormal_mediana, DiametroNormal_desvest, DiametroNormal_desvabs, DiametroCopa_mediana, DiametroCopa_desvest, DiametroCopa_desvabs, AlturaTotal_mediana, AlturaTotal_desvabs, AlturaFusteLimpio_media, AlturaFusteLimpio_mediana, AlturaFusteLimpio_desvest, Altu.
+
+Doing EM Learning, hold down <ctrl> + <mouse button> to stop ...
+  Iteration   Log Likelihood   Change %
+          0   33.5004       
+          1   22.5604          32.6563
+Halt current operation? (yes/NO)   --> NO
+          2   22.5555          0.0221
+          3   22.554           0.0066
+          4   22.5535          0.0022
+          5   22.5534          0.0006
+          6   22.5533          0.0002
+          7   22.5533          0.0002
+          8   22.5532          0.0002
+          9   22.5532          0.0001
+         10   22.5532          0.0000
+         11   22.5532          0.0000
+         12   22.5532          0.0000
+         13   22.5532          0.0000
+         14   22.5532          0.0001
+         15   22.5532          0.0000
+         16   22.5532          0.0000
+         17   22.5532          0.0000
+         18   22.5532          0.0000
+         19   22.5532          0.0000
+         20   22.5532          0.0000
+         21   22.5532          0.0000
+         22   22.5532          0.0000
+         23   22.5532          0.0000
+         24   22.5532          0.0000
+
+----------------------------------------------------
+EI_Naive_Step_n10_zvh31_booste        15/09/05 19:42
+
+       16   Nodes          (not including constants)
+        0   Decision nodes
+        0   Utility nodes
+        0   Constant nodes
+        0   Title or text notation entries
+            ----------------------------------------
+       33   Links                 (not disconnected)
+        0   Disconnected links
+        0   Time delay links
+        0   Directed cycles         (without delays)
+       18   Loops     (disregarding link directions)
+        1   Separate networks   (ignoring constants)
+            ----------------------------------------
+   978562   Conditional probabilities total
+        0   Decision conditions
+            ----------------------------------------
+        0   Findings nodes (not including constants)
+        0   Negative or likelihood findings nodes
+----------------------------------------------------
+
+Probability of new finding = 9.86082 %, of all findings = 9.86082 %.
+Probability of new finding = 91.0388 %, of all findings = 91.0388 %.
+Probability of findings = 8.9612 %.
+Case file for testing:  C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\set_de_Entrenamiento\bn_train_20150830_sin_NA_Boosted.csv
+Case file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\set_de_Entrenamiento\bn_train_20150830_sin_NA_Boosted.csv' referred to these nodes not in Bayes net 'EI_Naive_Step_n10_zvh31_booste':
+  Cgl, yeardate, x, DiametroNormal_media, DiametroNormal_mediana, DiametroNormal_desvest, DiametroNormal_desvabs, DiametroCopa_mediana, DiametroCopa_desvest, DiametroCopa_desvabs, AlturaTotal_mediana, AlturaTotal_desvabs, AlturaFusteLimpio_media, AlturaFusteLimpio_mediana, AlturaFusteLimpio_desvest, AlturaFusteLimpio_desvabs, Insectos, SinVigor, ppt01, ppt02, ppt03, ppt04, ppt05, ppt06, ppt07, ppt08, ppt09, ppt10, ppt11, ppt12, tmax01, tmax02, tmax03, tmax04, tmax05, tmax06, tmax07, tmax08, tmax09, tmax10, tmax11, tmax12, tmin01, tmin02, tmin03, tmin04, tmin05, tmin06, tmin07, tmin08, tmin09, tmin10, tmin11, tmin12, dem30_sd1000, Gpp_1km_drymean, Gpp_1km_drystd, Gpp_1km_mean, Gpp_1km_std, Gpp_1km_wetmean, prob_arip_pie, prob_plaga, PsnNet_1km_drystd, PsnNet_1km_mean, PsnNet_1km_std, PsnNet_1km_wetmean, PsnNet_1km_wetstd, zvh, Zvh_8ph, pptmax01, pptmax02, pptmax03, pptmax04, pptmax05, pptmax06, pptmax07, pptmax08, pptmax09, pptmax10, pptmax11, pptmax12, tx_tm01, tx_tm02, tx_tm03, tx_tm04, tx_tm05, tx_tm06, tx_tm07, tx_tm08, tx_tm09, tx_tm10, tx_tm11, tx_tm12, proporcion_agua, proporcion_VegNoMaderosa
+Read 21394 cases, and used 21394 of them to test net.
+
+For zz_delt_vp:
+--------------
+
+Confusion:
+  .......................................................................Predicted......................................................................
+  0 to 1  1 to 2  2 to 3  3 to 4  4 to 5  5 to 6  6 to 7  7 to 8  8 to 9  9 to 1  10 to   11 to   12 to   13 to   14 to   15 to   16 to   17 to   18 to     Actual
+  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------    ------
+    5529     189     122     125      45     331       1     669       1       7     111       0      70      20       0       4       7       1       4    0 to 1
+     463     673      22      24       5      71       0     124       0       0      15       0      15       4       0       1       1       0       0    1 to 2
+     282      39     464      17      11      61       0     107       0       0      16       0      19       2       0       0       0       0       0    2 to 3
+     195      26      19     535       2      66       0      80       0       0       9       0       5       0       0       0       0       0       0    3 to 4
+      40       8       3       3     159      15       0      25       0       0      11       0       6       0       0       0       0       0       0    4 to 5
+     855      28      26      43       7    2009       0     593       0       1     106       0      38       5       0       1       0       0       0    5 to 6
+       0       0       0       0       0       0       9       0       0       0       0       0       0       0       0       0       0       0       0    6 to 7
+     635      79      68      65      23     389       0    2718       1       0     174       1     112       5       0       0       0       0       1    7 to 8
+       0       0       0       0       0       0       0       0      10       0       1       0       0       0       0       0       0       0       0    8 to 9
+       0       0       0       0       0       0       0       0       0      36       0       0       0       0       0       0       0       0       0    9 to 10
+      78      12      10       6       2      60       0     133       0       0     821       0      24       0       0       0       1       0       0    10 to 11
+       2       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0    11 to 12
+      39       5       2       8       1      48       0      90       0       0      26       0     700       6       0       1       1       0       0    12 to 13
+       4       0       0       0       0       2       0       8       0       0       4       0       6     128       0       0       0       0       3    13 to 14
+       0       0       0       0       0       0       0       0       0       0       0       0       0       0       4       0       0       0       0    14 to 15
+       1       0       0       0       0       0       0       0       0       0       0       0       0       1       0      14       2       0       0    15 to 16
+       5       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0      38       0       0    16 to 17
+       1       0       0       0       0       0       0       2       0       0       0       0       0       0       0       0       0      27       8    17 to 18
+       2       0       0       0       0       0       0       1       0       0       0       0       0       0       0       0       0       2      94    18 to 19
+
+Testing Real Value:
+  Absolute error:      mean = 1.778        max = 18.49         rms = 2.609
+  Error / std dev:     mean = 118.3 %      max = 6087 %
+  Distribution within:  0-1 std dev      1-2 std dev     2-3 std dev     >3 std dev
+                        53.2 %           38.2 %          4.66 %          4 %
+
+Error rate = 34.58%
+
+Scoring Rule Results:
+  Logarithmic loss = 0.9325
+  Quadratic loss   = 0.4699
+  Spherical payoff = 0.7171
+
+Calibration:
+  0 to 1     0-0.001:  0.27 | 0.001-0.01:3.4 | 0.01-0.1: 5.38 | 0.1-0.5:  6.75 | 0.5-1:    8.55 | 1-2:      9.04 | 2-5:      11.9 | 5-10:     13.4 | 10-15:    20.3 | 15-20:    23.2 | 
+             20-25:    25.7 | 25-30:    28.2 | 30-40:    33.6 | 40-50:    41.4 | 50-60:    47.5 | 60-70:    53.8 | 70-75:    60.2 | 75-80:    63.8 | 80-85:    68.9 | 85-90:    76.9 | 
+             90-95:    86.6 | 95-98:    91.4 | 98-99.5:  96.3 | 99.5-100: 100  | 100-100:  100  | 
+  1 to 2     0-0.001:  0.00773|0.001-0.005:0.267|0.005-0.05:1.24|0.05-0.2:0.26 | 0.2-0.5:  2.39 | 0.5-1:    3.15 | 1-2:      3.71 | 2-5:      6.2  | 5-10:     11.1 | 10-15:    14.5 | 
+             15-20:    17.1 | 20-25:    24.4 | 25-40:    28.3 | 40-60:    47.6 | 60-85:    58.3 | 85-100:   84.6 | 100-100:  100  | 
+  2 to 3     0-0.001:  0.00777|0.001-0.005:0.777|0.005-0.05:0.768|0.05-0.2:1.82| 0.2-0.5:  1.38 | 0.5-1:    3.08 | 1-2:      2.56 | 2-5:      5.54 | 5-10:     9.15 | 10-15:    14.4 | 
+             15-20:    19.4 | 20-30:    27   | 30-50:    34.8 | 50-85:    52.7 | 85-100:   91.1 | 
+  3 to 4     0-0.001:  0    | 0.001-0.005:0  | 0.005-0.02:1.18| 0.02-0.1: 1.01 | 0.1-0.2:  0.578| 0.2-0.5:  1.63 | 0.5-1:    1.64 | 1-2:      2.96 | 2-5:      5.98 | 5-10:     9.91 | 
+             10-15:    14.4 | 15-25:    16.1 | 25-40:    27.6 | 40-70:    43.1 | 70-99.8:  80   | 99.8-100: 99.3 | 
+  4 to 5     0-0.001:  0    | 0.001-0.002:0  | 0.002-0.005:0  | 0.005-0.01:0   | 0.01-0.02:0    | 0.02-0.05:0.108| 0.05-0.1: 0.396| 0.1-0.2:  0.682| 0.2-0.5:  1.16 | 0.5-1:    1.08 | 
+             1-2:      2.75 | 2-5:      5.11 | 5-15:     9.24 | 15-95:    31.8 | 95-100:   84.8 | 
+  5 to 6     0-0.001:  0.0511|0.001-0.005:2.04|0.005-0.02:0.946|0.02-0.1: 2.64 | 0.1-0.5:  3.25 | 0.5-1:    3.27 | 1-2:      8.75 | 2-5:      10.2 | 5-10:     18.8 | 10-15:    25.6 | 
+             15-20:    31.5 | 20-25:    35.8 | 25-30:    40   | 30-40:    43   | 40-50:    50.1 | 50-60:    56.5 | 60-70:    59.5 | 70-80:    63.1 | 80-90:    67.3 | 90-98:    73.6 | 
+             98-100:   96.6 | 100-100:  100  | 
+  6 to 7     0-0:      0    | 0-0.001:  0    | 0.001-0.005:0  | 0.005-0.02:0   | 0.02-0.2: 0    | 0.2-100:  6.12 | 
+  7 to 8     0-0.001:  0    | 0.001-0.005:0.323|0.005-0.05:0.243|0.05-0.2:3.23 | 0.2-0.5:  3.69 | 0.5-1:    6.75 | 1-2:      6.93 | 2-5:      10.4 | 5-10:     14   | 10-15:    16.8 | 
+             15-20:    21   | 20-25:    24.3 | 25-30:    27.8 | 30-40:    30.1 | 40-50:    36.5 | 50-60:    39.9 | 60-70:    48.3 | 70-75:    53.2 | 75-80:    55.8 | 80-85:    63.6 | 
+             85-95:    74.5 | 95-99:    88.4 | 99-100:   100  | 100-100:  100  | 
+  8 to 9     0-0:      0    | 0-0.001:  0    | 0.001-0.002:0  | 0.002-0.005:0  | 0.005-0.01:0   | 0.01-0.02:0    | 0.02-0.05:0    | 0.05-0.2: 0    | 0.2-100:  3.83 | 
+  9 to 10    0-0:      0    | 0-0.001:  0    | 0.001-0.002:0  | 0.002-0.005:0  | 0.005-0.01:0   | 0.01-0.02:0    | 0.02-0.05:0    | 0.05-0.1: 0    | 0.1-0.2:  0    | 0.2-1:    0    | 
+             1-100:    12.9 | 
+  10 to 11   0-0.001:  0.00734|0.001-0.005:0 | 0.005-0.02:0   | 0.02-0.05:0.409| 0.05-0.1: 0.429| 0.1-0.2:  1.31 | 0.2-0.5:  1.93 | 0.5-1:    2.26 | 1-2:      4.34 | 2-5:      4.51 | 
+             5-10:     10.1 | 10-20:    13.9 | 20-40:    27.6 | 40-70:    39.3 | 70-90:    54.4 | 90-99.5:  72   | 99.5-100: 98.9 | 
+  11 to 12   0-0.001:  0    | 0.001-100:3.7  | 
+  12 to 13   0-0.001:  0.00661|0.001-0.005:0.166|0.005-0.01:0.304|0.01-0.02:0.289|0.02-0.05:0.413|0.05-0.1: 0    | 0.1-0.2:  1.35 | 0.2-0.5:  1.71 | 0.5-1:    2.52 | 1-2:      4.86 | 
+             2-5:      4.62 | 5-15:     10.8 | 15-40:    26.2 | 40-75:    45.8 | 75-98:    66   | 98-100:   94.2 | 100-100:  100  | 
+  13 to 14   0-0:      0    | 0-0.001:  0    | 0.001-0.005:0  | 0.005-0.01:0   | 0.01-0.02:0    | 0.02-0.05:0    | 0.05-0.1: 0.283| 0.1-0.5:  0.802| 0.5-5:    1.74 | 5-100:    49.1 | 
+  14 to 15   0-0:      0    | 0-0.001:  0    | 0.001-0.5:0    | 0.5-100:  10.8 | 
+  15 to 16   0-0:      0    | 0-0.001:  0    | 0.001-0.1:0    | 0.1-100:  6.92 | 
+  16 to 17   0-0:      0    | 0-0.001:  0    | 0.001-0.01:0   | 0.01-0.1: 0    | 0.1-100:  15.2 | 
+  17 to 18   0-0:      0    | 0-0.001:  0.00646|0.001-0.002:0 | 0.002-0.005:0  | 0.005-0.01:0   | 0.01-0.02:0    | 0.02-0.05:0.196| 0.05-0.2: 0.244| 0.2-30:   2.04 | 30-100:   87.9 | 
+  18 to 19   0-0:      0    | 0-0.001:  0.00543|0.001-0.05:0  | 0.05-100: 34.3 | 
+  Total      0-0:      0    | 0-0.001:  0.00773|0.001-0.002:0.118|0.002-0.005:0.224|0.005-0.01:0.276|0.01-0.02:0.149|0.02-0.05:0.465|0.05-0.1:0.863| 0.1-0.2:  1.16 | 0.2-0.5:  2.17 | 
+             0.5-1:    3.44 | 1-2:      4.84 | 2-5:      7.64 | 5-10:     12.4 | 10-15:    17.4 | 15-20:    21.9 | 20-25:    26   | 25-30:    29.7 | 30-40:    34.2 | 40-50:    41.1 | 
+             50-60:    47.4 | 60-70:    53.1 | 70-75:    57.2 | 75-80:    60.3 | 80-85:    65.3 | 85-90:    71.5 | 90-95:    80.2 | 95-98:    84.4 | 98-99:    90   | 99-99.5:  93.9 | 
+             99.5-99.8:96.3 | 99.8-99.9:98.4 | 99.9-100: 99.7 | 100-100:  100  | 
+
+Times Surprised (percentage):
+               .................Predicted Probability....................
+  State        < 1%             < 10%             > 90%             > 99%
+  -----        ----             -----             -----             -----
+  0 to 1       2.07 (121/5835)   5.43 (479/8824)   5.81 (147/2530)   0.34 (4/1190)
+  1 to 2       0.22 (33/14990)   1.43 (256/17958)  11.75 (41/349)   2.54 (5/197)
+  2 to 3       0.31 (49/15707)   1.32 (253/19196)   6.30 (15/238)   0.00 (0/122)
+  3 to 4       0.16 (28/17019)   0.90 (175/19378)   5.92 (17/287)   1.76 (3/170)
+  4 to 5       0.12 (24/19896)   0.34 (70/20854)  17.74 (22/124)    8.33 (6/72)
+  5 to 6       0.52 (63/12053)   2.91 (430/14789)  11.65 (99/850)   2.14 (10/467)
+  6 to 7       0.00 (0/21300)   0.00 (0/21336)    0.00 (0/8)        0.00 (0/7)
+  7 to 8       1.18 (97/8238)   4.60 (586/12732)   7.46 (93/1246)   0.00 (0/622)
+  8 to 9       0.00 (0/21265)   0.00 (1/21328)    0.00 (0/9)        0.00 (0/7)
+  9 to 10      0.00 (0/21073)   0.00 (0/21276)    2.94 (1/34)       0.00 (0/30)
+  10 to 11     0.21 (36/17486)   0.73 (139/19148)  15.95 (93/583)   2.61 (8/307)
+  11 to 12     0.00 (0/21339)   0.00 (1/21346)    0.00 (0/0)        0.00 (0/0)
+  12 to 13     0.17 (32/18658)   0.50 (100/19803)  12.08 (65/538)   4.27 (14/328)
+  13 to 14     0.04 (9/20881)   0.06 (13/21113)   6.96 (8/115)      0.00 (0/87)
+  14 to 15     0.00 (0/21326)   0.00 (0/21347)    0.00 (0/4)        0.00 (0/3)
+  15 to 16     0.00 (1/21278)   0.00 (1/21318)   29.41 (5/17)      33.33 (5/15)
+  16 to 17     0.00 (1/21237)   0.00 (1/21278)   11.11 (4/36)       3.85 (1/26)
+  17 to 18     0.02 (4/21201)   0.03 (6/21293)    0.00 (0/24)       0.00 (0/22)
+  18 to 19     0.00 (1/21211)   0.01 (2/21232)    8.89 (8/90)       7.81 (5/64)
+  Total        0.15 (499/341993)   0.69 (2513/365549)   8.73 (618/7082)   1.63 (61/3736)
+
+Sensitivity of Test:
+  0 to 1     0     100    | 0.1   99.4   | 1     98.3   | 2     97.6   | 5     95.7   | 10    93.4   | 15    90.8   | 20    88.5   | 25    85.8   | 30    83.3   | 40    77.8   | 
+             50    71.2   | 60    64.3   | 70    56.6   | 75    51.3   | 80    46     | 85    40.5   | 90    32.9   | 95    24.4   | 98    18.6   | 99    16.4   | 99.5  14.3   | 
+             99.8  12.1   | 99.9  10.8   | 100   0.539  | 100   0      | 
+  1 to 2     0     100    | 1     97.7   | 2     96.1   | 5     90.7   | 10    81.9   | 15    73.4   | 20    67.2   | 25    60.2   | 30    56.1   | 40    49.2   | 50    42.2   | 
+             60    36     | 70    30.6   | 75    28.5   | 80    26.7   | 85    23.8   | 90    21.7   | 95    18.2   | 98    15.1   | 99    13.5   | 99.5  12     | 99.8  10.1   | 
+             100   0.564  | 100   0      | 
+  2 to 3     0     100    | 0.2   98.1   | 1     95.2   | 2     92.8   | 5     84.8   | 10    75.1   | 15    67.2   | 20    61.2   | 25    55.9   | 30    51.5   | 40    46.1   | 
+             50    40.2   | 60    34.9   | 70    30     | 75    28     | 80    25.9   | 85    24.1   | 90    21.9   | 95    18.2   | 98    14.9   | 99    12     | 99.5  10.4   | 
+             99.9  7.76   | 100   0.393  | 100   0      | 
+  3 to 4     0     100    | 0.5   97.9   | 2     94.8   | 5     88.7   | 10    81.3   | 15    75.3   | 20    71.4   | 25    68.3   | 30    64.2   | 40    57.6   | 50    51.8   | 
+             60    46     | 70    40.7   | 75    38.2   | 80    34.8   | 85    31.5   | 90    28.8   | 95    24.8   | 98    20.1   | 99    17.8   | 99.8  15     | 100   0.747  | 
+             100   0      | 
+  4 to 5     0     100    | 0.2   96.7   | 0.5   93     | 2     87     | 5     80.7   | 10    74.1   | 15    70     | 20    65.2   | 40    57.4   | 50    54.1   | 60    50     | 
+             75    43.3   | 90    37.8   | 98    30     | 99    24.4   | 99.5  20.7   | 99.9  17     | 100   4.07   | 100   0      | 
+  5 to 6     0     100    | 0.2   99.1   | 2     97     | 5     94.1   | 10    88.4   | 15    83.1   | 20    77.5   | 25    71.8   | 30    66.4   | 40    56.6   | 50    47.4   | 
+             60    39.1   | 70    31.4   | 75    28.6   | 80    25.8   | 85    23.4   | 90    20.2   | 95    16.8   | 98    14.1   | 99    12.3   | 99.5  10.7   | 99.8  8.62   | 
+             99.9  7.54   | 100   0.35   | 100   0      | 
+  6 to 7     0     100    | 100   11.1   | 100   0      | 
+  7 to 8     0     100    | 0.5   99     | 1     97.7   | 2     96     | 5     91.6   | 10    86.3   | 15    81.6   | 20    77.7   | 25    74.1   | 30    70.7   | 40    64.4   | 
+             50    57.7   | 60    50.8   | 70    43.9   | 75    40.2   | 80    35.9   | 85    31.2   | 90    27     | 95    21.2   | 98    16.9   | 99    14.6   | 99.5  12.5   | 
+             99.8  9.97   | 99.9  8.55   | 100   0.351  | 100   0      | 
+  8 to 9     0     100    | 100   0      | 100   0      | 
+  9 to 10    0     100    | 99.8  72.2   | 100   2.78   | 100   0      | 
+  10 to 11   0     100    | 0.5   97.8   | 2     95     | 5     92.4   | 10    87.9   | 15    84.7   | 20    82.4   | 25    80     | 30    77.4   | 40    71.7   | 50    68.3   | 
+             60    62.9   | 70    57.8   | 75    55.3   | 80    51.6   | 85    47.9   | 90    42.7   | 95    36.4   | 98    29.7   | 99    26.1   | 99.5  22.6   | 99.8  18.2   | 
+             99.9  16     | 100   1.83   | 100   0      | 
+  12 to 13   0     100    | 0.5   97.7   | 2     94.5   | 5     92.1   | 10    89.2   | 15    86.7   | 20    84.4   | 25    81.9   | 40    76.7   | 50    73.6   | 60    68.9   | 
+             70    64     | 75    61.6   | 80    59.2   | 85    55.7   | 90    51     | 95    45     | 98    38.5   | 99    33.9   | 99.5  29.7   | 99.8  25.5   | 99.9  22.5   | 
+             100   2.05   | 100   0      | 
+  13 to 14   0     100    | 1     94.2   | 25    89     | 50    80.6   | 70    74.8   | 90    69     | 98    58.1   | 99.5  52.3   | 99.9  43.9   | 100   5.81   | 100   0      | 
+  15 to 16   0     100    | 99    55.6   | 100   5.56   | 100   0      | 
+  16 to 17   0     100    | 70    81.4   | 99    58.1   | 100   11.6   | 100   0      | 
+  17 to 18   0     100    | 30    76.3   | 100   7.89   | 100   0      | 
+  18 to 19   0     100    | 70    91.9   | 90    82.8   | 98    60.6   | 99.8  51.5   | 100   15.2   | 100   0      | 
+
+-------------------------------------------------------------------------------
+
+**2338** No nodes are selected to measure the sensitivity of.
+-------------------------------------------------------------------------
+
+Sensitivity of 'zz_delt_vp' to a finding at another node:
+
+Node                     Variance    Percent   Mutual      Percent   Variance of 
+----                     Reduction             Info                  Beliefs     
+zz_delt_vp               17.7        100       3.06214     100       0.6955341   
+proporcion_pastizal      0.617       3.49      0.11203     3.66      0.0031383   
+proporcion_agricultura   0.5924      3.35      0.11117     3.63      0.0025701   
+proporcion_asentamientos 0.2412      1.36      0.01843     0.602     0.0001710   
+proporcion_bosques       0.1636      0.924     0.23093     7.54      0.0042851   
+ntree_fixed              0.08485     0.479     0.01664     0.543     0.0010438   
+Gpp_1km_wetstd           0.07881     0.445     0.00809     0.264     0.0004645   
+AlturaTotal_desvest      0.07857     0.444     0.01521     0.497     0.0006934   
+AlturaTotal_media        0.07427     0.42      0.01498     0.489     0.0007497   
+proporcion_matorrales    0.04829     0.273     0.07104     2.32      0.0022991   
+DiametroCopa_media       0.03853     0.218     0.01042     0.34      0.0003770   
+prob_hojarasca           0.02995     0.169     0.00658     0.215     0.0001716   
+PsnNet_1km_drymean       0.02153     0.122     0.00497     0.162     0.0001298   
+latitude                 0           0         0.00000     0         0.0000000   
+dem30_mean1000           0           0         0.00000     0         0.0000000   
+zvh_31                   0           0         0.00000     0         0.0000000   
+
+ ...
+Save File As:  C:\Users\Miguel\Documents\0 Versiones\2 Proyectos\BayesianNetworks\redes_ajuste_MyO\EI_Naive_Step_n10_zvh31_boosted_oct3Cb.txt
+ ...
+Control File (Cancel to Skip):  C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\control.txt
+Case file to process:  C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv
+Output cases to:  C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\EI_Naive_Step_n10_zvh31_boosted_oct3Cb.txt
+
+**2277** More than 1 column for variable 'y' in case file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv' (only first column will be used).
+Case file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv' referred to these nodes not in net 'EI_Naive_Step_n10_zvh31_booste':
+  x, AlturaFusteLimpio_desvabs, AlturaFusteLimpio_desvest, AlturaFusteLimpio_media, AlturaFusteLimpio_mediana, AlturaTotal_desvabs, AlturaTotal_mediana, dem30_sd1000, DiametroCopa_desvabs, DiametroCopa_desvest, DiametroCopa_mediana, DiametroNormal_desvabs, DiametroNormal_desvest, DiametroNormal_media, DiametroNormal_mediana, Gpp_1km_drymean, Gpp_1km_drystd, Gpp_1km_mean, Gpp_1km_std, Gpp_1km_wetmean, prob_arip_pie, prob_plaga, proporcion_agua, proporcion_VegNoMaderosa, PsnNet_1km_drystd, PsnNet_1km_mean, PsnNet_1km_std, PsnNet_1km_wetmean, PsnNet_1km_wetstd, zvh_31_lcc, zz_delt_vp
+Value -10.1756 for variable 'dem30_mean1000' is out of bounds (as defined in node properties), in line 2254 (char 167) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'  --> Expand All
+[2454]  Range of variable 'dem30_mean1000' expanded to include -10.1756, to read line 2254 (char 167) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'prob_hojarasca' expanded to include 0.019, to read line 109241 (char 485) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'prob_hojarasca' expanded to include 0.014, to read line 167973 (char 446) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -10.9514, to read line 1000247 (char 88) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -12.9813, to read line 1000248 (char 92) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -14.9795, to read line 1001249 (char 94) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -16.5253, to read line 1001250 (char 95) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -19.993, to read line 1002248 (char 96) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -32.6415, to read line 1049569 (char 295) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'dem30_mean1000' expanded to include -21.4044, to read line 1078100 (char 92) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'Gpp_1km_wetstd' expanded to include 363.099, to read line 1192552 (char 240) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -38.1296, to read line 1305121 (char 314) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -40.5636, to read line 1374294 (char 292) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -51.3091, to read line 1387642 (char 295) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -53.6182, to read line 1404680 (char 288) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -58.1455, to read line 1413420 (char 291) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -61.8571, to read line 1427344 (char 293) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include 254, to read line 1821733 (char 296) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -64.4286, to read line 1824550 (char 303) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+[2454]  Range of variable 'PsnNet_1km_drymean' expanded to include -74.5263, to read line 1927643 (char 291) of file 'C:\Users\Miguel\Documents\1 Nube\Dropbox\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv'.
+                  

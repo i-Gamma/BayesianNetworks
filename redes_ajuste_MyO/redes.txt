@@ -1,0 +1,391 @@
+##### EI_Naive_Step_n10_zvh31_boosted_oct3Ca
+
+
+```javascript
+{"EI_Naive_Step_n10_zvh31_boosted_oct3Ca":{
+"Description": "Poner aquí la descripción del modelo en cuestión",
+"Training_data_set": "data",
+"Results": [
+    {"Absolute error (rms)": "0.0"},
+    {"Error rate (%)": "0.0"},
+    {"Logarithmic loss": "0.0"},
+    {"Quadratic loss": "0.0"},
+    {"Spherical payoff": "0.0"}
+      ],
+"Variables (variance reduction)": [
+    {"AlturaTotal_desvest": "0.0"},
+    {"AlturaTotal_media": "0.0"},
+    {"DiametroCopa_media": "0.0"},
+    {"DiametroNormal_media": "0.0"},
+    {"Gpp_1km_wetstd": "0.0"},
+    {"PsnNet_1km_drymean": "0.0"},
+    {"PsnNet_1km_std": "0.0"},
+    {"dem30_mean1000": "0.0"},
+    {"latitude": "0.0"},
+    {"ntree_fixed": "0.0"},
+    {"prob_hojarasca": "0.0"},
+    {"zvh_31": "0.0"},
+    {"zz_delt_vp": "0.0"}
+      ]
+ }
+}
+```
+
+
+
+##### EI_Naive_Step_n10_zvh31_boosted_oct3Cb
+
+
+```javascript
+{"EI_Naive_Step_n10_zvh31_boosted_oct3Cb":{
+"Description": "Poner aquí la descripción del modelo en cuestión",
+"Training_data_set": "data",
+"Results": [
+    {"Absolute error (rms)": "0.0"},
+    {"Error rate (%)": "0.0"},
+    {"Logarithmic loss": "0.0"},
+    {"Quadratic loss": "0.0"},
+    {"Spherical payoff": "0.0"}
+      ],
+"Variables (variance reduction)": [
+    {"AlturaTotal_desvest": "0.0"},
+    {"AlturaTotal_media": "0.0"},
+    {"DiametroCopa_media": "0.0"},
+    {"Gpp_1km_wetstd": "0.0"},
+    {"PsnNet_1km_drymean": "0.0"},
+    {"dem30_mean1000": "0.0"},
+    {"latitude": "0.0"},
+    {"ntree_fixed": "0.0"},
+    {"prob_hojarasca": "0.0"},
+    {"zvh_31": "0.0"},
+    {"zz_delt_vp": "0.0"}
+      ]
+ }
+}
+```
+
+
+
+##### EI_Naive_Step_n10_zvh31_boosted_oct3CcTAN
+
+
+```javascript
+{"EI_Naive_Step_n10_zvh31_boosted_oct3CcTAN":{
+"Description": "Poner aquí la descripción del modelo en cuestión",
+"Training_data_set": "data",
+"Results": [
+    {"Absolute error (rms)": "0.0"},
+    {"Error rate (%)": "0.0"},
+    {"Logarithmic loss": "0.0"},
+    {"Quadratic loss": "0.0"},
+    {"Spherical payoff": "0.0"}
+      ],
+"Variables (variance reduction)": [
+    {"AlturaTotal_media": "0.0"},
+    {"DiametroCopa_media": "0.0"},
+    {"DiametroNormal_media": "0.0"},
+    {"Gpp_1km_wetmean": "0.0"},
+    {"Gpp_1km_wetstd": "0.0"},
+    {"PsnNet_1km_drymean": "0.0"},
+    {"PsnNet_1km_std": "0.0"},
+    {"dem30_mean1000": "0.0"},
+    {"latitude": "0.0"},
+    {"ntree_fixed": "0.0"},
+    {"prob_hojarasca": "0.0"},
+    {"zvh_31": "0.0"},
+    {"zz_delt_vp": "0.0"}
+      ]
+ }
+}
+```
+
+
+
+##### EI_Naive_Step_n10_zvh31_boosted_oct3CdTAN
+
+
+```javascript
+{"EI_Naive_Step_n10_zvh31_boosted_oct3CdTAN":{
+"Description": "Poner aquí la descripción del modelo en cuestión",
+"Training_data_set": "data",
+"Results": [
+    {"Absolute error (rms)": "0.0"},
+    {"Error rate (%)": "0.0"},
+    {"Logarithmic loss": "0.0"},
+    {"Quadratic loss": "0.0"},
+    {"Spherical payoff": "0.0"}
+      ],
+"Variables (variance reduction)": [
+    {"AlturaTotal_media": "0.0"},
+    {"DiametroCopa_media": "0.0"},
+    {"DiametroNormal_media": "0.0"},
+    {"Gpp_1km_wetmean": "0.0"},
+    {"Gpp_1km_wetstd": "0.0"},
+    {"PsnNet_1km_drymean": "0.0"},
+    {"PsnNet_1km_std": "0.0"},
+    {"dem30_mean1000": "0.0"},
+    {"latitude": "0.0"},
+    {"ntree_fixed": "0.0"},
+    {"prob_hojarasca": "0.0"},
+    {"zvh_31": "0.0"},
+    {"zz_delt_vp_1": "0.0"}
+      ]
+ }
+}
+```
+
+
+
+##### EI_Naive_Step_n10_zvh31_boosted_oct3CeTAN
+
+
+```javascript
+{"EI_Naive_Step_n10_zvh31_boosted_oct3CeTAN":{
+"Description": "Poner aquí la descripción del modelo en cuestión",
+"Training_data_set": "data",
+"Results": [
+    {"Absolute error (rms)": "0.0"},
+    {"Error rate (%)": "0.0"},
+    {"Logarithmic loss": "0.0"},
+    {"Quadratic loss": "0.0"},
+    {"Spherical payoff": "0.0"}
+      ],
+"Variables (variance reduction)": [
+    {"AlturaTotal_media": "0.0"},
+    {"DiametroCopa_media": "0.0"},
+    {"DiametroNormal_media": "0.0"},
+    {"Gpp_1km_wetmean": "0.0"},
+    {"Gpp_1km_wetstd": "0.0"},
+    {"PsnNet_1km_drymean": "0.0"},
+    {"PsnNet_1km_std": "0.0"},
+    {"dem30_mean1000": "0.0"},
+    {"latitude": "0.0"},
+    {"ntree_fixed": "0.0"},
+    {"prob_hojarasca": "0.0"},
+    {"zvh_31": "0.0"},
+    {"zz_delt_vp": "0.0"}
+      ]
+ }
+}
+```
+
+
+
+##### EI_Naive_Step_n10_zvh31_peinada_sin_medias_oct4
+
+
+```javascript
+{"EI_Naive_Step_n10_zvh31_peinada_sin_medias_oct4":{
+"Description":"Ecosystem integrity in a tree augmented network. Instrumental nodes discretized to 10 states. Context conditions given by Holdridge Live Zones with 31 classes, the standard deviation of elevation and latitude. Medians used instead of means if available",
+"Training data set":"bn_train_20150826_sin_NA_Boosted.csv",
+"Results":[
+    {"Absolute error (rms)": "2.162"},
+    {"Error rate%": "23.76"},
+    {"Logarithmic loss": "0.6453"},
+    {"Quadratic loss": "0.3222"},
+    {"Spherical payoff": "0.8085"}
+	  ],
+"Variables (variance reduction)": [
+    {"AlturaFusteLimpio_desvabs": "0.0"},
+    {"AlturaFusteLimpio_mediana": "0.0"},
+    {"AlturaTotal_desvest": "0.0"},
+    {"DiametroCopa_desvest": "0.0"},
+    {"DiametroCopa_mediana": "0.0"},
+    {"DiametroNormal_desvabs": "0.0"},
+    {"DiametroNormal_desvest": "0.0"},
+    {"Gpp_1km_mean": "0.0"},
+    {"Gpp_1km_wetstd": "0.0"},
+    {"Insectos": "0.0"},
+    {"PsnNet_1km_drymean": "0.0"},
+    {"PsnNet_1km_drystd": "0.0"},
+    {"PsnNet_1km_mean": "0.0"},
+    {"PsnNet_1km_std": "0.0"},
+    {"PsnNet_1km_wetstd": "0.0"},
+    {"dem30_sd1000": "0.0"},
+    {"latitude": "0.0"},
+    {"ntree_fixed": "0.0"},
+    {"prob_arip_pie": "0.0"},
+    {"prob_hojarasca": "0.0"},
+    {"zvh_31": "0.0"},
+    {"zz_delt_vp_1": "0.0"}
+      ]
+ }
+}
+```
+
+
+
+##### EI_Naive_Step_n5_zvh31_peinada_sin_medias_oct2_EMBB - copia
+
+
+```javascript
+{"EI_Naive_Step_n5_zvh31_peinada_sin_medias_oct2_EMBB - copia":{
+"Description": "Poner aquí la descripción del modelo en cuestión",
+"Training_data_set": "data",
+"Results": [
+    {"Absolute error (rms)": "0.0"},
+    {"Error rate (%)": "0.0"},
+    {"Logarithmic loss": "0.0"},
+    {"Quadratic loss": "0.0"},
+    {"Spherical payoff": "0.0"}
+      ],
+"Variables (variance reduction)": [
+    {"AlturaFusteLimpio_desvabs": "0.0"},
+    {"AlturaFusteLimpio_mediana": "0.0"},
+    {"AlturaTotal_desvest": "0.0"},
+    {"DiametroCopa_desvest": "0.0"},
+    {"DiametroCopa_mediana": "0.0"},
+    {"DiametroNormal_desvabs": "0.0"},
+    {"DiametroNormal_desvest": "0.0"},
+    {"Gpp_1km_mean": "0.0"},
+    {"Gpp_1km_wetstd": "0.0"},
+    {"Insectos": "0.0"},
+    {"PsnNet_1km_drymean": "0.0"},
+    {"PsnNet_1km_drystd": "0.0"},
+    {"PsnNet_1km_mean": "0.0"},
+    {"PsnNet_1km_std": "0.0"},
+    {"PsnNet_1km_wetmean": "0.0"},
+    {"PsnNet_1km_wetstd": "0.0"},
+    {"dem30_sd1000": "0.0"},
+    {"latitude": "0.0"},
+    {"ntree_fixed": "0.0"},
+    {"prob_arip_pie": "0.0"},
+    {"prob_hojarasca": "0.0"},
+    {"prob_plaga": "0.0"},
+    {"zvh_31": "0.0"},
+    {"zz_delt_vp": "0.0"}
+      ]
+ }
+}
+```
+
+
+
+##### EI_TAN_zvh31_con_medias_EM - boosted_1
+
+
+```javascript
+{"EI_TAN_zvh31_con_medias_EM - boosted_1":{
+"Description": "Poner aquí la descripción del modelo en cuestión",
+"Training_data_set": "data",
+"Results": [
+    {"Absolute error (rms)": "0.0"},
+    {"Error rate (%)": "0.0"},
+    {"Logarithmic loss": "0.0"},
+    {"Quadratic loss": "0.0"},
+    {"Spherical payoff": "0.0"}
+      ],
+"Variables (variance reduction)": [
+    {"AlturaFusteLimpio_desvabs": "0.0"},
+    {"AlturaFusteLimpio_media": "0.0"},
+    {"AlturaTotal_desvest": "0.0"},
+    {"DiametroCopa_desvest": "0.0"},
+    {"DiametroCopa_media": "0.0"},
+    {"DiametroNormal_desvabs": "0.0"},
+    {"DiametroNormal_desvest": "0.0"},
+    {"Gpp_1km_mean": "0.0"},
+    {"Gpp_1km_wetstd": "0.0"},
+    {"PsnNet_1km_drymean": "0.0"},
+    {"PsnNet_1km_drystd": "0.0"},
+    {"PsnNet_1km_mean": "0.0"},
+    {"PsnNet_1km_std": "0.0"},
+    {"PsnNet_1km_wetstd": "0.0"},
+    {"dem30_sd1000": "0.0"},
+    {"latitude": "0.0"},
+    {"ntree_fixed": "0.0"},
+    {"prob_arip_pie": "0.0"},
+    {"prob_hojarasca": "0.0"},
+    {"prob_plaga": "0.0"},
+    {"zvh_31": "0.0"},
+    {"zz_delt_vp_1": "0.0"}
+      ]
+ }
+}
+```
+
+
+
+##### EI_TAN_zvh31_con_medias_EM - boosted_2
+
+
+```javascript
+{"EI_TAN_zvh31_con_medias_EM - boosted_2":{
+"Description": "Poner aquí la descripción del modelo en cuestión",
+"Training_data_set": "data",
+"Results": [
+    {"Absolute error (rms)": "0.0"},
+    {"Error rate (%)": "0.0"},
+    {"Logarithmic loss": "0.0"},
+    {"Quadratic loss": "0.0"},
+    {"Spherical payoff": "0.0"}
+      ],
+"Variables (variance reduction)": [
+    {"AlturaFusteLimpio_desvabs": "0.0"},
+    {"AlturaFusteLimpio_media": "0.0"},
+    {"AlturaTotal_desvest": "0.0"},
+    {"DiametroCopa_desvest": "0.0"},
+    {"DiametroCopa_media": "0.0"},
+    {"DiametroNormal_desvabs": "0.0"},
+    {"DiametroNormal_desvest": "0.0"},
+    {"Gpp_1km_mean": "0.0"},
+    {"Gpp_1km_wetstd": "0.0"},
+    {"PsnNet_1km_drymean": "0.0"},
+    {"PsnNet_1km_drystd": "0.0"},
+    {"PsnNet_1km_mean": "0.0"},
+    {"PsnNet_1km_std": "0.0"},
+    {"PsnNet_1km_wetstd": "0.0"},
+    {"dem30_mean1000": "0.0"},
+    {"dem30_sd1000": "0.0"},
+    {"ntree_fixed": "0.0"},
+    {"prob_arip_pie": "0.0"},
+    {"prob_hojarasca": "0.0"},
+    {"prob_plaga": "0.0"},
+    {"zvh_31": "0.0"},
+    {"zz_delt_vp": "0.0"}
+      ]
+ }
+}
+```
+
+
+
+##### EI_TAN_zvh31_con_medias_EM_boo_1_sin_lat
+
+
+```javascript
+{"EI_TAN_zvh31_con_medias_EM_boo_1_sin_lat":{
+"Description": "Poner aquí la descripción del modelo en cuestión",
+"Training_data_set": "data",
+"Results": [
+    {"Absolute error (rms)": "0.0"},
+    {"Error rate (%)": "0.0"},
+    {"Logarithmic loss": "0.0"},
+    {"Quadratic loss": "0.0"},
+    {"Spherical payoff": "0.0"}
+      ],
+"Variables (variance reduction)": [
+    {"AlturaFusteLimpio_desvabs": "0.0"},
+    {"AlturaFusteLimpio_media": "0.0"},
+    {"AlturaTotal_desvest": "0.0"},
+    {"DiametroCopa_desvest": "0.0"},
+    {"DiametroCopa_media": "0.0"},
+    {"DiametroNormal_desvabs": "0.0"},
+    {"DiametroNormal_desvest": "0.0"},
+    {"Gpp_1km_mean": "0.0"},
+    {"Gpp_1km_wetstd": "0.0"},
+    {"PsnNet_1km_drymean": "0.0"},
+    {"PsnNet_1km_drystd": "0.0"},
+    {"PsnNet_1km_mean": "0.0"},
+    {"PsnNet_1km_std": "0.0"},
+    {"PsnNet_1km_wetstd": "0.0"},
+    {"dem30_mean1000": "0.0"},
+    {"ntree_fixed": "0.0"},
+    {"prob_arip_pie": "0.0"},
+    {"prob_hojarasca": "0.0"},
+    {"prob_plaga": "0.0"},
+    {"zvh_31": "0.0"},
+    {"zz_delt_vp": "0.0"}
+      ]
+ }
+}
+```
