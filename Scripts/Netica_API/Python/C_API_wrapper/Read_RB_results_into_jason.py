@@ -18,9 +18,9 @@ my_dir = "C:/Users/Miguel/Documents/0 Versiones/2 Proyectos/"
 results_dir = "BayesianNetworks/redes_ajuste_MyO/"
 results_files = os.listdir(my_dir + results_dir)
 results_files = [my_dir + results_dir + r for r in results_files if "txt"
-                 in r and "EI" in r]
+                 in r and "Stage2" in r]
 networks = {}
-for net_name in results_files:
+for net_name in sorted(results_files):
     net = re.sub(".txt", "", os.path.basename(net_name))
     networks[net] = {}
     f = open(net_name, "r")
@@ -52,7 +52,7 @@ for net_name in results_files:
 
 js_txt = u""
 error_rates = [u"Absolute error (rms)", u"Error rate (%)",
-         u"Logarithmic loss", u"Quadratic loss", u"Spherical payoff"]
+               u"Logarithmic loss", u"Quadratic loss", u"Spherical payoff"]
 for d in sorted(networks):
     js_txt = js_txt + u"\n\n"
     js_txt = js_txt + u"##### " + d + "\n"
@@ -65,15 +65,15 @@ for d in sorted(networks):
                        u"bn_train_20150830_sin_NA_Boosted.csv\",\n")
     js_txt = js_txt + u"\"Results\": [\n"
     for v in error_rates:
-        if v != sec_1[-1]:
+        if v != error_rates[-1]:
             js_txt = js_txt + (u"    {\"" + v + u"\": " + u"\"" +
                                networks[d][v] + "\"},\n")
     js_txt = js_txt + u"    {\"" + v + "\": " + "\"" + networks[d][v] + "\"}\n"
     js_txt = js_txt + u"      ],\n"
     js_txt = js_txt + u"\"Variables (variance reduction)\": [\n"
-    for v in networks[d]["Variables (variance reduction)"]:
+    for v in sorted(networks[d]["Variables (variance reduction)"]):
         if v != networks[d]["Variables (variance reduction)"].keys()[-1]:
-            js_txt = (js_txt + u"    {\"" + v + "\": " + "\"" +
+            js_txt = (js_txt + u"    {\"" + v + " on zz_delt_vp\": " + "\"" +
                       networks[d]["Variables (variance reduction)"][v] +
                       u"\"},\n")
     js_txt = js_txt +  (u"    {\"" + v + "\": " + "\"" +
