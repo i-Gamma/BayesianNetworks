@@ -8,28 +8,28 @@ machine_set_up <- function ()
   if (("Miguel" %in% users) & !("equihu" %in% users))
   {
     # set working directory
-    dir_maps <- "C:/Users/Miguel/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/mapas/"
-    dir_work <- gsub("mapas", "Datos_para_mapeo", dir_maps)
+    dir_maps <- "C:/Users/Miguel/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/EI_maps/"
+    dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
     setwd(dir_work)
   }
   if ("miguel.equihua" %in% users)
   {
     # set working directory
-    dir_maps <- "C:/Users/miguel.equihua/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/mapas/"
-    dir_work <- gsub("mapas", "Datos_para_mapeo", dir_maps)
+    dir_maps <- "C:/Users/miguel.equihua/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/EI_maps/"
+    dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
     setwd(dir_work)
   }
   if ("escritorio.octavio" %in% users)
   {
     # set working directory
-    dir_maps <- "C:/Users/octavio.maqueo/Dropbox/Datos Redes Bayesianas/mapas/"
+    dir_maps <- "C:/Users/octavio.maqueo/Dropbox/Datos Redes Bayesianas/EI_maps/"
     dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
     setwd(dir_work)
   }
   if ("lap.octavio" %in% users)
   {
     # set working directory
-    dir_maps <- "D:/Dropbox/Datos Redes Bayesianas/Datos Redes Bayesianas/mapas/"
+    dir_maps <- "D:/Dropbox/Datos Redes Bayesianas/Datos Redes Bayesianas/EI_maps/"
     dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
     setwd(dir_work)
   }
@@ -45,9 +45,9 @@ train_data <- read.table("bn_ie_tabfinal_20150830.csv",sep=",",header=TRUE)
 # head of train data
 head(train_data)
 
-maps <- dir()[grepl("^EI", dir())]
+maps <- dir()[grepl("^Stage2", dir())]
 
-for (IE_data in maps[c(3:10)])
+for (IE_data in maps)
 {
   # load BN prediction
   bn_output <- read.table(IE_data, sep=",",header=TRUE)
