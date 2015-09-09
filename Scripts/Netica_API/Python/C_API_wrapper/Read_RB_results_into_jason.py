@@ -9,16 +9,18 @@ import os
 import re
 import pyperclip
 
-os.listdir(".")
-
+# Basic path data
 dropbox_dir = "C:/Users/Miguel/Documents/1 Nube/Dropbox/"
 datos_dir = "Datos Redes Bayesianas/"
-
 my_dir = "C:/Users/Miguel/Documents/0 Versiones/2 Proyectos/"
 results_dir = "BayesianNetworks/redes_ajuste_MyO/"
+
+# Prepare requiered paths for file location and processing
 results_files = os.listdir(my_dir + results_dir)
 results_files = [my_dir + results_dir + r for r in results_files if "txt"
                  in r and "Stage2" in r]
+
+# Read BN results from summary files
 networks = {}
 for net_name in sorted(results_files):
     net = re.sub(".txt", "", os.path.basename(net_name))
@@ -50,9 +52,10 @@ for net_name in sorted(results_files):
         sensibility[node] = value
     networks[net]["Variables (variance reduction)"] = sensibility
 
-js_txt = u""
+# Produce text for output and load it to js_txt line by line
 error_rates = [u"Absolute error (rms)", u"Error rate (%)",
                u"Logarithmic loss", u"Quadratic loss", u"Spherical payoff"]
+js_txt = u""
 for d in sorted(networks):
     js_txt = js_txt + u"\n\n"
     js_txt = js_txt + u"##### " + d + "\n"
@@ -70,17 +73,18 @@ for d in sorted(networks):
                                networks[d][v] + "\"},\n")
     js_txt = js_txt + u"    {\"" + v + "\": " + "\"" + networks[d][v] + "\"}\n"
     js_txt = js_txt + u"      ],\n"
-    js_txt = js_txt + u"\"Variables (variance reduction)\": [\n"
-    for v in sorted(networks[d]["Variables (variance reduction)"]):
-        if v != networks[d]["Variables (variance reduction)"].keys()[-1]:
-            js_txt = (js_txt + u"    {\"" + v + " on zz_delt_vp\": " + "\"" +
-                      networks[d]["Variables (variance reduction)"][v] +
-                      u"\"},\n")
-    js_txt = js_txt +  (u"    {\"" + v + "\": " + "\"" +
-           networks[d]["Variables (variance reduction)"][v] + "\"}\n")
-    js_txt = js_txt +  u"      ]\n"
-    js_txt = js_txt +  u" }\n"
-    js_txt = js_txt +  u"}\n"
-    js_txt = js_txt +  u"```\n"
+    sens_data = networks[d]["Variables (variance reduction)"].items()
+    js_txt = js_txt + u"\"Variables (variance reduction) on zz_delt_vp\": [\n"
+    for v in sorted(sens_data, key=lambda sens_data:
+                    float(sens_data[1]), reverse=True):
+        if "Variables (variance reduction)" not in v:
+            js_txt = (js_txt + u"    {\"" + v[0] + "\": " + "\"" +
+                      v[1] + u"\"},\n")
+    js_txt = js_txt + (u"    {\"" + v[0] + "\": " + "\"" + v[1] + "\"}\n")
+    js_txt = js_txt + u"      ]\n"
+    js_txt = js_txt + u" }\n"
+    js_txt = js_txt + u"}\n"
+    js_txt = js_txt + u"```\n"
 
+# Copy results into clipbord for immidiat pasting elsewhere
 pyperclip.copy(js_txt)
