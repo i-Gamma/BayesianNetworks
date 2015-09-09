@@ -11,14 +11,17 @@ import pyperclip
 
 # Basic path data
 dropbox_dir = "C:/Users/Miguel/Documents/1 Nube/Dropbox/"
-datos_dir = "Datos Redes Bayesianas/"
+datos_dir = "Datos Redes Bayesianas/CrossValidation_data/Results/"
 my_dir = "C:/Users/Miguel/Documents/0 Versiones/2 Proyectos/"
 results_dir = "BayesianNetworks/redes_ajuste_MyO/"
 
 # Prepare requiered paths for file location and processing
-results_files = os.listdir(my_dir + results_dir)
-results_files = [my_dir + results_dir + r for r in results_files if "txt"
-                 in r and "Stage2" in r]
+# results_files = os.listdir(my_dir + results_dir)
+# results_files = [my_dir + results_dir + r for r in results_files if "txt"
+#                 in r and "Stage2" in r]
+results_files = os.listdir(dropbox_dir + datos_dir)
+results_files = [dropbox_dir + datos_dir + r for r in results_files if "txt"
+                  in r and "Stage2" in r]
 
 # Read BN results from summary files
 networks = {}
@@ -36,7 +39,7 @@ for net_name in sorted(results_files):
     networks[net]["Absolute error (rms)"] = re.sub("rms = ", "", rms)
     networks[net]["Error rate (%)"] = [re.findall("[.0-9]+", t)[0]
                                        for t in text if "Error rate" in t][0]
-    networks[net]["Logarithmic loss"] = [re.findall("[.0-9]+", t)[0]
+    networks[net]["Logarithmic loss"] = [re.findall("[.0-9INFTY]+", t)[0]
                                          for t in text if "thmic loss" in t][0]
     networks[net]["Quadratic loss"] = [re.findall("[.0-9]+", t)[0]
                                        for t in text if "Quadratic" in t][0]
