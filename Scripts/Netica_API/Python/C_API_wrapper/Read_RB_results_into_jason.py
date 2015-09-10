@@ -10,9 +10,10 @@ import re
 import pyperclip
 
 # Basic path data
-dropbox_dir = "C:/Users/Miguel/Documents/1 Nube/Dropbox/"
-datos_dir = "Datos Redes Bayesianas/CrossValidation_data/Results/"
-my_dir = "C:/Users/Miguel/Documents/0 Versiones/2 Proyectos/"
+dropbox_dir = "C:/Users/Miguel.Equihua/Documents/1 Nube/Dropbox/"
+#datos_dir = "Datos Redes Bayesianas/CrossValidation_data/Results/"
+datos_dir = "Datos Redes Bayesianas/set_de_Entrenamiento/"
+my_dir = "C:/Users/Miguel.Equihua/Documents/0 Versiones/2 Proyectos/"
 results_dir = "BayesianNetworks/redes_ajuste_MyO/"
 
 # Prepare requiered paths for file location and processing
@@ -45,8 +46,7 @@ for net_name in sorted(results_files):
                                        for t in text if "Quadratic" in t][0]
     networks[net]["Spherical payoff"] = [re.findall("[.0-9]+", t)[0]
                                          for t in text if "Spherical" in t][0]
-    networks[net]["Training_dataset"] = [re.findall("train_[0-9]+_" +
-                                         "20150830.csv", t)
+    networks[net]["Training_dataset"] = [re.findall("train_.*", t)
                                          for t in text if "train_" in t][0]
 
     # Get sensitivity values of variance reduction due to information in a node
@@ -65,8 +65,6 @@ error_rates = [u"Absolute error (rms)", u"Error rate (%)",
 # bn_train_20150830_sin_NA_Boosted
 js_txt = u""
 for d in sorted(networks):
-    cv_digit = d.split(" - ")[1]
-    cv_digit = re.match(r"boosted_2_CV([0-9]+)", cv_digit).group(1)
 
     js_txt = js_txt + u"\n\n"
     js_txt = js_txt + u"##### " + d + "\n"
@@ -76,7 +74,7 @@ for d in sorted(networks):
     js_txt = js_txt + (u"\"Description\": \"Poner aquí la descripción" +
                        u" del modelo en cuestión\",\n")
     js_txt = js_txt + (u"\"Training_data_set\": \"" +
-                       networks[d]["Training_dataset"][0] + ",\n")
+                       networks[d]["Training_dataset"][0] + "\",\n")
     js_txt = js_txt + u"\"Results\": [\n"
     for v in error_rates:
         if v != error_rates[-1]:
