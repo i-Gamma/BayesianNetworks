@@ -21,7 +21,7 @@ results_dir = "BayesianNetworks/redes_ajuste_MyO/"
 #                 in r and "Stage2" in r]
 results_files = os.listdir(dropbox_dir + datos_dir)
 results_files = [dropbox_dir + datos_dir + r for r in results_files if "txt"
-                  in r and "Stage2" in r]
+                 in r and "Stage2" in r]
 
 # Read BN results from summary files
 networks = {}
@@ -76,7 +76,7 @@ for d in sorted(networks):
     js_txt = js_txt + (u"\"Description\": \"Poner aquí la descripción" +
                        u" del modelo en cuestión\",\n")
     js_txt = js_txt + (u"\"Training_data_set\": \"" +
-                       networks[net]["Training_dataset"][0])
+                       networks[d]["Training_dataset"][0] + ",\n")
     js_txt = js_txt + u"\"Results\": [\n"
     for v in error_rates:
         if v != error_rates[-1]:
