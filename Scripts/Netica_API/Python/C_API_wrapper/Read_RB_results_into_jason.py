@@ -21,7 +21,7 @@ results_dir = "BayesianNetworks/redes_ajuste_MyO/"
 #                 in r and "Stage2" in r]
 results_files = os.listdir(dropbox_dir + datos_dir)
 results_files = [dropbox_dir + datos_dir + r for r in results_files if "txt"
-                  in r and "Stage2" in r]
+                 in r and "Stage2" in r]
 
 # Read BN results from summary files
 networks = {}
@@ -45,6 +45,9 @@ for net_name in sorted(results_files):
                                        for t in text if "Quadratic" in t][0]
     networks[net]["Spherical payoff"] = [re.findall("[.0-9]+", t)[0]
                                          for t in text if "Spherical" in t][0]
+    networks[net]["Training_dataset"] = [re.findall("train_[0-9]+_" +
+                                         "20150830.csv", t)
+                                         for t in text if "train_" in t][0]
 
     # Get sensitivity values of variance reduction due to information in a node
     pos_sens = [i for i, v in enumerate(text) if "at another node" in v][0] + 4
@@ -58,8 +61,13 @@ for net_name in sorted(results_files):
 # Produce text for output and load it to js_txt line by line
 error_rates = [u"Absolute error (rms)", u"Error rate (%)",
                u"Logarithmic loss", u"Quadratic loss", u"Spherical payoff"]
+
+# bn_train_20150830_sin_NA_Boosted
 js_txt = u""
 for d in sorted(networks):
+    cv_digit = d.split(" - ")[1]
+    cv_digit = re.match(r"boosted_2_CV([0-9]+)", cv_digit).group(1)
+
     js_txt = js_txt + u"\n\n"
     js_txt = js_txt + u"##### " + d + "\n"
     js_txt = js_txt + u"\n"
@@ -68,7 +76,7 @@ for d in sorted(networks):
     js_txt = js_txt + (u"\"Description\": \"Poner aquí la descripción" +
                        u" del modelo en cuestión\",\n")
     js_txt = js_txt + (u"\"Training_data_set\": \"" +
-                       u"bn_train_20150830_sin_NA_Boosted.csv\",\n")
+                       networks[d]["Training_dataset"][0] + ",\n")
     js_txt = js_txt + u"\"Results\": [\n"
     for v in error_rates:
         if v != error_rates[-1]:
@@ -80,9 +88,9 @@ for d in sorted(networks):
     js_txt = js_txt + u"\"Variables (variance reduction) on zz_delt_vp\": [\n"
     for v in sorted(sens_data, key=lambda sens_data:
                     float(sens_data[1]), reverse=True):
-        if "Variables (variance reduction)" not in v:
-            js_txt = (js_txt + u"    {\"" + v[0] + "\": " + "\"" +
-                      v[1] + u"\"},\n")
+#        if "Variables (variance reduction)" not in v:
+        js_txt = (js_txt + u"    {\"" + v[0] + "\": " + "\"" +
+                  v[1] + u"\"},\n")
     js_txt = js_txt + (u"    {\"" + v[0] + "\": " + "\"" + v[1] + "\"}\n")
     js_txt = js_txt + u"      ]\n"
     js_txt = js_txt + u" }\n"
