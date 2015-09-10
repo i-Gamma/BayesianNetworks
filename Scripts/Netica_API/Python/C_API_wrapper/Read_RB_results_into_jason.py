@@ -45,6 +45,9 @@ for net_name in sorted(results_files):
                                        for t in text if "Quadratic" in t][0]
     networks[net]["Spherical payoff"] = [re.findall("[.0-9]+", t)[0]
                                          for t in text if "Spherical" in t][0]
+    networks[net]["Training_dataset"] = [re.findall("train_[0-9]+_" +
+                                         "20150830.csv", t)
+                                         for t in text if "train_" in t][0]
 
     # Get sensitivity values of variance reduction due to information in a node
     pos_sens = [i for i, v in enumerate(text) if "at another node" in v][0] + 4
@@ -73,7 +76,7 @@ for d in sorted(networks):
     js_txt = js_txt + (u"\"Description\": \"Poner aquí la descripción" +
                        u" del modelo en cuestión\",\n")
     js_txt = js_txt + (u"\"Training_data_set\": \"" +
-                       u"train_" + cv_digit + "_20150830.csv.csv\",\n")
+                       networks[net]["Training_dataset"][0])
     js_txt = js_txt + u"\"Results\": [\n"
     for v in error_rates:
         if v != error_rates[-1]:
@@ -85,9 +88,9 @@ for d in sorted(networks):
     js_txt = js_txt + u"\"Variables (variance reduction) on zz_delt_vp\": [\n"
     for v in sorted(sens_data, key=lambda sens_data:
                     float(sens_data[1]), reverse=True):
-        if "Variables (variance reduction)" not in v:
-            js_txt = (js_txt + u"    {\"" + v[0] + "\": " + "\"" +
-                      v[1] + u"\"},\n")
+#        if "Variables (variance reduction)" not in v:
+        js_txt = (js_txt + u"    {\"" + v[0] + "\": " + "\"" +
+                  v[1] + u"\"},\n")
     js_txt = js_txt + (u"    {\"" + v[0] + "\": " + "\"" + v[1] + "\"}\n")
     js_txt = js_txt + u"      ]\n"
     js_txt = js_txt + u" }\n"
