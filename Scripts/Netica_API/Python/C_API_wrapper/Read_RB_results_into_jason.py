@@ -58,8 +58,13 @@ for net_name in sorted(results_files):
 # Produce text for output and load it to js_txt line by line
 error_rates = [u"Absolute error (rms)", u"Error rate (%)",
                u"Logarithmic loss", u"Quadratic loss", u"Spherical payoff"]
+
+# bn_train_20150830_sin_NA_Boosted
 js_txt = u""
 for d in sorted(networks):
+    cv_digit = d.split(" - ")[1]
+    cv_digit = re.match(r"boosted_2_CV([0-9]+)", cv_digit).group(1)
+
     js_txt = js_txt + u"\n\n"
     js_txt = js_txt + u"##### " + d + "\n"
     js_txt = js_txt + u"\n"
@@ -68,7 +73,7 @@ for d in sorted(networks):
     js_txt = js_txt + (u"\"Description\": \"Poner aquí la descripción" +
                        u" del modelo en cuestión\",\n")
     js_txt = js_txt + (u"\"Training_data_set\": \"" +
-                       u"bn_train_20150830_sin_NA_Boosted.csv\",\n")
+                       u"train_" + cv_digit + "_20150830.csv.csv\",\n")
     js_txt = js_txt + u"\"Results\": [\n"
     for v in error_rates:
         if v != error_rates[-1]:
