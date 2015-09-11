@@ -5,7 +5,7 @@ library("rgdal")
 machine_set_up <- function ()
 {
   users <- dir("c:/users")
-  if (("Miguel" %in% users) & !("equihu" %in% users))
+  if (("Miguel" %in% users) & !("equihua" %in% users))
   {
     # set working directory
     dir_maps <- "C:/Users/Miguel/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/EI_maps/"
@@ -73,7 +73,7 @@ for (IE_data in maps)
   
   # write to disk
   
-  tif_file <- paste(dir_maps, gsub("txt", "tif", IE_data), sep="")
+  tif_file <- paste(dir_maps, gsub("?=txt|csv", "tif", IE_data), sep="")
   ie <- writeRaster(ie_raster, filename=tif_file, format="GTiff", overwrite=TRUE)
 }
 
