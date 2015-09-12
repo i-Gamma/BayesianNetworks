@@ -10,10 +10,10 @@ import re
 import pyperclip
 
 # Basic path data
-dropbox_dir = "C:/Users/Miguel.Equihua/Documents/1 Nube/Dropbox/"
-#datos_dir = "Datos Redes Bayesianas/CrossValidation_data/Results/"
-datos_dir = "Datos Redes Bayesianas/set_de_Entrenamiento/"
-my_dir = "C:/Users/Miguel.Equihua/Documents/0 Versiones/2 Proyectos/"
+dropbox_dir = "C:/Users/Miguel/Documents/1 Nube/Dropbox/"
+# datos_dir = "Datos Redes Bayesianas/CrossValidation_data/Results/"
+datos_dir = "Datos Redes Bayesianas/CrossValidation_data/Trainning_summaries/"
+my_dir = "C:/Users/Miguel/Documents/0 Versiones/2 Proyectos/"
 results_dir = "BayesianNetworks/redes_ajuste_MyO/"
 
 # Prepare requiered paths for file location and processing
