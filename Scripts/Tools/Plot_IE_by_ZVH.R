@@ -61,19 +61,23 @@ data_set_all <- cbind (data_set_all, IE)
 
 data_set_all$zvh.fact <- factor(x = data_set_all$zvh_31)
 nombres <- names(data_set_all)
-vars.interes <- c(4,5,8,9,14,15,18,19,21:26,28:45,47,54)
-
-# graficación a destajo
+vars.interes <- c(4,5,8,9,14,15,18,19,21:26,28:44)
+ie_var_set = c(47:53)
 gr <- ggplot(data = data_set_all[complete.cases(data_set_all),])
-var.ie <- nombres[48] # Integridad Ecosistémica expresada en porcentaje (100 = deteriorado)
-for (i in vars.interes)
+# graficación a destajo
+for (ie in ie_var_set)
 {
-  var.y <- nombres[i]
-  gr.vars <- gr + aes_string(x=var.ie, y=var.y) + 
-    geom_point(alpha=1/60, col="blue") + 
-    stat_smooth(col="red", method = lm) + 
-    facet_grid(facets = . ~ zvh.fact)
-  
-  nombre.archivo <- file.path(dir.figs,paste("ie_lm_var_",nombres[i],".png", sep=""))
-  ggsave(nombre.archivo, gr.vars, width = 11, height = 8)
+  var.ie <- nombres[ie] # Integridad Ecosistémica o delta_VP
+  for (i in vars.interes)
+  {
+    var.y <- nombres[i]
+    gr.vars <- gr + aes_string(x=var.ie, y=var.y) + 
+      geom_point(alpha=1/60, col="blue") + 
+      stat_smooth(col="red", method = lm) + 
+      facet_grid(facets = . ~ zvh.fact)
+    
+    nombre.archivo <- file.path(dir.figs, 
+                        paste(var.ie, "_", nombres[i],".png", sep=""))
+    ggsave(nombre.archivo, gr.vars, width = 22, height = 16)
+  }
 }
