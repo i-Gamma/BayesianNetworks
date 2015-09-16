@@ -8,12 +8,12 @@ Created on Sat Sep 12 10:50:39 2015
 import os
 
 # Basic path data
-dropbox_dir = "C:/Users/Miguel/Documents/1 Nube/Dropbox/"
+dropbox_dir = "C:/Users/Miguel.Equihua/Documents/1 Nube/Dropbox/"
 # datos_dir = "Datos Redes Bayesianas/CrossValidation_data/Results_bel_vec/"
-datos_dir = "Datos Redes Bayesianas/CrossValidation_data/temp/"
+datos_dir = "Datos Redes Bayesianas/CrossValidation_data/Results_bel_vec/"
 
 # List of files to clean
-f_cv = [f for f in os.listdir(dropbox_dir + datos_dir) if "csv" in f]
+f_cv = [f for f in os.listdir(dropbox_dir + datos_dir) if "full" in f]
 
 for a_f in f_cv:
     f = open(dropbox_dir + datos_dir + a_f, "r")

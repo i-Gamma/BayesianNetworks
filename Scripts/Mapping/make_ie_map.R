@@ -1,43 +1,46 @@
 # packages
 library("raster")
 library("rgdal")
+library(R.utils)
 
 machine_set_up <- function ()
 {
-  users <- dir("c:/users")
-  if (("Miguel" %in% users) & !("equihua" %in% users))
-  {
-    # set working directory
-    dir_maps <- "C:/Users/Miguel/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/EI_maps/"
-    dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
-    setwd(dir_work)
-  }
-  if ("miguel.equihua" %in% users)
-  {
-    # set working directory
-    dir_maps <- "C:/Users/miguel.equihua/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/EI_maps/"
-    dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
-    setwd(dir_work)
-  }
-  if ("escritorio.octavio" %in% users)
-  {
-    # set working directory
-    dir_maps <- "C:/Users/octavio.maqueo/Dropbox/Datos Redes Bayesianas/EI_maps/"
-    dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
-    setwd(dir_work)
-  }
-  if ("lap.octavio" %in% users)
-  {
-    # set working directory
-    dir_maps <- "D:/Dropbox/Datos Redes Bayesianas/Datos Redes Bayesianas/EI_maps/"
-    dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
-    setwd(dir_work)
-  }
-  
+  machine <- System$getHostname()
+  switch (machine,
+     "CAPSICUM" = 
+          {
+             # set working directory
+             dir_maps <- "C:/Users/miguel.equihua/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/EI_maps/"
+             dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
+             setwd(dir_work)
+          },
+     "TIGRIDIA" =
+          {
+            # set working directory
+            dir_maps <- "C:/Users/Miguel/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/EI_maps/"
+            dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
+            setwd(dir_work)
+          },
+    "MAQUEO" =
+          {
+            # set working directory
+            dir_maps <- "C:/Users/octavio.maqueo/Dropbox/Datos Redes Bayesianas/EI_maps/"
+            dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
+            setwd(dir_work)
+          },
+    "TMAQUEO" =
+          {
+            # set working directory
+            dir_maps <- "D:/Dropbox/Datos Redes Bayesianas/Datos Redes Bayesianas/EI_maps/"
+            dir_work <- gsub("EI_maps", "Datos_para_mapeo", dir_maps)
+            setwd(dir_work)
+          }
+  )
   return (dir_maps)
 }
 
 dir_maps <- machine_set_up()
+
 
 # load train data
 train_data <- read.table("bn_ie_tabfinal_20150830.csv",sep=",",header=TRUE)
@@ -45,7 +48,7 @@ train_data <- read.table("bn_ie_tabfinal_20150830.csv",sep=",",header=TRUE)
 # head of train data
 head(train_data)
 
-maps <- dir()[grepl("^Stage2", dir())]
+maps <- dir()[grepl("^full", dir())]
 
 for (IE_data in maps)
 {
