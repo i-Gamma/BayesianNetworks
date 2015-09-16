@@ -38,9 +38,10 @@ machine_set_up()
 
 datos <- dir()[grepl("^bn_ie_tabfinal", dir())]
 
+train_data <- read.table(datos,sep=",",header=TRUE, na.strings = "*")
 compara_delta_vp <- data.frame(train_data["zz_delt_vp"])
 
-train_data <- read.table(datos,sep=",",header=TRUE, na.strings = "*")
+
 
 ie_archivos <- dir()[grepl("boosted", dir())]
 
@@ -56,3 +57,10 @@ for (r in ie_archivos)
   resultados$cor[i] <- c[1] 
   
 }
+
+ie_naive_archivos <- dir()[grepl("full_naive1", dir())]
+d <- read.table(ie_naive_archivos, header=TRUE, sep=",")
+x <- max.col(d)
+head (x)
+hist(x)
+cor(compara_delta_vp, x, use = "complete.obs")
