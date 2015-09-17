@@ -7,29 +7,29 @@ machine_set_up <- function ()
           "CAPSICUM" = 
           {
             # set working directory
-            dir_maps <- "C:/Users/miguel.equihua/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/Datos_para_mapeo/"
-            dir_work <- gsub("Datos_para_mapeo/", "Datos_para_mapeo/Stage_3", dir_maps)
+            dir_maps <- "C:/Users/miguel.equihua/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/set_de_Entrenamiento/"
+            dir_work <- gsub("set_de_Entrenamiento/", "set_de_Entrenamiento/Stage3", dir_maps)
             setwd(dir_work)
           },
           "TIGRIDIA" =
           {
             # set working directory
-            dir_maps <- "C:/Users/Miguel/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/Datos_para_mapeo/"
-            dir_work <- gsub("Datos_para_mapeo", "Datos_para_mapeo/Stage_3", dir_maps)
+            dir_maps <- "C:/Users/Miguel/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/set_de_Entrenamiento/"
+            dir_work <- gsub("set_de_Entrenamiento", "set_de_Entrenamiento/Stage3", dir_maps)
             setwd(dir_work)
           },
           "MAQUEO" =
           {
             # set working directory
-            dir_maps <- "C:/Users/octavio.maqueo/Dropbox/Datos Redes Bayesianas/Datos_para_mapeo/"
-            dir_work <- gsub("Datos_para_mapeo", "Datos_para_mapeo/Stage_3", dir_maps)
+            dir_maps <- "C:/Users/octavio.maqueo/Dropbox/Datos Redes Bayesianas/set_de_Entrenamiento/"
+            dir_work <- gsub("set_de_Entrenamiento", "set_de_Entrenamiento/Stage3", dir_maps)
             setwd(dir_work)
           },
           "TMAQUEO" =
           {
             # set working directory
-            dir_maps <- "D:/Dropbox/Datos Redes Bayesianas/Datos Redes Bayesianas/Datos_para_mapeo/"
-            dir_work <- gsub("Datos_para_mapeo", "Datos_para_mapeo/Stage_3", dir_maps)
+            dir_maps <- "D:/Dropbox/Datos Redes Bayesianas/Datos Redes Bayesianas/set_de_Entrenamiento/"
+            dir_work <- gsub("set_de_Entrenamiento", "set_de_Entrenamiento/Stage3", dir_maps)
             setwd(dir_work)
           }
   )
@@ -38,15 +38,16 @@ machine_set_up <- function ()
 
 datos_map <- machine_set_up()
 
-datos <- dir(datos_map)[grepl("^bn_ie_tabfinal", dir(datos_map))]
-datos <- paste(datos_map, datos, sep="")
+datos <- dir()[grepl("bn_test30", dir())]
+#datos <- paste(datos_map, datos, sep="")
 
-train_data <- read.table(datos,sep=",",header=TRUE, na.strings = "*")
-compara_delta_vp <- data.frame(train_data["zz_delt_vp"])
+test_data <- read.table(datos,sep=",",header=TRUE, na.strings = "*")
+compara_delta_vp <- data.frame(test_data["zz_delt_vp"])
 
-ie_archivos <- dir()[grepl("csv", dir())]
+ie_archivos <- dir()[grepl("(?:Scores.csv|EM.csv)", dir())]
 
-nombre_corto <- c("CV_B_with_extra_ZVH", "CV_B", "full_naive_EM", "full_naive_scores")
+nombre_corto <- c("CV_B_EM", "CV_B_Scores", "CV_B_with_extra_ZVH",  
+                  "CV_C_Scores", "full_naive_EM", "full_naive_scores")
 
 resultados <- data.frame(var=nombre_corto, cor=rep(0,length(nombre_corto)))
 i <- 0
