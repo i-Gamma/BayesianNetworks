@@ -53,7 +53,7 @@ head(train_data)
 base <- raster(paste(dir_datos_bn, "/bov_cbz_km2.tif", sep=""))
 plot (base)
 
-maps <- dir()[grepl("C_Scores.csv$", dir())]
+maps <- dir()[grepl("Final", dir())]
 
 for (IE_data in maps)
 {
