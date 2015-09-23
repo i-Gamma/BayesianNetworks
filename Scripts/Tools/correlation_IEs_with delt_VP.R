@@ -44,18 +44,25 @@ datos <- dir()[grepl("bn_test30", dir())]
 test_data <- read.table(datos,sep=",",header=TRUE, na.strings = "*")
 compara_delta_vp <- data.frame(test_data["zz_delt_vp"])
 
-ie_archivos <- dir()[grepl("(?:Scores.csv|EM.csv)", dir())]
-
-nombre_corto <- c("CV_B_EM", "CV_B_Scores", "CV_B_with_extra_ZVH",  
-                  "CV_C_Scores", "full_naive_EM", "full_naive_scores")
-
-resultados <- data.frame(var=nombre_corto, cor=rep(0,length(nombre_corto)))
-i <- 0
-for (r in ie_archivos)
+nombre_corto <- c("CV_B_EM", "CV_B_Scores", "CV_B_with_extra_ZVH", "CV_B_to_C", 
+                  "CV_C_Scores", "full_naive_EM", "full_naive_scores", 
+                  "New with zvh to delt_vp", "New")
+test <- function ()
 {
-  i <- i + 1
-  d <- read.table(r, header=TRUE, sep=",")
-  c <- cor(compara_delta_vp, d, use = "complete.obs")
-  resultados$cor[i] <- c[1] 
-  
+  ie_archivos <- dir()[grepl("(?:Scores.csv|EM.csv)", dir())]
+  resultados <- data.frame(var=nombre_corto, cor=rep(0,length(nombre_corto)))
+  i <- 0
+  for (r in ie_archivos)
+  {
+    i <- i + 1
+    d <- read.table(r, header=TRUE, sep=",")
+    c <- cor(compara_delta_vp, d, use = "complete.obs")
+    resultados$cor[i] <- c[1] 
+    
+  }
+  print (resultados)
 }
+
+test()
+
+

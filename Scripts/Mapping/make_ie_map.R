@@ -53,7 +53,7 @@ head(train_data)
 base <- raster(paste(dir_datos_bn, "/bov_cbz_km2.tif", sep=""))
 plot (base)
 
-maps <- dir()[grepl("csv$", dir())]
+maps <- dir()[grepl("Final", dir())]
 
 for (IE_data in maps)
 {
@@ -62,6 +62,7 @@ for (IE_data in maps)
   length(bn_output[,1])
   
   # ie
+#  ie <- bn_output
   ie <- (max(bn_output[,1])-bn_output[,1])/(max(bn_output[,1]))
   head(ie)
   
@@ -78,7 +79,7 @@ for (IE_data in maps)
   
   # write to disk
   
-  tif_file <- paste(dir_maps, gsub("?=txt|csv", "tif", IE_data), sep="")
+  tif_file <- paste(dir_maps, gsub("?:.txt|.csv", "_delt_vp.tif", IE_data), sep="")
   ie <- writeRaster(ie_raster, filename=tif_file, format="GTiff", overwrite=TRUE)
 }
 
