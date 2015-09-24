@@ -1,0 +1,292 @@
+---
+title: "Modelos locales"
+output: html_document
+---
+
+Cargamos paquetes:
+
+```{r, echo=FALSE, message=FALSE}
+library(readr)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(Hmisc)
+library(knitr)
+library(gridExtra)
+
+library(bnlearn) # se debe cargar antes que gRain
+library(gRain)
+library(gRbase)
+library(igraph)
+library(glmnet)
+set.seed(291763763)
+```
+
+## Estimando redes en R
+
+Seleccionamos los nodos padres o hijos de zz\_delta\_vp de acuerdo a la red 
+*EI_TAN_zvh31_con_medias_EM - boosted_2.neta*.
+
+```{r}
+load("data/bn_ie_tabfinal_20150830.RData")
+load("data/train_cat.RData")
+load("data/test_cat.RData")
+
+variables <- c("zz_delt_vp",
+  "prob_hojarasca", "Gpp_1km_wetstd", "AlturaFusteLimpio_media",
+  "proporcion_agricultura", "proporcion_bosques", "proporcion_matorrales",
+  "proporcion_pastizal", 
+  "dem30_mean1000", "dem30_sd1000", "zvh_31", "PsnNet_1km_drymean")
+
+train_delta_df <- dplyr::select_(train_cat, .dots = variables) %>%
+  as.data.frame() 
+
+test_delta_df <- dplyr::select_(test_cat, .dots = c(variables, "id")) %>%
+  sample_n(50000) %>%
+  filter(complete.cases(.)) %>%
+  as.data.frame()%>%
+  left_join(select(test, id, x, y)) 
+
+modelo_delta <- empty.graph(variables)
+
+arcs(modelo_delta) <- matrix(c("proporcion_agricultura", "proporcion_bosques",
+  "proporcion_matorrales", "proporcion_pastizal", "zz_delt_vp", "zz_delt_vp", 
+  "zz_delt_vp", "zz_delt_vp", "zvh_31", "zvh_31", "zvh_31", "zvh_31", 
+  "dem30_mean1000", "dem30_mean1000", "dem30_mean1000", "dem30_mean1000",
+  "dem30_sd1000", "dem30_sd1000", "dem30_sd1000", "dem30_sd1000", 
+  "zz_delt_vp", "zz_delt_vp", "zz_delt_vp", "zz_delt_vp", "Gpp_1km_wetstd", 
+  "PsnNet_1km_drymean", "prob_hojarasca", "AlturaFusteLimpio_media", 
+  "AlturaFusteLimpio_media", "Gpp_1km_wetstd", "PsnNet_1km_drymean", 
+  "prob_hojarasca", "AlturaFusteLimpio_media", "Gpp_1km_wetstd", 
+  "PsnNet_1km_drymean", "prob_hojarasca", "AlturaFusteLimpio_media", 
+  "Gpp_1km_wetstd", "PsnNet_1km_drymean", "prob_hojarasca"
+  ), byrow = F, ncol = 2)
+
+graphviz.plot(modelo_delta, shape = "ellipse")
+
+# calculamos las probabilidades condicionales usando imaginary sample size = 100
+fit_bayes <- bn.fit(modelo_delta, data = train_delta_df[, -c(13:15)], 
+  method = 'bayes', iss = 100)
+
+# usando gRain compilamos la red
+comp_mle <- compile(as.grain(fit_bayes))
+querygrain(comp_mle, "prob_hojarasca")
+
+# y hacemos predicción de clase
+pred_delta <- predict(comp_mle, resp = "zz_delt_vp", 
+  newdata = test_delta_df, 
+  type = "class")
+test_delta_df$pred_delta <- pred_delta[["pred"]][["zz_delt_vp"]]
+
+# y predicción de distribución
+pred_delta <- predict(comp_mle, resp = "zz_delt_vp", 
+  newdata = test_delta_df, 
+  type = "distribution")
+# obtenemos la prediciendo valor esperado
+test_delta_df$pred_delta <- c(0:18 %*%  
+    t((pred_delta[["pred"]][["zz_delt_vp"]])))
+
+# usando bnlearn
+test_delta_df$pred_delta <- predict(fit_bayes, node = "zz_delt_vp", 
+  data = test_delta_df[, -c(13:15)], method = "bayes-lw") 
+
+log_lik_delta <- logLik(fit_bayes, node = "zz_delt_vp", 
+  data = test_delta_df[, -c(13:15)]) 
+
+ggplot(test_delta_df, aes(x = as.numeric(zz_delt_vp), y = pred_delta)) +
+  geom_jitter() + geom_smooth()
+
+ggplot(test_delta_df, aes(x = x, y = y, color = as.numeric(pred_delta))) +
+  geom_point(alpha = 0.5, size = 0.5) +
+  scale_color_gradient(low = "green", high = "red")
+```
+
+
+## Modelos locales: zz\_delt\_vp
+
+Trabajamos con modelos locales para zz\_delt\_vp, para este modelo local solo
+hace falta utilizar los padres del nodo y podemos pegar las probabilidades
+
+```{r}
+pred_delta <- data.frame(fit_bayes[["zz_delt_vp"]]$prob)
+
+pred_delta_m <- pred_delta  %>%
+  mutate_each(funs(as.character(.)), proporcion_agricultura:proporcion_pastizal) %>%
+  tidyr::gather(tipo, prop, proporcion_agricultura:proporcion_pastizal)
+
+ggplot(pred_delta_m, aes(x = zz_delt_vp, y = Freq, group = prop, color = prop)) +
+  geom_jitter(alpha = 0.5) +
+  geom_smooth() +
+  facet_wrap(~tipo)
+
+ggplot(pred_delta, aes(x = proporcion_agricultura, y = Freq, 
+  color = proporcion_bosques, shape = proporcion_pastizal, 
+  size = proporcion_matorrales)) +
+  scale_size_discrete(range = c(2, 3)) +
+  geom_point(position = position_jitter(width = 0.1, height= 0), alpha = 0.8) +
+  facet_wrap(~zz_delt_vp)
+```
+
+No se puede ajustar con los datos de entrenamiento por falta de datos en 
+algunas clases. Enriqueceremos la base con datos de prueba.
+
+```{r}
+library(glmnet)
+
+test_mod <- test_cat %>%
+  group_by(zz_delt_vp) %>%
+  sample_n(size = 100) %>%
+  rbind(train_cat)
+
+mat_cov <- model.matrix(~-1 + proporcion_agricultura + proporcion_bosques +
+    proporcion_matorrales + proporcion_pastizal, data = test_mod)
+
+mat_cov <- model.matrix(~-1 + proporcion_agricultura + proporcion_bosques +
+    proporcion_matorrales + proporcion_pastizal +
+    I(proporcion_agricultura : proporcion_bosques) +
+    I(proporcion_agricultura : proporcion_pastizal) +
+    I(proporcion_agricultura : proporcion_matorrales)
+  #  I(proporcion_matorrales : proporcion_bosques) +
+  #  I(proporcion_matorrales : proporcion_pastizal) +
+  #  I(proporcion_pastizal : proporcion_bosques)
+  , data = test_mod)
+
+mod_glmnet <- cv.glmnet(y = test_mod$zz_delt_vp, x = mat_cov, alpha = 0.5, 
+  family = "multinomial")
+
+plot(mod_glmnet)
+coef(mod_glmnet)
+```
+
+#### Predicción
+
+```{r}
+grid_pred <- expand.grid(list(
+  proporcion_agricultura = unique(test_mod$proporcion_agricultura), 
+  proporcion_bosques = unique(test_mod$proporcion_bosques), 
+  proporcion_matorrales = unique(test_mod$proporcion_matorrales),
+  proporcion_pastizal = unique(test_mod$proporcion_pastizal)), 
+  stringsAsFactors = FALSE)
+
+mat_pred <- model.matrix(~-1 + proporcion_agricultura + proporcion_bosques +
+    proporcion_matorrales + proporcion_pastizal +
+    I(proporcion_agricultura : proporcion_bosques) +
+    I(proporcion_agricultura : proporcion_pastizal) +
+    I(proporcion_agricultura : proporcion_matorrales),
+  #  I(proporcion_matorrales : proporcion_bosques) +
+  #  I(proporcion_matorrales : proporcion_pastizal) +
+  #  I(proporcion_pastizal : proporcion_bosques)
+  data = grid_pred)
+
+mod_delta_pred <- predict(mod_glmnet, s = exp(-5), type = 'response', 
+  newx =  mat_pred)[, , 1]
+
+dat_pred <- cbind(grid_pred, mod_delta_pred)
+head(dat_pred)
+
+dat_graf <- gather(dat_pred, delta, prob, 5:23)
+
+
+ggplot(dat_graf, aes(x = proporcion_agricultura, y = prob, 
+  color = proporcion_bosques, shape = proporcion_pastizal, 
+  size = proporcion_matorrales)) +
+  scale_size_discrete(range = c(2, 3)) +
+  geom_point(position = position_jitter(width = 0.1, height= 0), alpha = 0.8) +
+  facet_wrap(~delta)
+```
+
+
+
+#### Modelos locales red CV_B_from_stage_2_with_zvh_to_delt_vp
+
+Utilizamos una muestra de la base de datos de entrenamiento Stage 3. La idea es
+hacer un modelo logístico ultinomial con interacciones, usaremos elastic net
+para regularizar.
+
+```{r}
+# leemos los datos de entrenamiento (70% de los datos)
+train_70 <- read_csv("~/Dropbox/Datos Redes Bayesianas/set_de_Entrenamiento/Stage3/Stage3_bn_train70_20150915.csv")
+
+head(train_70)
+
+# seleccionamos las variables que aparecen en el modelo local
+variables <- c("zz_delt_vp", "proporcion_asentamientos",
+  "proporcion_agricultura", "proporcion_bosques", "proporcion_matorrales",
+  "proporcion_pastizal", "zvh_31")
+
+# categorizamos como en la red de Netica (un poco raro)
+train_cat <- dplyr::select_(train_70, .dots = variables) %>%
+  mutate(
+    proporcion_pastizal = cut2(proporcion_pastizal, 
+     cuts = c(0, 0.0001, 0.05, 0.14, 0.4, 1)), 
+    proporcion_asentamientos = cut2(proporcion_asentamientos, 
+     cuts = c(0, 0.0001, 0.034, 0.1, 0.7, 1)), 
+    proporcion_bosques = cut2(proporcion_bosques, 
+     cuts = c(0, 0.08, 0.7, 0.95, 0.999, 1)),
+    proporcion_matorrales = cut2(proporcion_matorrales, 
+     cuts = c(0, 0.0001, 0.26, 0.8, 0.999, 1)), 
+    proporcion_agricultura = cut2(proporcion_agricultura, 
+     cuts = c(0, 0.0001, 0.05, 0.13, 0.37, 1)), 
+    zvh_31 = factor(zvh_31), 
+    zz_delt_vp = factor(zz_delt_vp)
+  ) %>%
+  as.data.frame() 
+
+# opción uno: muestra de tamaño cien para cada celda de zvh_31 x zz_delt_vp esta
+# muestra esta sesgada pues las celdas con pocas observaciones estarán 
+# sobre-representadas
+set.seed(45456)
+train_sample <- train_cat %>%
+  group_by(zvh_31, zz_delt_vp) %>%
+  mutate(n_obs = n()) %>%
+  do(
+    sample_n(., size = min(100, .$n_obs[1]))
+  )
+table(train_sample$zvh_31)
+
+# opción dos tomamos una muestra sesgada pero no tanto como el caso de arriba
+# en este caso para todos las celdas con menos de 10 observaciones muestreamos
+# todas, para menor a 1000 el 5% y para mayor el 4%
+train_sample <- train_cat %>%
+  group_by(zvh_31, zz_delt_vp) %>%
+  mutate(
+    n_obs = n(), 
+    percent = ifelse(n_obs < 10, 1, ifelse(n_obs < 1000, 0.05, 0.04))
+    ) %>%
+  do(
+    sample_n(., size = ceiling(.$percent[1] * .$n_obs[1]))
+  )
+table(train_sample$zvh_31)
+
+# Modelo simple (sin interacciones)
+mat_cov <- model.matrix(~-1 + proporcion_agricultura + proporcion_bosques +
+    proporcion_matorrales + proporcion_pastizal + 
+    proporcion_asentamientos + zvh_31, data = train_sample)
+
+# Modelo con interacciones
+mat_cov <- model.matrix(~-1 + proporcion_agricultura + proporcion_bosques +
+    proporcion_matorrales + proporcion_pastizal +
+    I(proporcion_agricultura : proporcion_bosques) +
+    I(proporcion_agricultura : proporcion_pastizal) +
+    I(proporcion_agricultura : proporcion_matorrales) +
+    zvh_31 +
+    I(zvh_31 : proporcion_agricultura) +
+    I(zvh_31 : proporcion_bosques) +
+    I(zvh_31 : proporcion_pastizal) +
+    I(zvh_31 : proporcion_matorrales)
+  #  I(proporcion_matorrales : proporcion_bosques) +
+  #  I(proporcion_matorrales : proporcion_pastizal) +
+  #  I(proporcion_pastizal : proporcion_bosques)
+  , data = train_sample)
+
+mod_glmnet <- cv.glmnet(y = train_sample$zz_delt_vp, x = mat_cov, alpha = 0.5, 
+  family = "multinomial", nfolds = 3)
+# multinomial deviance ~2.8
+# log(lambda) entre -9.8 u -8.5
+plot(mod_glmnet)
+coef(mod_glmnet)
+
+# si tarda demasiado podemos especificar las lambdas
+mod_glmnet <- cv.glmnet(y = train_sample$zz_delt_vp, x = mat_cov, alpha = 0.5, 
+  family = "multinomial", nfolds = 3, lambda = exp(c(-10, -9, -8)))
+```

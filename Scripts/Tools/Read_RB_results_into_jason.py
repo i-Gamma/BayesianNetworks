@@ -8,21 +8,29 @@ Created on Sat Sep 05 21:00:06 2015
 import os
 import re
 import pyperclip
+import socket
 
-# Basic path data
-dropbox_dir = "C:/Users/Miguel.Equihua/Documents/1 Nube/Dropbox/"
-#datos_dir = "Datos Redes Bayesianas/CrossValidation_data/Results/"
-datos_dir = "Datos Redes Bayesianas/set_de_Entrenamiento/"
-my_dir = "C:/Users/Miguel.Equihua/Documents/0 Versiones/2 Proyectos/"
-results_dir = "BayesianNetworks/redes_ajuste_MyO/"
+def on_toy ():
+    # Machine dependant basic path data 
+    machine = socket.gethostname()
+    if machine == "Tigridia":
+        dbx_dir = "C:/Users/Miguel/Documents/1 Nube/Dropbox/"
+    elif machine == "Capsicum":
+        dbx_dir = "C:/Users/Miguel.Equihua/Documents/1 Nube/Dropbox/"
+    else:
+        print "Don't know where am I!!!!"
+        
+    # Data subdirectory
+    d_dir = "Datos Redes Bayesianas/CrossValidation_data/"
+#    d_dir = d_dir + "Trainning_summaries/"
+    return dbx_dir, d_dir
 
 # Prepare requiered paths for file location and processing
-# results_files = os.listdir(my_dir + results_dir)
-# results_files = [my_dir + results_dir + r for r in results_files if "txt"
-#                 in r and "Stage2" in r]
+dropbox_dir, datos_dir = on_toy()
+
 results_files = os.listdir(dropbox_dir + datos_dir)
 results_files = [dropbox_dir + datos_dir + r for r in results_files if "txt"
-                 in r and "Stage2" in r]
+                 in r and "^full" in r]
 
 # Read BN results from summary files
 networks = {}
