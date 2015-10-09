@@ -11,7 +11,7 @@ import pyperclip
 import socket
 
 def on_toy ():
-    # Machine dependant basic path data 
+    # Machine dependant basic path data
     machine = socket.gethostname()
     if machine == "Tigridia":
         dbx_dir = "C:/Users/Miguel/Documents/1 Nube/Dropbox/"
@@ -19,9 +19,9 @@ def on_toy ():
         dbx_dir = "C:/Users/Miguel.Equihua/Documents/1 Nube/Dropbox/"
     else:
         print "Don't know where am I!!!!"
-        
+
     # Data subdirectory
-    d_dir = "Datos Redes Bayesianas/CrossValidation_data/"
+    d_dir = "Datos Redes Bayesianas/set_de_Entrenamiento/Stage3/"
 #    d_dir = d_dir + "Trainning_summaries/"
     return dbx_dir, d_dir
 
@@ -30,7 +30,7 @@ dropbox_dir, datos_dir = on_toy()
 
 results_files = os.listdir(dropbox_dir + datos_dir)
 results_files = [dropbox_dir + datos_dir + r for r in results_files if "txt"
-                 in r and "^full" in r]
+                 in r and "Final" in r]
 
 # Read BN results from summary files
 networks = {}
@@ -54,8 +54,8 @@ for net_name in sorted(results_files):
                                        for t in text if "Quadratic" in t][0]
     networks[net]["Spherical payoff"] = [re.findall("[.0-9]+", t)[0]
                                          for t in text if "Spherical" in t][0]
-    networks[net]["Training_dataset"] = [re.findall("train_.*", t)
-                                         for t in text if "train_" in t][0]
+    networks[net]["Training_dataset"] = [re.findall("train.*", t)
+                                         for t in text if "train" in t][0]
 
     # Get sensitivity values of variance reduction due to information in a node
     pos_sens = [i for i, v in enumerate(text) if "at another node" in v][0] + 4
