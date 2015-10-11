@@ -61,7 +61,7 @@ plot(data.ie)
 
 zvh_r <- extend(crop(zvh.r, data.ie), data.ie)
 plot(zvh_r)
-
+dir()
 sb <- brick(data.ie)
 sb <- addLayer(sb, zvh_r)
 for (f in files_plot)
@@ -128,4 +128,4 @@ for (i in 2:23)
 names(regr) <- nm[2:23]
 
 write.table(regr, "regr.csv", sep = ",", row.names = T, col.names = T)
-
+data.table[data.table$zvh_31==4,]
