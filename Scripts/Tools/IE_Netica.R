@@ -82,7 +82,7 @@ for (zi in zonas)
   {
     NodeValue(node = nodos[["proporcion_agricultura"]]) <- xi
     delt_vp.esperado <- NodeExpectedValue(nodos[["zz_delt_vp"]])
-    valores.medios[(xi * pasos.x ) + 1, zi] <- 1 - delt_vp.esperado[[1]] / 18
+    valores.medios[(xi * pasos.x ) + 1, zi] <- (1 - delt_vp.esperado[[1]] / 18) * 100
   }
 }
 
@@ -90,8 +90,12 @@ zon.names <- names(valores.medios)
 graficas <- lapply (zonas, function (x)
   {
      ggplot(valores.medios, aes_string(x="p.agr", y=zon.names[x])) +
-         geom_point(shape=1) +    # Use hollow circles
-         geom_smooth()
+         ggtitle("Plant growth") +
+         geom_smooth() +
+         labs(x = "agriculture (%)", y = "EI (%)", title = zon.names[x]) +
+         theme(plot.title = element_text(size = rel(0.9)),
+               axis.title.x = element_text(size = rel(0.7)),
+               axis.title.y = element_text(size = rel(0.7)))         
   }
 )
 
