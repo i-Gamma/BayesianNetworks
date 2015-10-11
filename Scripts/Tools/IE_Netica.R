@@ -40,12 +40,12 @@ nodos.nombres <- nodos.nombres[!grepl("z", nodos.nombres)]
 
 # Cálculo de la esperanza del nodo zz_delt_vp
 # sin contar con ninguna otra evidencia particular.
-# Valor esperado y desviación estandar de delta_vp
+# Valor esperado y desviaci?n estandar de delta_vp
 delt_vp.esperado <- NodeExpectedValue(nodos[["zz_delt_vp"]])
 c(media=delt_vp.esperado[[1]], sd=attributes(delt_vp.esperado)[[1]])
 
-# Asignar evidencia en nodos específicos para obtener el valor esperado 
-# de la condición del ecosistema. 
+# Asignar evidencia en nodos espec?ficos para obtener el valor esperado 
+# de la condici?n del ecosistema. 
 
 # La inspecciono (es continua, por lo tanto no tiene estados sino niveles)
 # y cada nivel tiene su valor de probabilidad o "2"belief"
@@ -70,16 +70,19 @@ for (zi in zonas)
   NodeValue(nodos[["zvh_31"]]) <- as.numeric(zi)
   for (nf in nodos.nombres)
   {
-    if (nf != "proporcion_agricultura")
+    if (grepl("proporcion_", nf)) 
+      { NodeValue(node = nodos[[nf]]) <- 0.0
+    }else
         NodeValue(node = nodos[[nf]]) <- resumen[1, nf]
   }
   
   SetNetworkAutoUpdate(ie.net, newautoupdate = T)
+  pasos.x <- length(valores.medios$zvh1) - 1
   for (xi in valores.medios$p.agr)
   {
     NodeValue(node = nodos[["proporcion_agricultura"]]) <- xi
     delt_vp.esperado <- NodeExpectedValue(nodos[["zz_delt_vp"]])
-    valores.medios[xi + 1, zi] <- 1 - delt_vp.esperado[[1]] / 18
+    valores.medios[(xi * pasos.x ) + 1, zi] <- 1 - delt_vp.esperado[[1]] / 18
   }
 }
 
@@ -94,10 +97,6 @@ graficas <- lapply (zonas, function (x)
 
 multiplot(plotlist = graficas, cols = 6)
 
-p <- ggplot(valores.medios, aes(x=p.agr, y=zvh1)) +
-  geom_point(shape=1) +    # Use hollow circles
-  geom_smooth() +
-p
-
 # Libera el espacio de memoria usado por la red bayesiana
 DeleteNetwork(ie.net)
+sapply(datos[,grepl("proporcion_", names(datos))], summary)
