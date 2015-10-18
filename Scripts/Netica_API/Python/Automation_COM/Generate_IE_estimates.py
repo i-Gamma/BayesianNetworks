@@ -118,6 +118,9 @@ data_table.columns
 
 # insert process to predict using data_table
 ie_map = process_on_data_table(net, data_table)
+f = open(dir_dbx + dir_datos + "IE_test.csv", "w")
+f.writelines("\n".join(["IE"] + map(str, ie_map)))
+f.close()
 
 # Se libera el espacio de momoria usado por la red
 net.Delete()

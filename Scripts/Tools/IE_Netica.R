@@ -47,7 +47,7 @@ estima_dando_solo_contexto <- function ()
   names(val.med) <- paste("zvh", 1:31, sep="")
   val.med <- cbind (val.med, p.agr=0:10 / 10)
   for (zi in zonas)
-  { zi <-2
+  {
     RetractNetFindings(ie.net)
     SetNetworkAutoUpdate(ie.net, newautoupdate = F)
     NodeValue(nodos[["zvh_31"]]) <- as.numeric(zi)
@@ -157,7 +157,7 @@ valores.medios.prom.gral <- estima_dando_datos_promedio()
 valores.medios.cont <- estima_dando_solo_contexto()
 valores.medios.esp.cond <- estima_dando_esperados()
 
-zon.names <- names(valores.medios.esp.cond)
+zon.names <- names(valores.medios.prom.gral)
 graficas <- lapply (zonas, function (x)
   {
      ggplot(valores.medios.esp.cond, aes_string(x="p.agr", y=zon.names[x])) +
