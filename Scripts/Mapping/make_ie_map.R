@@ -55,18 +55,15 @@ plot (base)
 
 maps <- dir()[grepl("Final", dir())]
 
-for (IE_data in maps)
+for (IE_data in maps[1])
 {
   # load BN prediction
   bn_output <- read.table(IE_data, sep=",",header=TRUE)
   length(bn_output[,1])
   
-  # ie
-#  ie <- bn_output
   ie <- (max(bn_output[,1])-bn_output[,1])/(max(bn_output[,1]))
   head(ie)
-  
-  
+
   # ie map
   ie_map_df = data.frame(x=train_data$x, y=train_data$y, ie=ie)
   coordinates(ie_map_df) <- ~ x + y
