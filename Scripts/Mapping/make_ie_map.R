@@ -61,7 +61,7 @@ for (IE_data in maps[1])
   bn_output <- read.table(IE_data, sep=",",header=TRUE)
   length(bn_output[,1])
   
-  ie <- (max(bn_output[,1])-bn_output[,1])/(max(bn_output[,1]))
+  ie <- (19-bn_output[,1])/19
   head(ie)
 
   # ie map
