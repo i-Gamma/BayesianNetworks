@@ -21,9 +21,15 @@ wait_time_case = 360
 # Abre NETICA
 app = Application().Start(cmd_line=file_NETICA)
 netica = app.Netica
+time.sleep(2)
 netica.Wait('ready')
 
-# Abre la rRB de interés
+netica.IsEnabled()
+netica.IsActive()
+
+
+
+# Abre la RB de interés
 menu_item = netica.MenuItem(u'&File->&Open...\tCtrl+O')
 menu_item.Click()
 window = app.Dialog
@@ -32,8 +38,8 @@ comboboxex.Click()
 comboboxex.TypeKeys(dir_eq + dir_RB + file_RB, with_spaces=True)
 button = window[u'&Abrir']
 button.Click()
-time.sleep(15)
-# netica.Wait('ready', timeout=wait_time_case)
+time.sleep(3)
+netica.Wait('ready', timeout=wait_time_case)
 
 for i in range(1, 3):
     # Inicia procesamiento de casos para producir salida para mapear
@@ -48,6 +54,7 @@ for i in range(1, 3):
     comboboxex.TypeKeys(dir_wrk + dir_dat + u"control.txt", with_spaces=True)
     button = window[u'&Abrir']
     button.Click()
+    time.sleep(2)
 
     # Selección del archivo de datos
     comboboxex = window.ComboBoxEx
@@ -55,6 +62,7 @@ for i in range(1, 3):
     comboboxex.TypeKeys("bn_ie_tabfinal_20150830.csv")
     button = window[u'&Abrir']
     button.Click()
+    time.sleep(2)
 
     # Selección del archivo de salida
     combobox = window[u'ComboBox']
@@ -62,6 +70,7 @@ for i in range(1, 3):
     combobox.TypeKeys(u"prueba" + str(i) + u".csv")
     button = window.Button
     button.Click()
+    time.sleep(2)
 
     # Si el archivo de salida ya existe confirma sobreescribirlo
     if app[u"Confirmar Guardar como"].Exists():
@@ -70,8 +79,8 @@ for i in range(1, 3):
         button.Click()
 
     # Espera hasta que procese todo el archivo antes de pasar al siguiente
-    time.sleep(wait_time_case)
-    #netica.Wait("enabled", timeout=wait_time_case)
+    time.sleep(10)
+    netica.Wait("ready", timeout=wait_time_case)
 
 # Termina NETICA
 app.Kill_()
