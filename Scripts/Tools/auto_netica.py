@@ -4,6 +4,7 @@ Created on Sat Nov 14 16:13:13 2015
 
 @author: Miguel
 """
+import time
 from pywinauto.application import Application
 
 # Ubicaciónes usadas
@@ -31,7 +32,8 @@ comboboxex.Click()
 comboboxex.TypeKeys(dir_eq + dir_RB + file_RB, with_spaces=True)
 button = window[u'&Abrir']
 button.Click()
-netica.Wait('ready')
+time.sleep(15)
+# netica.Wait('ready', timeout=wait_time_case)
 
 for i in range(1, 3):
     # Inicia procesamiento de casos para producir salida para mapear
@@ -68,7 +70,8 @@ for i in range(1, 3):
         button.Click()
 
     # Espera hasta que procese todo el archivo antes de pasar al siguiente
-    netica.Wait("enabled visible ready", timeout=wait_time_case)
+    time.sleep(wait_time_case)
+    #netica.Wait("enabled", timeout=wait_time_case)
 
 # Termina NETICA
 app.Kill_()
