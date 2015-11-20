@@ -27,7 +27,7 @@ def on_toy():
                 "dir_wrk": u"Documents\\1 Nube\\Dropbox\\",
                 "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\"}
     else:
-        print "Don"t know where am I!!!!"
+        print "Don't know where am I!!!!"
 
     return dirs
 
@@ -41,7 +41,7 @@ Operates Netica to Process Cases
 # Ubicaciónes usadas
 directorios = on_toy()
 file_RB = u"Final_net_Scores_codep.neta"
-file_NETICA = u"C:\\Program Files\\Netica\\Netica 515\\Netica.exe",
+file_NETICA = u"C:\\Program Files\\Netica\\Netica 519\\Netica.exe"
 dir_usr = directorios["dir_usr"]
 dir_git = directorios["dir_git"]
 dir_RB = directorios["dir_RB"]
