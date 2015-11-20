@@ -18,14 +18,24 @@ def on_toy():
                 "dir_git": u"Documents\\0 Versiones\\2 Proyectos\\",
                 "dir_RB": u"BayesianNetworks\\redes_ajuste_MyO\\Final\\",
                 "dir_wrk": u"Documents\\1 Nube\\Dropbox\\",
-                "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\"}
+                "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
+                "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 519\\"}
     elif machine == "Capsicum":
         # Descktop Inecol - Miguel
         dirs = {"dir_usr": u"C:\\Users\\miguel.equihua\\",
                 "dir_git": u"Documents\\0-GIT\\Publicaciones y proyectos\\",
                 "dir_RB": u"BayesianNetworks\\redes_ajuste_MyO\\Final\\",
                 "dir_wrk": u"Documents\\1 Nube\\Dropbox\\",
-                "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\"}
+                "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
+                "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 519\\"}
+    elif machine == "Equihua":
+        # Descktop Inecol - Miguel
+        dirs = {"dir_usr": u"C:\\Users\\miguel.equihua\\",
+                "dir_git": u"Documents\\0-GIT\\Publicaciones y proyectos\\",
+                "dir_RB": u"BayesianNetworks\\redes_ajuste_MyO\\Final\\",
+                "dir_wrk": u"Documents\\1 Nube\\Dropbox\\",
+                "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
+                "dir_NETICA": u"E:\\software\\Netica\\Netica 519\\"}
     else:
         print "Don't know where am I!!!!"
 
@@ -40,13 +50,15 @@ Operates Netica to Process Cases
 
 # Ubicaciónes usadas
 directorios = on_toy()
-file_RB = u"Final_net_Scores_codep.neta"
-file_NETICA = u"C:\\Program Files\\Netica\\Netica 519\\Netica.exe"
+dir_NETICA = directorios["dir_NETICA"]
 dir_usr = directorios["dir_usr"]
 dir_git = directorios["dir_git"]
 dir_RB = directorios["dir_RB"]
 dir_wrk = directorios["dir_wrk"]
 dir_dat = directorios["dir_dat"]
+file_RB = dir_usr + dir_git + dir_RB + u"Final_net_Scores_codep.neta"
+file_NETICA = dir_NETICA + u"Netica.exe"
+dir_trabajo = dir_usr + dir_wrk + dir_dat
 
 # Tiempo máximo de espera para procesamiento de un archivos de casos completo
 wait_time_case = 360
@@ -62,7 +74,7 @@ menu_item = netica.MenuItem(u"&File->&Open...\tCtrl+O")
 menu_item.Click()
 window = app[u"Document to Open:"]
 comboboxex = window[u"No&mbre:ComboBoxEx"]
-comboboxex.TypeKeys(dir_usr + dir_git + dir_RB + file_RB, with_spaces=True)
+comboboxex.TypeKeys(file_RB, with_spaces=True)
 button = window[u"&Abrir"]
 button.Click()
 time.sleep(3)
@@ -77,7 +89,6 @@ for i in range(1, 3):
     window = app[u"Control File (Cancel to Skip)"]
     window.Wait("ready")
     comboboxex = window[u"No&mbre:ComboBoxEx"]
-    dir_trabajo = dir_usr + dir_wrk + dir_dat
     comboboxex.TypeKeys(dir_trabajo + u"control.txt", with_spaces=True)
     button = window[u"&Abrir"]
     button.Click()
