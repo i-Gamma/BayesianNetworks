@@ -108,7 +108,7 @@ for i in range(1, 3):
         button.Click()
 
     # Espera hasta que procese todo el archivo antes de pasar al siguiente
-    time.sleep(10)
+    time.sleep(15)
     netica.Wait("ready", timeout=wait_time_case)
 
 # Termina NETICA
