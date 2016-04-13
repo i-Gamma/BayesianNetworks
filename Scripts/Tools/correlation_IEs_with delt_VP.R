@@ -46,8 +46,8 @@ test_data <- read.table(datos, sep=",",header=TRUE, na.strings = "*")
 compara_delta_vp <- data.frame(test_data["zz_delt_vp"])
 
 nombre_corto <- c("CV_B_EM", "CV_B_Scores", "CV_B_with_extra_ZVH", "CV_B_to_C", 
-                  "CV_C_Scores", "full_naive_EM", "full_naive_scores", 
-                  "New with zvh to delt_vp", "New", "Final")
+                  "CV_C_Scores", "Final_Codep", "Final", "full_naive_EM", 
+                  "full_naive_scores", "New with zvh to delt_vp", "New")
 test <- function ()
 {
   ie_archivos <- dir()[grepl("(?:Scores.csv|EM.csv)", dir())]
@@ -64,5 +64,6 @@ test <- function ()
   print (resultados)
 }
 
+print ("Soften 4")
 test()
 
