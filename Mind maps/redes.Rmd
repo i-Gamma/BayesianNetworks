@@ -1,0 +1,278 @@
+---
+title: "Visualización de Redes"
+author: "Miguel"
+source: http://kateto.net/network-visualization
+date: "7 de junio de 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Convertir datos de red a objeto igrapg
+
+Los ejemplos vienen de [aquí](http://kateto.net/network-visualization)
+
+Empezamos por leer algunos datos. Usaremos la modalidad de leer primero la descripción de los nodos y luego la topología de vínculos.
+
+Aunque estos ejemplos son pequeños, muchas de las ideas detras de la visualización que haremos de ellos se aplican con facilidad a redes medianas y grandes. Esta es la razón para no enfatizar el uso de propiedades como la forma del nodo, pues en redes mayores es comunmente irrelevante por la imposibilidad de distinguirla. De hecho, cuando se trabaja con redes muy grandes podemos incluso optar por omitir los arcos y enfocarnos en la identificación y visualización de comunidades de nodos.
+
+En el enfoque que seguiremos, el tamaño de las redes que podemos visualizar en R está limitado por la cantidad de RAM disponible en el equipo de trabajo. En todo caso, conviene apreciar que en muchos casos que visualizar grandes redes como bolas de estambre gigantes es menos interesante que mostrar información que ilustre los atributos clave del grafo.
+
+```{r red, echo=FALSE}
+setwd("~/0 Versiones/2 Proyectos/BN_GitHub/Mind maps")
+nodes <- read.csv("Dataset1-Media-Example-NODES.csv", header=T, as.is=T)
+links <- read.csv("Dataset1-Media-Example-EDGES.csv", header=T, as.is=T)
+```
+
+## Datos 1
+Esta es una muestra de los datos que vamos a visualizar y sus atributos más generales. En este caso se trata de un conjunto de "medios de información" y los vínculos son las menciones de distinto tipo que hacen entre ellos (dan vínculo o mencionan en texto).
+
+### Examen de los datos
+```{r datos1, echo=FALSE}
+print ("Nodos")
+head(nodes)
+print ("Links")
+head(links)
+
+cat("Número de nodos: ", nrow(nodes), 
+    " (únicos: ", length(unique(nodes$id)), ")\n")
+cat("Número de links: ", nrow(links), 
+    " (únicos: ", nrow(unique(links[,c("from", "to")])), ")\n")
+
+```
+Se puede ver que hay más "links" que combinaciones únicas de enlaces. Esto quiere decir que tenemos casos en los datos que tendrán múltiples links entre dos nodos dados. Para simplificar vamos a colapsar todos los vínculos del mismo tipo entre los mismos dos nodos y nos quedaremos con la suma de sus pesos individuales. Lo haremos con la función `aggregate(pesos, by=<<"from", "to", & "type">>, sum)`.
+
+```{r aglutina repeticiones, echo=FALSE}
+links <- aggregate(links[,3], links[,-3], sum)
+links <- links[order(links$from, links$to),]
+colnames(links)[4] <- "weight"
+rownames(links) <- NULL
+head(links)
+```
+
+## Datos 2 (matriz)
+Es una red que analiza los vínculos entre fuentes de noticias y sus consumidores.
+En este otro ejemplo tenemos una matriz de adjacencia de una red de dos modos o "bipartita"; es decir, una red con dos tipos diferentes de actores y vínculos que los enlazan pero que no cruzan entre tipos.
+
+```{r datos2}
+nodes2 <- read.csv("Dataset2-Media-User-Example-NODES.csv", header=T, as.is=T)
+links2 <- read.csv("Dataset2-Media-User-Example-EDGES.csv", header=T, row.names=1)
+head(nodes2)
+head(links2)
+```
+### Examen de los datos
+
+```{r resumen datos 2}
+links2 <- as.matrix(links2)
+cat("Dimensiones de la matriz de links: ", dim(links2), "\n")
+cat("Dimensiones de la matriz de nódos: ", dim(nodes2), "\n")
+```
+## Creación de objeto red a partir de los datos
+
+Para el caso de los *datos 1* que están en **data frames**, simplemente debemos usar la función `graph_from_data_frame` para crear un objeto de tipo *grafo* en el que se asocian nodos con sus vínculos y direcciones.
+
+```{r}
+library('igraph')
+net <- graph_from_data_frame(d=links, vertices=nodes, directed=T) 
+net
+```
+La descripción de un objeto *igraph* inicia con cuatro letras cuya interpretación es la siguiente:
+
+|letra  | Significado                   |
+|-------|-------------------------------|
+|D or U |Grafo dirigido o no respectivamente |
+|N      |Se tiene atributo de nombre para los nodos|
+|W      |Se tiene atributo de peso para los arcos|
+|B      |Se trata de una red bipartita o con nodos con atributo de tipo)|
+
+Los dos números que siguen, en este caso (17 49), hacen referencia, respectivamente, a los nodos y arcos en el grafo. La descripción también muestra una lista de atributos de nodos y arcos, por ejemplo:
+
+(g/c) - atributos alfanuméricos a nivel de grafo
+(v/c) - atributos alfanuméricos a nivel de vértice
+(e/n) - atributos numéricos a nivel de arco
+
+También tenemos acceso sencillo a los nodos, arcos y sus atributos con las siguientes funciones:
+
+
+##### Los arcos de objeto *net*
+```{r}
+E(net)
+```
+
+
+##### Los nodos de objeto *net*
+```{r}
+V(net)
+```
+
+
+##### El atributo *tipo* de los arcos 
+```{r}
+E(net)$type
+```
+
+
+##### El atributo *media* de los arcos 
+```{r}
+V(net)$media
+```
+
+
+#### Elegir nodos y arcos particulares
+También puedo elegir que me muestre arcos y nodos por atributo. Por ejemplo:
+```{r}
+V(net)[media=="BBC"]
+E(net)[type=="mention"]
+```
+
+
+#### Examen directo de la matriz de la red
+```{r}
+net[1,]
+net[5,7]
+```
+
+### Extracción de una lista o matriz datos a partir de la red
+
+#### Lista de arcos entre nodos
+```{r}
+as_edgelist(net, names=T)
+as_adjacency_matrix(net, attr="weight")
+```
+
+
+#### Matriz de la red
+```{r}
+as_adjacency_matrix(net, attr="weight")
+```
+
+#### *data frame* con los datos que describen nodos y arcos
+#### Lista de arcos
+```{r}
+as_data_frame(net, what="edges")
+as_data_frame(net, what="vertices")
+```
+
+## Despliegue gráfico de redes
+
+### Datos 1: *data frame*
+
+Ahora que tenemos el objeto *igraph*, hagamos un primer intento para graficarlo.
+```{r}
+
+plot(net)
+```
+
+No se ve muy bonita. Empecemos por arreglarla eliminando los "loops" en el grafo. Podemos usar `simplify(net, edge.attr.comb=list(Weight="sum","ignore"))` para combinar múltiples arcos y sumar sus pesos. Lo malo de hacer eso es que así se combinan los distintos tipos de arcos (en nuestro ejemplo *hyperlinks* y *mentions*). Por lo tanto optamos, en este caso, por no combinar los múltiples arcos con el comando:
+
+```{r}
+net <- simplify(net, remove.multiple = F, remove.loops = T) 
+```
+
+
+El tamaño de las flechas parece excesivo, así que lo reducimos y eliminamos las etiquetas de los nodos.
+
+```{r}
+plot(net, edge.arrow.size=.4,vertex.label=NA)
+```
+
+
+### Datos 2: matriz
+
+Ahora, los datos de ejemplo 2 están en formato matricial y describen una red *bipartita*. Podemos crear un objeto *igraph* con la función `graph_from_incidence_matrix()`. En este caso, una red *bipartita*, los nodos tienen un atributo *tipo* que es **FALSE** en los vértices que pertenecen al modo "1" y **TRUE** para los nodos que pertenencen al otro tipo. En el caso de redes normales (*unipartitas* digamos), se usa la función `graph_from_adjacency_matrix()`
+```{r}
+head(nodes2)
+head(links2)
+net2 <- graph_from_incidence_matrix(links2)
+table(V(net2)$type)
+```
+
+## Parámetros de graficación
+
+El despliegue de grafos con *igraph* tiene un amplio conjunto de parámetros que se pueden utilizar. Incluyen opciones para los nodos (usan la palabra *vertex*) y los arcos (usan la palabra *edge*).
+
+Podemos personalizar el grafo de dos maneras. Una es especificar los parámetros en la misma función `plot`. Por ejemplo, hagamos que la gráfica tenga arcos curvos y flechas pequeñas. Al hacer eso es más facil ver enlaces múltiples entre dos nodos dados.
+
+
+```{r}
+plot(net, edge.arrow.size=.4, edge.curved=.1)
+
+```
+
+Podemos cambiar el color de los arcos, digamos a gris claro y el de los nodos a anaranjado. Además podemos ponerle etiquetas a los nodos con los datos respectivos que tenemos en la columna *media*
+
+
+```{r}
+
+plot(net, edge.arrow.size=.2, edge.color="orange",
+     vertex.color="orange", vertex.frame.color="#ffffff",
+     vertex.label=V(net)$media, vertex.label.color="black") 
+```
+
+La otra manera de personalizar el despliegue del grafo es añadiendolos al objeto *igraph* mismo. Digamos que queremos colorear los nodos de la red de acuerdo con el tipo de *media* que tenemos anotado y que su tamaño sea proporcional al grado de **centralidad** (es decir, más vínculos hacia un nodo lo hacen más grande). Además podríamos hacer que el grosor de la línea de los arcos fuera proporcional al peso que tienen en los datos. 
+
+  
+#### Colores según el tipo de *media*
+```{r}
+colrs <- c("gray50", "tomato", "gold")
+V(net)$color <- colrs[V(net)$media.type]
+```
+  
+  
+#### Calcula el *grado* de los nodos
+Esto mide el grado de **centralidad** a partir del número de enlaces que llegan a cada uno de los nodos.
+```{r}
+deg <- degree(net, mode="all")
+V(net)$size <- deg*3
+```
+  
+  
+#### Valor del tamaño de la audiencia de cada medio
+```{r}
+V(net)$size <- V(net)$audience.size*0.6
+```
+  
+  
+#### Eliminar etiquetas
+Las etiquetas aparecen por default asociadas con el ID del nodo. Para eliminarlas simplemente hay que cambiar el atributo *label* a **NA**.
+```{r}
+V(net)$label <- NA
+```
+  
+  
+#### Tamaño del arco proporcional a su peso
+
+```{r}
+E(net)$width <- E(net)$weight/6
+```
+  
+  
+#### Ajuste del tamaño y color de la flecha
+```{r}
+E(net)$arrow.size <- .2
+E(net)$edge.color <- "gray80"
+E(net)$width <- 1+E(net)$weight/12
+```
+  
+  
+#### Despliegue de la red con los nuevos parámetros
+```{r}
+plot(net) 
+```
+
+#### Añadir leyenda
+La lectura del grafo mejora si agregamos una leyenda explicativa. Además podemos mostrar agrupamiento de nodos. *igraph* puede identificar **comunidades** a partir de la propagación de las etiquetas con la función `cluster_label_prop`. El resultado de esta identificación de comunidades crea un objeto de agrupamiento que *igraph* sabe como graficar.
+
+```{r}
+# Community detection based on label propagation:
+clp <- cluster_label_prop(net)
+class(clp)
+colrs <- adjustcolor( c("gray50", "tomato", "gold", "yellowgreen"), alpha=.6)
+plot(clp, net)
+
+legend(x=-1.5, y=-1.1, c("Newspaper","Television", "Online News"), pch=21,
+       col="#777777", pt.bg=colrs, pt.cex=2, cex=.8, bty="n", ncol=1)
+```
+
