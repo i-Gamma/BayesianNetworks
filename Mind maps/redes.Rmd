@@ -10,7 +10,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Convertir datos de red a objeto igrapg
+## Convertir datos de red a objeto igraph
 
 Los ejemplos vienen de [aquí](http://kateto.net/network-visualization)
 
@@ -137,20 +137,20 @@ net[5,7]
 ### Extracción de una lista o matriz datos a partir de la red
 
 #### Lista de arcos entre nodos
-```{r lista_arcos, include=FALSE}
+```{r lista_arcos}
 as_edgelist(net, names=T)
 as_adjacency_matrix(net, attr="weight")
 ```
 
 
 #### Matriz de la red
-```{r matriz, include=FALSE}
+```{r matriz}
 as_adjacency_matrix(net, attr="weight")
 ```
 
 #### *data frame* con los datos que describen nodos y arcos
 #### Lista de arcos
-```{r datos_tabla, include=FALSE}
+```{r datos_tabla}
 as_data_frame(net, what="edges")
 as_data_frame(net, what="vertices")
 ```
@@ -160,21 +160,21 @@ as_data_frame(net, what="vertices")
 ### Datos 1: *data frame*
 
 Ahora que tenemos el objeto *igraph*, hagamos un primer intento para graficarlo.
-```{r grafica, include=FALSE}
+```{r grafica}
 
 plot(net)
 ```
 
 No se ve muy bonita. Empecemos por arreglarla eliminando los "loops" en el grafo. Podemos usar `simplify(net, edge.attr.comb=list(Weight="sum","ignore"))` para combinar múltiples arcos y sumar sus pesos. Lo malo de hacer eso es que así se combinan los distintos tipos de arcos (en nuestro ejemplo *hyperlinks* y *mentions*). Por lo tanto optamos, en este caso, por no combinar los múltiples arcos con el comando:
 
-```{r mejora_grafica, include=FALSE}
+```{r mejora_grafica}
 net <- simplify(net, remove.multiple = F, remove.loops = T) 
 ```
 
 
 El tamaño de las flechas parece excesivo, así que lo reducimos y eliminamos las etiquetas de los nodos.
 
-```{r flechas, include=FALSE}
+```{r flechas}
 plot(net, edge.arrow.size=.4,vertex.label=NA)
 ```
 
@@ -182,7 +182,7 @@ plot(net, edge.arrow.size=.4,vertex.label=NA)
 ### Datos 2: matriz
 
 Ahora, los datos de ejemplo 2 están en formato matricial y describen una red *bipartita*. Podemos crear un objeto *igraph* con la función `graph_from_incidence_matrix()`. En este caso, una red *bipartita*, los nodos tienen un atributo *tipo* que es **FALSE** en los vértices que pertenecen al modo "1" y **TRUE** para los nodos que pertenencen al otro tipo. En el caso de redes normales (*unipartitas* digamos), se usa la función `graph_from_adjacency_matrix()`
-```{r datos2_matriz, include=FALSE}
+```{r datos2_matriz}
 head(nodes2)
 head(links2)
 net2 <- graph_from_incidence_matrix(links2)
@@ -196,7 +196,7 @@ El despliegue de grafos con *igraph* tiene un amplio conjunto de parámetros que 
 Podemos personalizar el grafo de dos maneras. Una es especificar los parámetros en la misma función `plot`. Por ejemplo, hagamos que la gráfica tenga arcos curvos y flechas pequeñas. Al hacer eso es más facil ver enlaces múltiples entre dos nodos dados.
 
 
-```{r parametros, include=FALSE}
+```{r parametros}
 plot(net, edge.arrow.size=.4, edge.curved=.1)
 
 ```
@@ -204,7 +204,7 @@ plot(net, edge.arrow.size=.4, edge.curved=.1)
 Podemos cambiar el color de los arcos, digamos a gris claro y el de los nodos a anaranjado. Además podemos ponerle etiquetas a los nodos con los datos respectivos que tenemos en la columna *media*
 
 
-```{r grafica_con_parametros, include=FALSE}
+```{r grafica_con_parametros}
 
 plot(net, edge.arrow.size=.2, edge.color="orange",
      vertex.color="orange", vertex.frame.color="#ffffff",
@@ -214,8 +214,8 @@ plot(net, edge.arrow.size=.2, edge.color="orange",
 La otra manera de personalizar el despliegue del grafo es añadiendolos al objeto *igraph* mismo. Digamos que queremos colorear los nodos de la red de acuerdo con el tipo de *media* que tenemos anotado y que su tamaño sea proporcional al grado de **centralidad** (es decir, más vínculos hacia un nodo lo hacen más grande). Además podríamos hacer que el grosor de la línea de los arcos fuera proporcional al peso que tienen en los datos. 
 
   
-#### Colores según el tipo de *media*
-```{r colores, include=FALSE}
+#### Colores según el tipo de *medio*
+```{r colores}
 colrs <- c("gray50", "tomato", "gold")
 V(net)$color <- colrs[V(net)$media.type]
 ```
@@ -223,34 +223,34 @@ V(net)$color <- colrs[V(net)$media.type]
   
 #### Calcula el *grado* de los nodos
 Esto mide el grado de **centralidad** a partir del número de enlaces que llegan a cada uno de los nodos.
-```{r centralidad, include=FALSE}
+```{r centralidad}
 deg <- degree(net, mode="all")
 V(net)$size <- deg*3
 ```
   
   
 #### Valor del tamaño de la audiencia de cada medio
-```{r pesos, include=FALSE}
+```{r pesos}
 V(net)$size <- V(net)$audience.size*0.6
 ```
   
   
 #### Eliminar etiquetas
 Las etiquetas aparecen por default asociadas con el ID del nodo. Para eliminarlas simplemente hay que cambiar el atributo *label* a **NA**.
-```{r sin_etiquetas, include=FALSE}
+```{r sin_etiquetas}
 V(net)$label <- NA
 ```
   
   
 #### Tamaño del arco proporcional a su peso
 
-```{r peso_arco, include=FALSE}
+```{r peso_arco}
 E(net)$width <- E(net)$weight/6
 ```
   
   
 #### Ajuste del tamaño y color de la flecha
-```{r tamaño de flecha, include=FALSE}
+```{r tamaño de flecha}
 E(net)$arrow.size <- .2
 E(net)$edge.color <- "gray80"
 E(net)$width <- 1+E(net)$weight/12
@@ -258,14 +258,14 @@ E(net)$width <- 1+E(net)$weight/12
   
   
 #### Despliegue de la red con los nuevos parámetros
-```{r res_parametros_muestra, include=FALSE}
+```{r res_parametros_muestra}
 plot(net) 
 ```
 
 #### Añadir leyenda
 La lectura del grafo mejora si agregamos una leyenda explicativa. Además podemos mostrar agrupamiento de nodos. *igraph* puede identificar **comunidades** a partir de la propagación de las etiquetas con la función `cluster_label_prop`. El resultado de esta identificación de comunidades crea un objeto de agrupamiento que *igraph* sabe como graficar.
 
-```{r cluster, include=FALSE}
+```{r cluster}
 # Community detection based on label propagation:
 clp <- cluster_label_prop(net)
 class(clp)
@@ -274,5 +274,33 @@ plot(clp, net)
 
 legend(x=-1.5, y=-1.1, c("Newspaper","Television", "Online News"), pch=21,
        col="#777777", pt.bg=colrs, pt.cex=2, cex=.8, bty="n", ncol=1)
+```
+
+#### Títulos de nodo en lugar de figuras
+
+En ocasiones es mejor usar el descriptor o identificador de los nodos como identificación en la gráfica. esto se hace como sigue en R
+
+```{r nombres_en lugar_de_formas}
+plot(net2, vertex.shape="none", vertex.label=nodes2$media,
+     vertex.label.color=V(net2)$color, vertex.label.font=2, 
+     vertex.label.cex=.6, edge.color="gray70",  edge.width=2)
+```
+
+#### Usar imágenes para ilustrar nodos
+
+Otra opciónatractiva es la posibilidad de utilizar imágenes para representar los nodos. Esto puede hacerce con relativa facilidad en R como sigue.
+
+```{r nodos_imágen}
+
+# install.packages('png')
+library('png')
+ 
+img.1 <- readPNG("./images/news.png")
+img.2 <- readPNG("./images/user.png")
+
+V(net2)$raster <- list(img.1, img.2)[V(net2)$type+1]
+
+plot(net2, vertex.shape="raster", vertex.label=NA,
+     vertex.size=16, vertex.size2=16, edge.width=2)
 ```
 
