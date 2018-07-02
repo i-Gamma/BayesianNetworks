@@ -50,13 +50,11 @@ def process_on_data_table(net, data_table):
 def on_toy():
     # Machine dependant basic path data
     machine = socket.gethostname()
-    if machine == "Tigridia":
-        dbx = "C:/Users/Miguel/Documents/1 Nube/Dropbox/"
-        netica = u"".join([u"C:/Users/Miguel/Documents/0 Versiones/2 ",
-                           u"Proyectos/BayesianNetworks/Scripts/Netica_API/"])
+    if machine == "idaeus":
+        dbx = "C:/Users/equih/Documents/1 Nubes/Dropbox/"
+        netica = u"".join([u"C:/Users/equih/Documents/0 Versiones/2 Proyectos/BN_GitHub/Scripts/Netica_API/"])
         datos = u"Datos Redes Bayesianas/Datos_para_mapeo/Stage_3/"
-        red = re.sub("/Scripts/Netica_API/",
-                     "/redes_ajuste_MyO/Stage_3", netica)
+        red = re.sub("/Scripts/Netica_API/", "/redes_ajuste_MyO/Final", netica)
 
     elif machine == "Capsicum":
         dbx = "C:/Users/miguel.equihua/Documents/1 Nube/Dropbox/"
@@ -64,7 +62,8 @@ def on_toy():
                            u"Publicaciones y proyectos/BN_Mapping/Netica/"])
         datos = u"Datos Redes Bayesianas/Datos_para_mapeo/Stage_3/"
     else:
-        print "Don't know where am I!!!!"
+        dbx, netica, red, datos = "", "", "", ""
+        print("Don't know where am I!!!!")
 
     # Data subdirectory
     return dbx, netica, red, datos
@@ -78,18 +77,20 @@ os.listdir(dir_netica)
 
 # Link NETICA COM interface and starts the application
 nt = Dispatch("Netica.Application")
-print "Welcome to Netica API for COM with Python!"
+print("Welcome to Netica API for COM with Python!")
 
 # Read license to use full NETICA
 lic_arch = dir_netica + "inecol_netica.txt"
-licencia = open(lic_arch, "rb").read()
+licencia = open(lic_arch, "r").read()
 nt.SetPassword(licencia)
+#+EquihuaM/InstEco_MX/120,310-6-A/64347
+#+EquihuaM/InstEco_MX/120,142-6/32877
 
 # Window status could be: Regular, Minimized, Maximized, Hidden
-nt.SetWindowPosition(status="Hidden")
+nt.SetWindowPosition(status="Regular")
 
 # Display NETICA version
-print "Using Netica version " + nt.VersionString
+print("Using Netica version " + nt.VersionString)
 
 net_file_name = red_file + u"/Final_net_Scores.neta"
 
