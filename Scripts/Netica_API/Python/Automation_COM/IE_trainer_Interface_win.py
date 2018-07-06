@@ -23,10 +23,9 @@ def entrena_red(self, analisis, zvh, base, equipo):
 
     if equipo == "lap_m":
         netica_dir = u"".join([
-            u"C:/Users/Miguel/Documents/0 Versiones/2 Proyectos/",
-            u"BN_Mapping/Netica/"])
+            u"C:/Users/equih/documents/0 Versiones/2 Proyectos/BN_Mapping/Netica/"])
         dir_robin =\
-            u"C:/Users/Miguel/Documents/1 Nube/GoogleDrive/2 Proyectos/RoBiN"
+            u"C:/Users/equih/Documents/1 Nube/GoogleDrive/2 Proyectos/RoBiN"
     else:
         netica_dir = u"".join([u"C:/Users/miguel.equihua/Documents/0-GIT/",
                               u"Publicaciones y proyectos/BN_Mapping/Netica/"])
@@ -157,7 +156,7 @@ def entrena_red(self, analisis, zvh, base, equipo):
     try:
         xl_app.workbook.SaveAs(xl_dsk)
     except IOError as e:
-        print "Archivo no guardado: <" + e + ">"
+        print("Archivo no guardado: <" + e + ">")
     xl_app.excelapp.Quit()
     del xl_app.excelapp
     del xl_app

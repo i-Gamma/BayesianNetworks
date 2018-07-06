@@ -52,7 +52,7 @@ class pyNetica (object):
             self.licencia = open(self.licenseFile, 'r').read()
         except IOError as e:
             self.licencia = ""
-            print u"License not found (" + e + ")"
+            print(u"License not found (" + e + ")")
         # Initialize Netica instance/env using password from a provided file
         self.netica_app.SetPassword(self.licencia)
         # Regular, Minimized, Maximized, Hidden

@@ -108,16 +108,14 @@ def GetNetNodes(net_p):
 
 
 # find and load the library, assuming in a relative path closeby
-my_dir = "C:/Users/Miguel/Documents/0 Versiones/2 Proyectos/"
+my_dir = "C:/Users/equih/Documents/0 Versiones/2 Proyectos/"
 proy_dir = "BayesianNetworks/Scripts/Netica_API/Python/C_API_wrapper"
 
 # Prepare some data paths by replaceing where appropriated
-netica_dir = my_dir + "BayesianNetworks/Scripts/Netica_API/"
-datos_dir = re.sub("Scripts/Netica_API/Python/C_API_wrapper",
-                   "redes_ajuste_MyO/", proy_dir)
+netica_dir = my_dir + "BN_GitHub/Scripts/Netica_API/"
+datos_dir = re.sub("Scripts/Netica_API/Python/C_API_wrapper", "redes_ajuste_MyO/", proy_dir)
 net_dsk = os.listdir(my_dir + datos_dir)
-net_dsk = [my_dir + datos_dir + net for net in net_dsk
-           if "neta" in net and "test" not in net]
+net_dsk = [my_dir + datos_dir + net for net in net_dsk if "neta" in net and "test" not in net]
 
 # load the library, assuming in a relative path closeby
 libN = windll.LoadLibrary(find_library(netica_dir + "/netica"))

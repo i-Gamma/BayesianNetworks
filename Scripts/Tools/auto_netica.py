@@ -13,23 +13,24 @@ import socket
 import os
 import locale
 
+
+
 def on_toy():
     # Machine dependant basic path data
     machine = socket.gethostname()
-    if machine == "Tigridia":
-        # Laptop Miguel
-        dirs = {"dir_usr": u"C:\\Users\\Miguel\\",
+    if machine == "idaeus":  # Laptop Miguel
+        dirs = {"dir_usr": u"C:\\Users\\equih\\",
                 "dir_git": u"Documents\\0 Versiones\\2 Proyectos\\",
-                "dir_RB": u"BayesianNetworks\\redes_ajuste_MyO\\Final\\",
-                "dir_wrk": u"Documents\\1 Nube\\Dropbox\\",
+                "dir_RB": u"BN_GitHub\\redes_ajuste_MyO\\Final\\",
+                "dir_wrk": u"Documents\\1 Nubes\\Dropbox\\",
                 "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
-                "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 519\\"}
+                "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 604\\"}
     elif machine == "Capsicum":
         # Descktop Inecol - Miguel
         dirs = {"dir_usr": u"C:\\Users\\miguel.equihua\\",
                 "dir_git": u"Documents\\0-GIT\\Publicaciones y proyectos\\",
                 "dir_RB": u"BayesianNetworks\\redes_ajuste_MyO\\Final\\",
-                "dir_wrk": u"Documents\\1 Nube\\Dropbox\\",
+                "dir_wrk": u"Documents\\1 Nubes\\Dropbox\\",
                 "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
                 "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 519\\"}
     elif machine == "Equihua":
@@ -41,7 +42,7 @@ def on_toy():
                 "dir_dat": u"training_tables_20151006\\products\\",
                 "dir_NETICA": u"E:\\software\\Netica\\Netica 519\\"}
     else:
-        print "Don't know where am I!!!!"
+        print("Don't know where am I!!!!")
 
     return dirs
 
@@ -71,14 +72,15 @@ wait_time_case = 360
 if locale.getdefaultlocale()[0] == "en_US":
     win_open = "Open"
     win_names = "Name"
-    win_save = "Yes"
+    win_yes = "Yes"
     win_ok = "Ok"
     win_confirm_save = u"Confirm Save As"
 else:
     win_open = "Abrir"
     win_names = "Nombre"
-    win_save = u"S\xed"
+    win_yes = u"S\xed"
     win_confirm_save = u"Confirmar Guardar como"
+    win_save = u"Guardar"
 
 
 # Abre NETICA
@@ -105,16 +107,52 @@ if socket.gethostname() == "Equihua":
     dat_names = ["_".join(["map_rb"] + nm.strip(".csv").split("_")[3:])
                  for nm in datos ]
 else:
-    datos = ["bn_ie_tabfinal_20150823.csv"]
-    dat_names = ["prueba_1", "prueba_2"]
+    datos = ["bn_ie_tabfinal_20150830.csv"]
+    dat_names = ["prueba_1a", "prueba_2b"]
+
+# Verifica el nombre de la variable "latente"
+# Localiza el nodo de "latente"
+time.sleep(10)
+netica.Wait("ready", timeout=wait_time_case)
+menu_item = netica.MenuItem(u"&Edit->&Find...\tCtrl+F")
+netica.Wait('ready', timeout=wait_time_case)
+menu_item.Click()
+
+# Localiza la ventana de dialogo para buscar el nodo que inicia con "zz"
+window = app.Dialog
+edit = window.Edit
+edit.SetEditText("")
+edit.SetEditText("zz")
+edit.TypeKeys("{ENTER}")
+time.sleep(2)
+
+# Abre la ventana de propiedades del nodo seleccionado
+netica.Wait("ready", timeout=wait_time_case)
+net_window = netica.Final_net_Scores_codep
+net_window.TypeKeys("{ENTER}")
+
+# Localiza la ventana de propiedade del nodo
+window = app.Dialog
+window.Wait('ready', timeout=wait_time_case)
+#window.SetFocus()
+node_props = window.Edit
+node = node_props.Texts()[0]
+if node == "zz_delt_vp":
+    node_props.SetEditText("zz_delt_vp_1")
+button = window.OK
+button.Click()
+menu_item = netica.MenuItem(u'&Window->&1 Netica Messages')
+menu_item.Click()
+menu_item = netica.MenuItem(u'&Window->&3 Final_net_Scores_codep')
+menu_item.Click()
+netica.Wait("ready", timeout=wait_time_case)
 
 
-for i in xrange(1, len(datos) + 1, 1):
+for i in range(0, len(datos)):
     # Inicia procesamiento de casos para producir salida para mapear
+    # Selección del archivo de control
     menu_item = netica.MenuItem(u"Cases->Process Cases")
     menu_item.Click()
-
-    # Selección del archivo de control
     window = app[u"Control File (Cancel to Skip)"]
     comboboxex = window["Nombre:ComboBoxEx"]
     comboboxex.TypeKeys(dir_trabajo + u"control.txt", with_spaces=True)
@@ -125,7 +163,7 @@ for i in xrange(1, len(datos) + 1, 1):
     time.sleep(2)
     window = app[u"Case file to process:"]
     comboboxex = window[u"Nombre:ComboBoxEx"]
-    comboboxex.TypeKeys(datos[i])
+    comboboxex.TypeKeys(dir_trabajo + datos[i], with_spaces=True)
     button = window[win_open]
     button.Click()
 
@@ -135,10 +173,10 @@ for i in xrange(1, len(datos) + 1, 1):
     combobox = window["Edit"]
     combobox.TypeKeys(dat_names[i] + u".csv")
     window.Wait("ready")
-    if window["&Save"].Exists():
-      button = window["&Save"]
+    if window["&"+ win_save].Exists():
+      button = window["&"+ win_save]
     else:
-      button = window["Save"]
+      button = window[win_save]
     button.Click()
 
     # Si el archivo de salida ya existe confirma sobrescribirlo
@@ -146,7 +184,7 @@ for i in xrange(1, len(datos) + 1, 1):
     if app.Dialog.Exists():
         window = app[win_confirm_save]
         window.Wait("ready")
-        button = window[win_save]
+        button = window[win_yes]
         button.Click()
 
     # Dialogo para expandir los intervalos de las variables
