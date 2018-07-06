@@ -106,20 +106,19 @@ def GetNetNodes(net_p):
 
 
 # find and load the library, assuming in a relative path closeby
-my_dir = "C:/Users/Miguel/Documents/0 Versiones/2 Proyectos/"
-proy_dir = "BayesianNetworks/Scripts/Netica_API/Python/C_API_wrapper"
+my_dir = "C:/Users/equih/Documents/0 Versiones/2 Proyectos/"
+proy_dir = "BN_GitHub/Scripts/Netica_API/Python/C_API_wrapper"
 
 # Prepare some data paths by replaceing where appropriated
-netica_dir = my_dir + "BayesianNetworks/Scripts/Netica_API/"
-datos_dir = re.sub("Scripts/Netica_API/Python/C_API_wrapper",
-                   "redes_ajuste_MyO/", proy_dir)
+netica_dir = my_dir + "BN_GitHub/Scripts/Netica_API/Python/"
+datos_dir = re.sub("Scripts/Netica_API/Python/C_API_wrapper", "redes_ajuste_MyO/", proy_dir)
 net_dsk = os.listdir(my_dir + datos_dir)
 net_dsk = [my_dir + datos_dir + net for net in net_dsk
            if "neta" in net and "test" not in net]
 
 # load the library, assuming in a relative path closeby
-libN = windll.LoadLibrary(find_library(netica_dir + "/netica"))
-licensefile = netica_dir + "/inecol_netica.txt"
+libN = windll.LoadLibrary(netica_dir + "netica/Netica.dll")
+licensefile = netica_dir + "netica/inecol_netica.txt"
 licencia = open(licensefile, 'r').readlines()[0].strip().split()[0]
 
 # Initialize a PyNetica instance/env using password in a text file
@@ -129,8 +128,8 @@ env_p = NewNeticaEnviron(licencia)
 mesg = create_string_buffer(MESGLEN)
 res = InitNetica(env_p)
 logger.info(mesg.value)
-print '\n'*2 + '#' * 40 + '\nOpening Netica:'
-print mesg.value
+print('\n'*2 + '#' * 40 + '\nOpening Netica:')
+print(mesg.value)
 
 for net in net_dsk:
     net_p = ReadNet(net, env_p)  # net_p
@@ -178,24 +177,24 @@ for net in net_dsk:
         a1 = sorted(node_names["gral"].keys() + node_names["infys"].keys())
         a1 = ["    {\"" + nodo + "\": \"0.0\"}" for nodo in a1]
 
-    print "\n\n"
-    print "##### " + re.sub(".neta", "",os.path.basename(file_name.value))
-    print "\n"
-    print "```javascript"
-    print "{\"" + re.sub(".neta", "",os.path.basename(file_name.value)) + "\":{"
-    print "\"Description\": \"Poner aquí la descripción del modelo en cuestión\","
-    print "\"Training_data_set\": \"data\","
-    print "\"Results\": ["
-    print "    {\"Absolute error (rms)\": \"0.0\"},"
-    print "    {\"Error rate (%)\": \"0.0\"},"
-    print "    {\"Logarithmic loss\": \"0.0\"},"
-    print "    {\"Quadratic loss\": \"0.0\"},"
-    print "    {\"Spherical payoff\": \"0.0\"}"
-    print "      ],"
-    print "\"Variables (variance reduction)\": ["
-    print ",\n".join(a1)
-    print "      ]"
-    print " }"
-    print "}"
-    print "```"
+    print("\n\n")
+    print("##### " + re.sub(".neta", "",os.path.basename(file_name.value)))
+    print("\n")
+    print("```javascript")
+    print("{\"" + re.sub(".neta", "",os.path.basename(file_name.value)) + "\":{")
+    print("\"Description\": \"Poner aquí la descripción del modelo en cuestión\",")
+    print("\"Training_data_set\": \"data\",")
+    print("\"Results\": [")
+    print("    {\"Absolute error (rms)\": \"0.0\"},")
+    print("    {\"Error rate (%)\": \"0.0\"},")
+    print("    {\"Logarithmic loss\": \"0.0\"},")
+    print("    {\"Quadratic loss\": \"0.0\"},")
+    print("    {\"Spherical payoff\": \"0.0\"}")
+    print("      ],")
+    print("\"Variables (variance reduction)\": [")
+    print(",\n".join(a1))
+    print("      ]")
+    print(" }")
+    print("}")
+    print("```")
 net_dsk_ref = [re.sub("/", r"\\", f) for f in net_dsk]
