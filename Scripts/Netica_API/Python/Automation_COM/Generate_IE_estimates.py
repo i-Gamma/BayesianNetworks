@@ -33,38 +33,36 @@ def process_on_data_table(net, data_table):
     net.compile()
     # BELIEF_UPDATE =  0x100 or greater to set AutoUpdate on, 0 is off
     integrity_val = []
-    for j in xrange(data_table.shape[0]):
+    for j in range(data_table.shape[0]):
         net.AutoUpdate = 0
         net.RetractFindings()
+
         # Use list comprehension to improve performance
-        [node_lst[nd].EnterValue(data_table[nd][j]) for nd
-         in data_table.columns
-         if nd != "zz_delt_vp" and pd.notnull(data_table[nd][j])]
+        [node_lst[nd].EnterValue(data_table[nd][j]) for nd in data_table.columns if pd.notnull(data_table[nd][j])]
         net.AutoUpdate = 1
-        expected_val = node_lst["zz_delt_vp"].GetExpectedValue()
+        expected_val = node_lst["zz_delt_vp_1"].GetExpectedValue()
         integrity_val.append(100 * (1 - expected_val[0] / 18))
-#        print u"Valor esperado: {0}  ---> {1}".format(j, expected_val[0])
     return integrity_val
 
 
 def on_toy():
     # Machine dependant basic path data
     machine = socket.gethostname()
-    if machine == "Tigridia":
-        dbx = "C:/Users/Miguel/Documents/1 Nube/Dropbox/"
-        netica = u"".join([u"C:/Users/Miguel/Documents/0 Versiones/2 ",
-                           u"Proyectos/BayesianNetworks/Scripts/Netica_API/"])
-        datos = u"Datos Redes Bayesianas/Datos_para_mapeo/Stage_3/"
-        red = re.sub("/Scripts/Netica_API/",
-                     "/redes_ajuste_MyO/Stage_3", netica)
+    if machine == "ideaus":
+        dbx = "C:/Users/equih/Documents/1 Nubes/Dropbox/"
+        netica = u"C:/Program Files/Netica/Netica 605/"
+        datos = u"Datos Redes Bayesianas/Datos_para_mapeo/"
+        red = "C:/Users/equih/Documents/0 Versiones/2 Proyectos/BN_GitHub/redes_ajuste_MyO/Final"
 
     elif machine == "Capsicum":
-        dbx = "C:/Users/miguel.equihua/Documents/1 Nube/Dropbox/"
-        netica = u"".join([u"C:/Users/miguel.equihua/Documents/0-GIT/",
-                           u"Publicaciones y proyectos/BN_Mapping/Netica/"])
-        datos = u"Datos Redes Bayesianas/Datos_para_mapeo/Stage_3/"
+        dbx = "C:/Users/equih/Documents/1 Nubes/Dropbox/"
+        netica = u"C:/Program Files/Netica/Netica 605/"
+        datos = u"Datos Redes Bayesianas/Datos_para_mapeo/"
+        red = "C:/Users/equih/Documents/0 Versiones/2 Proyectos/BN_GitHub/redes_ajuste_MyO/Final"
     else:
-        print "Don't know where am I!!!!"
+        dbx, datos, red = "", "", ""
+        netica = u"C:/Program Files/Netica/Netica 605/"
+        print("Don't know where am I!!!!")
 
     # Data subdirectory
     return dbx, netica, red, datos
@@ -78,10 +76,10 @@ os.listdir(dir_netica)
 
 # Link NETICA COM interface and starts the application
 nt = Dispatch("Netica.Application")
-print "Welcome to Netica API for COM with Python!"
+print("Welcome to Netica API for COM with Python!")
 
 # Read license to use full NETICA
-lic_arch = dir_netica + "inecol_netica.txt"
+lic_arch = dir_dbx + dir_datos + "inecol_netica.txt"
 licencia = open(lic_arch, "rb").read()
 nt.SetPassword(licencia)
 
@@ -89,9 +87,9 @@ nt.SetPassword(licencia)
 nt.SetWindowPosition(status="Hidden")
 
 # Display NETICA version
-print "Using Netica version " + nt.VersionString
+print("Using Netica version " + nt.VersionString)
 
-net_file_name = red_file + u"/Final_net_Scores.neta"
+net_file_name = red_file + u"/Final_net_Scores_codep.neta"
 
 # Prepare the stream to read requested BN
 streamer = nt.NewStream(net_file_name)
@@ -102,11 +100,11 @@ net = nt.ReadBNet(streamer, "NoVisualInfo")
 node_lst = lista_nodos_diccionario(net)
 
 # read table using pandas: all data
-os.chdir(dir_dbx + dir_datos + "../")
-data_files = os.listdir(".")
+os.chdir(dir_dbx + dir_datos)
+data_files = os.listdir(dir_dbx + dir_datos)
 data_files = [f for f in data_files if "bn" in f]
 data = pd.read_csv(data_files[0], na_values="*")
-data_table = data[node_lst.keys()]
+data_table = data[[node for node in node_lst.keys() if "zz_delt" not in node]]
 data_table.columns
 
 ## Read EI
@@ -121,6 +119,7 @@ ie_map = process_on_data_table(net, data_table)
 f = open(dir_dbx + dir_datos + "IE_test.csv", "w")
 f.writelines("\n".join(["IE"] + map(str, ie_map)))
 f.close()
+print("Resultado guardado en IE_test.csv")
 
 # Se libera el espacio de momoria usado por la red
 net.Delete()
