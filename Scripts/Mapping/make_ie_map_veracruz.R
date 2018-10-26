@@ -25,10 +25,11 @@ base <- raster(paste(dir_datos_bn, "/bov_cbz_km2.tif", sep=""))
 plot (base)
 
 
-year <- 2004
-for (ie in data_veracruz[,6:16])
-{
 
+mapas <- names(data_veracruz)[c(3,6:16)]
+for (mapa in mapas)
+{
+  ie <- data_veracruz[,..mapa]
   # ie map
   ie_map_df <- data.frame(x=data_veracruz$x, y=data_veracruz$y, ie=ie * 100)
   coordinates(ie_map_df) <- ~ x + y
@@ -37,11 +38,10 @@ for (ie in data_veracruz[,6:16])
   
   # set projection
   projection(ie_raster) <- projection(base)
-  plot (ie_raster, axes=FALSE, box=FALSE, main = year)
+  plot (ie_raster, axes=FALSE, box=FALSE, main = mapa)
   
   # write to disk
-  tif_file <- paste(dir_datos_bn, "veracruz/ver_",  year, ".tif", sep="")
+  tif_file <- paste(dir_datos_bn, "veracruz/ver_",  mapa, ".tif", sep="")
   ie <- writeRaster(ie_raster, filename=tif_file, format="GTiff", overwrite=TRUE)
-  year <- year + 1
 }
 
