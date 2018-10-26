@@ -2,6 +2,9 @@
 """
 Created on Sat Nov 14 16:13:13 2015
 
+Generates new data sets of "expected" EI values.
+Uses the already trained BN: "Final_net_Scores_codep.neta"
+
 @author: Miguel
 """
 import time

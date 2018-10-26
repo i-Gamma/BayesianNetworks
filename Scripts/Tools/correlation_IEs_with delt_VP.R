@@ -11,7 +11,7 @@ machine_set_up <- function ()
             dir_work <- gsub("set_de_Entrenamiento/", "set_de_Entrenamiento/Stage3", dir_maps)
             setwd(dir_work)
           },
-          "TIGRIDIA" =
+          "IDEAUS" =
           {
             # set working directory
             dir_maps <- "C:/Users/Miguel/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/set_de_Entrenamiento/"
