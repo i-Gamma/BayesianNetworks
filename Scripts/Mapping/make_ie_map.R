@@ -1,7 +1,7 @@
 # packages
 library("raster")
 library("rgdal")
-library(R.utils)
+library("R.utils")
 
 machine_set_up <- function ()
 {
@@ -10,14 +10,14 @@ machine_set_up <- function ()
      "CAPSICUM" = 
           {
              # set working directory
-             dir_maps <- "C:/Users/miguel.equihua/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/EI_maps/"
+             dir_maps <- "~/1 Nubes/Dropbox/Datos Redes Bayesianas/EI_maps/"
              dir_work <- gsub("EI_maps", "Datos_para_mapeo/Stage_3", dir_maps)
              setwd(dir_work)
           },
-     "TIGRIDIA" =
+     "IDAEUS" =
           {
             # set working directory
-            dir_maps <- "C:/Users/Miguel/Documents/1 Nube/Dropbox/Datos Redes Bayesianas/EI_maps/"
+            dir_maps <- "~/1 Nubes/Dropbox/Datos Redes Bayesianas/EI_maps/"
             dir_work <- gsub("EI_maps", "Datos_para_mapeo/Stage_3", dir_maps)
             setwd(dir_work)
           },
