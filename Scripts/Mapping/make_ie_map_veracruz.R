@@ -63,22 +63,22 @@ ie_mean_zvh <- function (state_data)
 data <- fread(datos_bn, stringsAsFactors = FALSE, showProgress = TRUE)
 data_veracruz <- get_state_data("VERACRUZ DE IGNACIO DE LA LLAVE")
 data_aguascalientes <- get_state_data("AGUASCALIENTES")
-data_durango <- get_state_data("DURANGO")
+data_guanajuato <- get_state_data("GUANAJUATO")
 data_jalisco <- get_state_data("JALISCO")
 
-# Calculate the area of each zvh in Veracruz by countink pixels by zvh label
+# Calculate the area of each zvh in the States by countink pixels by zvh label
 zvh_area_veracruz <- zvh_area(data_veracruz)
 zvh_area_aguascalientes <- zvh_area(data_aguascalientes)
-zvh_area_durango <- zvh_area(data_durango)
+zvh_area_guanajuato <- zvh_area(data_guanajuato)
 zvh_area_jalisco <- zvh_area(data_jalisco)
 
-all_zvh_areas <-list(AGU=zvh_area_aguascalientes, DUR=zvh_area_durango,
+all_zvh_areas <-list(AGU=zvh_area_aguascalientes, GUA=zvh_area_guanajuato,
                      JAL=zvh_area_jalisco, VER=zvh_area_veracruz) 
 
 # head of data
 head(data_veracruz)
 head(data_aguascalientes)
-head(data_durango)
+head(data_guanajuato)
 head(data_jalisco)
 
 # load base raster
@@ -90,8 +90,8 @@ mapas <- list(data.frame(x=data_veracruz$x, y=data_veracruz$y, data_veracruz$zvh
               data.frame(x=data_veracruz$x, y=data_veracruz$y, data_veracruz$ie_2014), 
               data.frame(x=data_aguascalientes$x, y=data_aguascalientes$y, data_aguascalientes$zvh_31), 
               data.frame(x=data_aguascalientes$x, y=data_aguascalientes$y, data_aguascalientes$ie_2014), 
-              data.frame(x=data_durango$x, y=data_durango$y, data_durango$zvh_31),
-              data.frame(x=data_durango$x, y=data_durango$y, data_durango$ie_2014),
+              data.frame(x=data_guanajuato$x, y=data_guanajuato$y, data_guanajuato$zvh_31),
+              data.frame(x=data_guanajuato$x, y=data_guanajuato$y, data_guanajuato$ie_2014),
               data.frame(x=data_jalisco$x, y=data_jalisco$y, data_jalisco$zvh_31),
               data.frame(x=data_jalisco$x, y=data_jalisco$y, data_jalisco$ie_2014))
 
@@ -122,7 +122,7 @@ for (mapa in mapas)
 # IE trends
 # Overall average of State IE
 names(all_data)
-all_data <- list(data_aguascalientes, data_durango, data_jalisco, data_veracruz)
+all_data <- list(data_aguascalientes, data_guanajuato, data_jalisco, data_veracruz)
 for (data in all_data)
 {
   plot(ie_trend_plot(data))  
