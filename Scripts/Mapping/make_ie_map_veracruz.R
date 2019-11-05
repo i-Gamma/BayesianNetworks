@@ -19,6 +19,13 @@ datos_bn <- paste(dir_datos_bn, "2_set_cobertura_completa/ie_time_series.csv", s
 data <- fread(datos_bn, stringsAsFactors = FALSE, showProgress = TRUE)
 data_veracruz <- subset(data, subset = state_name == "VERACRUZ DE IGNACIO DE LA LLAVE") 
 data_veracruz <- data_veracruz[complete.cases(data_veracruz),]
+data_guanajuato <- subset(data, subset = state_name == "GUANAJUATO") 
+data_guanajuato <- data_guanajuato[complete.cases(data_guanajuato),]
+data_jalisco <- subset(data, subset = state_name == "JALISCO") 
+data_jalisco <- data_jalisco[complete.cases(data_jalisco),]
+data_aguascalientes <- subset(data, subset = state_name == "AGUASCALIENTES") 
+data_aguascalientes <- data_aguascalientes[complete.cases(data_aguascalientes),]
+
 
 # Calculate the area of each zvh in Veracruz by countink pixels by zvh label
 data_veracruz[ , count := .N, by = list(zvh_31)]

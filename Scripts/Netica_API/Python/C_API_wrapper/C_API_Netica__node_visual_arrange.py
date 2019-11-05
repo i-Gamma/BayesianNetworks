@@ -32,7 +32,8 @@ def NewFileStream(name, env_p):
     # (const char* filename, environ_ns* env, const char* access)
     libN.NewFileStream_ns.argtypes = [c_char_p, c_void_p, c_char_p]
     libN.NewFileStream_ns.restype = c_void_p
-    name = create_string_buffer(name)
+    name_b = bytes(name, 'utf-8')
+    name = create_string_buffer(name_b)
     return libN.NewFileStream_ns(name, env_p, None)  # file_p
 
 
@@ -45,7 +46,8 @@ def NewNeticaEnviron(licencia):
     if not licencia:
         env = libN.NewNeticaEnviron_ns(None, None, None)
     else:
-        env = libN.NewNeticaEnviron_ns(licencia, None, None)
+        lic_p = bytes(licencia, 'utf-8')
+        env = libN.NewNeticaEnviron_ns(lic_p, None, None)
     return env
 
 
@@ -106,14 +108,14 @@ def GetNetNodes(net_p):
     libN.GetNetNodes2_bn.restype = c_void_p
     return libN.GetNetNodes2_bn(net_p, zerochar_type())  # nl_p
 
-
 # find and load the library, assuming in a relative path closeby
 my_dir = "C:/Users/equih/Documents/0 Versiones/2 Proyectos/"
-proy_dir = "BayesianNetworks/Scripts/Netica_API/Python/C_API_wrapper"
+proy_dir = "BN_GitHub/Scripts/Netica_API/Python/C_API_wrapper"
 
+# C:\Users\equih\Documents\0 Versiones\2 Proyectos\BN_GitHub\Scripts\Netica_API\Python\C_API_wrapper
 # Prepare some data paths by replaceing where appropriated
 netica_dir = my_dir + "BN_GitHub/Scripts/Netica_API/"
-datos_dir = re.sub("Scripts/Netica_API/Python/C_API_wrapper", "redes_ajuste_MyO/", proy_dir)
+datos_dir = re.sub("Scripts/Netica_API/Python/C_API_wrapper", "redes_ajuste_MyO/Gamma/", proy_dir)
 net_dsk = os.listdir(my_dir + datos_dir)
 net_dsk = [my_dir + datos_dir + net for net in net_dsk if "neta" in net and "test" not in net]
 
@@ -129,10 +131,9 @@ env_p = NewNeticaEnviron(licencia)
 mesg = create_string_buffer(MESGLEN)
 res = InitNetica(env_p)
 logger.info(mesg.value)
-print '\n'*2 + '#' * 40 + '\nOpening Netica:'
-print mesg.value
-
 net_p = ReadNet(net_dsk[0], env_p)  # net_p
+print('\n'*2 + '#' * 40 + '\nOpening Netica:')
+print(mesg.value)
 
 # TODO API function to wrap!!!
 file_name = c_char_p(libN.GetNetFileName_bn(net_p))
@@ -174,10 +175,10 @@ for i in range(nnodes.value):
     else:
         node_names["tr"][name.value] = node_p
 
- a1 = sorted(node_names["gral"].keys() + node_names["infys"].keys())
- a1 = ["{\"" + nodo + "\": \"0.0\"}" for nodo in a1]
+a1 = sorted(node_names["gral"].keys() + node_names["infys"].keys())
+a1 = ["{\"" + nodo + "\": \"0.0\"}" for nodo in a1]
 
-print file_name
+print(file_name)
 ",\n".join(a1)
 
 """
@@ -200,8 +201,8 @@ for node in sorted(node_names):
 
 net_dsk_nuevo = my_dir + datos_dir + "VariablesD.neta"
 SaveNet(net_dsk_nuevo, env_p, net_p)
-print net_dsk_nuevo
+print(net_dsk_nuevo)
 
 # Close Netica instance of network before finishing
 res, mesg = CloseNetica(env_p)
-print "Netica ended with this messge: {0}".format(mesg.value)
+print("Netica ended with this messge: {0}".format(mesg.value))
