@@ -1,0 +1,9 @@
+Todos los ensayos de entrenamiento y  valoración de la correlación los hice con el archivo de Dropbox:
+
+[Dropbox]\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv
+
+El archivo de control para procesar casos está ahí mismo y se llama "control.txt", Espera que la variable de cálculo de valores esperados se llame "zz_delt_vp_1".
+
+Para el entrenamiento no olvidar omitir la parte "_1" de la variable "zz_delt_vp_1" que es el nombre que tiene en la tabla de datos la variable objetivo.
+
+
