@@ -3,8 +3,8 @@
 Created on Sat Nov 14 16:13:13 2015
 
 Generates new data sets of "expected" EI values.
-Uses the already trained BN: "Final_net_Scores_codep.neta"
-
+Uses the already trained BN: "Final_net_Scores_codep.neta" for ROBIN projec
+                             "red_todo_TAN_ZVH_auto.neta" for Gamma project
 @author: Miguel
 """
 import time
@@ -24,15 +24,16 @@ def on_toy():
                 "dir_RB": u"BN_GitHub\\redes_ajuste_MyO\\Final\\",
                 "dir_wrk": u"Documents\\1 Nubes\\Dropbox\\",
                 "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
-                "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 604\\"}
+                "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 605\\"}
     elif machine == "Capsicum":
         # Descktop Inecol - Miguel
-        dirs = {"dir_usr": u"C:\\Users\\miguel.equihua\\",
-                "dir_git": u"Documents\\0-GIT\\Publicaciones y proyectos\\",
-                "dir_RB": u"BayesianNetworks\\redes_ajuste_MyO\\Final\\",
+        dirs = {"dir_usr": u"C:\\Users\\equih\\",
+                "dir_git": u"Documents\\0 Versiones\\2 Proyectos\\",
+                "dir_RB": u"BN_GitHub\\redes_ajuste_MyO\\Gamma\\",
                 "dir_wrk": u"Documents\\1 Nubes\\Dropbox\\",
                 "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
-                "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 519\\"}
+                "dir_ShP": u"z:\\2_set_cobertura_completa\\",
+                "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 605\\"}
     elif machine == "Equihua":
         # Descktop casa - Julián
         dirs = {"dir_usr": u"E:\\",
@@ -40,7 +41,7 @@ def on_toy():
                 "dir_RB": u"BayesianNetworks\\redes_ajuste_MyO\\Final\\",
                 "dir_wrk": u"work\\20150720_infys_modis\\",
                 "dir_dat": u"training_tables_20151006\\products\\",
-                "dir_NETICA": u"E:\\software\\Netica\\Netica 519\\"}
+                "dir_NETICA": u"E:\\software\\Netica\\Netica 605\\"}
     else:
         print("Don't know where am I!!!!")
 
@@ -61,7 +62,8 @@ dir_git = directorios["dir_git"]
 dir_RB = directorios["dir_RB"]
 dir_wrk = directorios["dir_wrk"]
 dir_dat = directorios["dir_dat"]
-file_RB = dir_usr + dir_git + dir_RB + u"Final_net_Scores_codep.neta"
+dir_ShP = directorios["dir_ShP"]
+file_RB = dir_usr + dir_git + dir_RB + u"red_todo_TAN_ZVH_auto.neta" #ROBIN u"Final_net_Scores_codep.neta"
 file_NETICA = dir_NETICA + u"Netica.exe"
 dir_trabajo = dir_usr + dir_wrk + dir_dat
 
@@ -101,17 +103,15 @@ time.sleep(3)
 netica.Wait("ready", timeout=wait_time_case)
 
 # Localiza y prepara el procesamiento de archivos de datos disponibles
-if socket.gethostname() == "Equihua":
-    datos = [fl for fl in os.listdir(dir_trabajo) if "bn_ie_tabfinal" in fl
-                                                      and not "out" in fl]
-    dat_names = ["_".join(["map_rb"] + nm.strip(".csv").split("_")[3:])
-                 for nm in datos ]
+if socket.gethostname() == "Capsicum": # ROBIN "Equihua"
+    datos = [fl for fl in os.listdir(dir_ShP) if fl.startswith("ie_mex_full_dataset")]  # ROBIN "bn_ie_tabfinal" in fl and not "out" in fl]
+    dat_names = ["_".join(["map_rb"] + nm.strip(".csv").split("_")[3:]) for nm in datos ]
 else:
     datos = ["bn_ie_tabfinal_20150830.csv"]
     dat_names = ["prueba_1a", "prueba_2b"]
 
 # Verifica el nombre de la variable "latente"
-# Localiza el nodo de "latente"
+# Localiza el nodo "latente": zz_delt_vp...
 time.sleep(10)
 netica.Wait("ready", timeout=wait_time_case)
 menu_item = netica.MenuItem(u"&Edit->&Find...\tCtrl+F")
@@ -128,27 +128,35 @@ time.sleep(2)
 
 # Abre la ventana de propiedades del nodo seleccionado
 netica.Wait("ready", timeout=wait_time_case)
-net_window = netica.Final_net_Scores_codep
+net_window = netica.red_todo_TAN_ZVH_auto   # ROBIN Final_net_Scores_codep)
 net_window.TypeKeys("{ENTER}")
 
 # Localiza la ventana de propiedade del nodo
 window = app.Dialog
 window.Wait('ready', timeout=wait_time_case)
-#window.SetFocus()
+
+# Si el nodo latente se llama igual que la columna de datos cambia el nombre del nodo
 node_props = window.Edit
 node = node_props.Texts()[0]
 if node == "zz_delt_vp":
     node_props.SetEditText("zz_delt_vp_1")
 button = window.OK
 button.Click()
+
 menu_item = netica.MenuItem(u'&Window->&1 Netica Messages')
 menu_item.Click()
-menu_item = netica.MenuItem(u'&Window->&3 Final_net_Scores_codep')
+menu_item = netica.MenuItem(u'&Window->&3 netica.red_todo_TAN_ZVH_auto') # ROBIN Final_net_Scores_codep)
 menu_item.Click()
 netica.Wait("ready", timeout=wait_time_case)
 
 
 for i in range(0, len(datos)):
+    # Read data file, if missing data found in the dataset are replaced by "*"
+
+    with open("\\".join([dir_ShP, datos[i]]), "r"
+              ) as infile:
+        data_table = infile.read()
+
     # Inicia procesamiento de casos para producir salida para mapear
     # Selección del archivo de control
     menu_item = netica.MenuItem(u"Cases->Process Cases")
@@ -198,6 +206,8 @@ for i in range(0, len(datos)):
     # Espera hasta que procese todo el archivo antes de pasar al siguiente
     time.sleep(15)
     netica.Wait("ready", timeout=wait_time_case)
+
+    print("Datos del archivo {} procesados".format(datos[i]))
 
 # Termina NETICA
 app.Kill_()

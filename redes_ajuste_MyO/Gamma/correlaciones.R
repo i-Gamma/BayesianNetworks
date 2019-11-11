@@ -48,7 +48,7 @@ cor(datos$zz_delt_vp, round(esperados$E.delta_vp, 0), use = "complete")
 # TAN_ZVH (5) con precondiciones y DEM30 media, SD: 0.7475894
 
 # Estrategia hacia adelante a partir de todos los nodos con TAN automático sobre zvh como arranque
-data.red <- list.files(data.dir, pattern = "TAN_all_nodes_RB_6")[1]
+data.red <- list.files(data.dir, pattern = "TAN_all_nodes_RB_7")[1]
 esperados <- read.csv(paste(data.dir, data.red, sep="/"), na.strings = "*", stringsAsFactors = FALSE)
 names(esperados) <- "E.delta_vp"
 cor(datos$zz_delt_vp, round(esperados$E.delta_vp, 0), use = "complete")
@@ -59,6 +59,7 @@ cor(datos$zz_delt_vp, round(esperados$E.delta_vp, 0), use = "complete")
 # TAN_all (4) con precondiciones y DEM30 SD no media: 0.7460076 
 # TAN_all (5) con precondiciones y DEM30 media, SD: 0.7571537
 # TAN_all (6) con precondiciones y DEM30 media, SD sin Gpp_dry_sd: 0.7557835
+# TAN_all (7) con precondiciones y DEM30 media, SD soften 4: 0.7581589
 
 
 
