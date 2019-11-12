@@ -153,18 +153,13 @@ netica.Wait("ready", timeout=wait_time_case)
 for i in range(0, len(datos)):
 
     # Read data file, if missing data found in the dataset are replaced by "*"
-    working_data = dir_trabajo + "NA_replaced_" + archivos_datos_en_z[i]
-    with open(dir_ShP + archivos_datos_en_z[0], "r") as infile, \
-            open(working_data, "w") as outfile:
-        data_tabla = infile.read()
-        print("\nLectura terminada")
-        print(time.time() - start)
-        data_tabla = data_tabla.replace("NA", "*")
-        print("Conversión terminada")
-        print(time.time() - start)
-        outfile.write(data_tabla)
-        print("Escritura terminada")
-        print(time.time() - start)
+    working_data = dir_trabajo + "NA_replaced_" + datos[i]
+    if (not os.path.isfile(working_data)):
+        with open(dir_ShP + datos[i], "r") as infile, \
+             open(working_data, "w") as outfile:
+            data_tabla = infile.read()
+            data_tabla = data_tabla.replace("NA", "*")
+            outfile.write(data_tabla)
 
     # Inicia procesamiento de casos para producir salida para mapear
     # Selección del archivo de control
