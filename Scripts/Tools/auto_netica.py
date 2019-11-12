@@ -14,18 +14,17 @@ import os
 import locale
 
 
-
 def on_toy():
     # Machine dependant basic path data
     machine = socket.gethostname()
-    if machine == "idaeus":  # Laptop Miguel
+    if machine == "Gamma-Lap":  # Laptop Miguel
         dirs = {"dir_usr": u"C:\\Users\\equih\\",
                 "dir_git": u"Documents\\0 Versiones\\2 Proyectos\\",
-                "dir_RB": u"BN_GitHub\\redes_ajuste_MyO\\Final\\",
+                "dir_RB": u"BN_GitHub\\redes_ajuste_MyO\\Gamma\\",
                 "dir_wrk": u"Documents\\1 Nubes\\Dropbox\\",
                 "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
                 "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 605\\"}
-    elif machine == "Capsicum":
+elif machine == "Capsicum":
         # Descktop Inecol - Miguel
         dirs = {"dir_usr": u"C:\\Users\\equih\\",
                 "dir_git": u"Documents\\0 Versiones\\2 Proyectos\\",
@@ -104,7 +103,7 @@ netica.Wait("ready", timeout=wait_time_case)
 
 # Localiza y prepara el procesamiento de archivos de datos disponibles
 if socket.gethostname() == "Capsicum": # ROBIN "Equihua"
-    datos = [fl for fl in os.listdir(dir_ShP) if fl.startswith("ie_mex_full_dataset")]  # ROBIN "bn_ie_tabfinal" in fl and not "out" in fl]
+    datos = [fl for fl in sorted(os.listdir(dir_ShP)) if fl.startswith("ie_mex_full_dataset")]  # ROBIN "bn_ie_tabfinal" in fl and not "out" in fl]
     dat_names = ["_".join(["map_rb"] + nm.strip(".csv").split("_")[3:]) for nm in datos ]
 else:
     datos = ["bn_ie_tabfinal_20150830.csv"]
@@ -151,11 +150,20 @@ netica.Wait("ready", timeout=wait_time_case)
 
 
 for i in range(0, len(datos)):
-    # Read data file, if missing data found in the dataset are replaced by "*"
 
-    with open("\\".join([dir_ShP, datos[i]]), "r"
-              ) as infile:
-        data_table = infile.read()
+    # Read data file, if missing data found in the dataset are replaced by "*"
+    working_data = dir_trabajo + "NA_replaced_" + archivos_datos_en_z[i]
+    with open(dir_ShP + archivos_datos_en_z[0], "r") as infile, \
+            open(working_data, "w") as outfile:
+        data_tabla = infile.read()
+        print("\nLectura terminada")
+        print(time.time() - start)
+        data_tabla = data_tabla.replace("NA", "*")
+        print("Conversión terminada")
+        print(time.time() - start)
+        outfile.write(data_tabla)
+        print("Escritura terminada")
+        print(time.time() - start)
 
     # Inicia procesamiento de casos para producir salida para mapear
     # Selección del archivo de control
@@ -171,7 +179,7 @@ for i in range(0, len(datos)):
     time.sleep(2)
     window = app[u"Case file to process:"]
     comboboxex = window[u"Nombre:ComboBoxEx"]
-    comboboxex.TypeKeys(dir_trabajo + datos[i], with_spaces=True)
+    comboboxex.TypeKeys(working_data, with_spaces=True)
     button = window[win_open]
     button.Click()
 
@@ -179,7 +187,7 @@ for i in range(0, len(datos)):
     time.sleep(2)
     window = app.window_(title_re="Output cases to:", class_name="#32770")
     combobox = window["Edit"]
-    combobox.TypeKeys(dat_names[i] + u".csv")
+    combobox.TypeKeys(dir_trabajo + dat_names[i] + u".csv")
     window.Wait("ready")
     if window["&"+ win_save].Exists():
       button = window["&"+ win_save]
