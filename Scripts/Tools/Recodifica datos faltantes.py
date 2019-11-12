@@ -42,22 +42,23 @@ dir_wrk = directorios["dir_wrk"]
 dir_dat = directorios["dir_dat"]
 dir_ShP = directorios["dir_ShP"]
 
-start = time.time()
 archivos_datos_en_z = [fl for fl in sorted(os.listdir(dir_ShP))
                        if fl.startswith("ie_mex_full_dataset")]
 print("\n".join(archivos_datos_en_z))
 
-with open(dir_ShP + archivos_datos_en_z[0], "r") as infile,\
-     open(dir_usr + dir_wrk + dir_dat + "NA_replaced_" + archivos_datos_en_z[0], "w") as outfile:
-    data_tabla = infile.read()
-    print("\nLectura terminada")
-    print(time.time() - start)
-    data_tabla = data_tabla.replace("NA", "*")
-    print("Conversión terminada")
-    print(time.time() - start)
-    outfile.write(data_tabla)
-    print("Escritura terminada")
-    print (time.time()- start)
+start = time.time()
+for file in archivos_datos_en_z:
+    with open(dir_ShP + file, "r") as infile,\
+         open(dir_usr + dir_wrk + dir_dat + "NA_replaced_" + file, "w") as outfile:
+        data_tabla = infile.read()
+        print("\nLectura terminada (s): ", time.time() - start)
+        start = time.time()
+        data_tabla = data_tabla.replace("NA", "*")
+        print("Conversión terminada (s): ", time.time() - start)
+        start = time.time()
+        outfile.write(data_tabla)
+        print("Escritura terminada (s): ", time.time() - start)
+        start = time.time()
 
 print("Fin")
 print (time.time()- start)

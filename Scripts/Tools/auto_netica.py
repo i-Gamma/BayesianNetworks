@@ -23,8 +23,9 @@ def on_toy():
                 "dir_RB": u"BN_GitHub\\redes_ajuste_MyO\\Gamma\\",
                 "dir_wrk": u"Documents\\1 Nubes\\Dropbox\\",
                 "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
+                "dir_ShP": u"z:\\2_set_cobertura_completa\\",
                 "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 605\\"}
-elif machine == "Capsicum":
+    elif machine == "Capsicum":
         # Descktop Inecol - Miguel
         dirs = {"dir_usr": u"C:\\Users\\equih\\",
                 "dir_git": u"Documents\\0 Versiones\\2 Proyectos\\",
