@@ -1,3 +1,11 @@
+"""
+Created on Sat Nov 14 16:13:13 2015
+
+Generates new data sets where NA are replaced by "*" as expected for Netica.
+
+@author: Miguel
+"""
+
 import os
 import time
 import socket

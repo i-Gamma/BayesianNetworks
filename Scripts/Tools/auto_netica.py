@@ -4,7 +4,7 @@ Created on Sat Nov 14 16:13:13 2015
 
 Generates new data sets of "expected" EI values.
 Uses the already trained BN: "Final_net_Scores_codep.neta" for ROBIN projec
-                             "red_todo_TAN_ZVH_auto.neta" for Gamma project
+                             "ShP_red_todo_TAN_ZVH_auto.neta" for Gamma project
 @author: Miguel
 """
 import time
@@ -21,26 +21,26 @@ def on_toy():
         dirs = {"dir_usr": u"C:\\Users\\equih\\",
                 "dir_git": u"Documents\\0 Versiones\\2 Proyectos\\",
                 "dir_RB": u"BN_GitHub\\redes_ajuste_MyO\\Gamma\\",
-                "dir_wrk": u"Documents\\1 Nubes\\Dropbox\\",
-                "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
-                "dir_ShP": u"z:\\2_set_cobertura_completa\\",
+                "dir_wrk_DB": u"Documents\\1 Nubes\\Dropbox\\",
+                "dir_dat_DB": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
+                "dir_ShP": u"z:\\3_Versión Gamma de IE\\",                 # ROBIN  2_set_cobertura_completa
                 "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 605\\"}
     elif machine == "Capsicum":
         # Descktop Inecol - Miguel
         dirs = {"dir_usr": u"C:\\Users\\equih\\",
                 "dir_git": u"Documents\\0 Versiones\\2 Proyectos\\",
                 "dir_RB": u"BN_GitHub\\redes_ajuste_MyO\\Gamma\\",
-                "dir_wrk": u"Documents\\1 Nubes\\Dropbox\\",
-                "dir_dat": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
-                "dir_ShP": u"z:\\2_set_cobertura_completa\\",
+                "dir_wrk_DB": u"Documents\\1 Nubes\\Dropbox\\",
+                "dir_dat_DB": u"Datos Redes Bayesianas\\Datos_para_mapeo\\",
+                "dir_ShP": u"z:\\3_Versión Gamma de IE\\",                 # ROBIN  2_set_cobertura_completa
                 "dir_NETICA": u"C:\\Program Files\\Netica\\Netica 605\\"}
     elif machine == "Equihua":
         # Descktop casa - Julián
         dirs = {"dir_usr": u"E:\\",
                 "dir_git": u"repositories\\",
                 "dir_RB": u"BayesianNetworks\\redes_ajuste_MyO\\Final\\",
-                "dir_wrk": u"work\\20150720_infys_modis\\",
-                "dir_dat": u"training_tables_20151006\\products\\",
+                "dir_wrk_DB": u"work\\20150720_infys_modis\\",
+                "dir_dat_DB": u"training_tables_20151006\\products\\",
                 "dir_NETICA": u"E:\\software\\Netica\\Netica 605\\"}
     else:
         print("Don't know where am I!!!!")
@@ -60,12 +60,12 @@ dir_NETICA = directorios["dir_NETICA"]
 dir_usr = directorios["dir_usr"]
 dir_git = directorios["dir_git"]
 dir_RB = directorios["dir_RB"]
-dir_wrk = directorios["dir_wrk"]
-dir_dat = directorios["dir_dat"]
+dir_wrk_DB = directorios["dir_wrk_DB"]
+dir_dat_DB = directorios["dir_dat_DB"]
 dir_ShP = directorios["dir_ShP"]
-file_RB = dir_usr + dir_git + dir_RB + u"red_todo_TAN_ZVH_auto.neta" #ROBIN u"Final_net_Scores_codep.neta"
+file_RB = dir_usr + dir_git + dir_RB + u"ShP_red_todo_TAN_ZVH_auto.neta" #ROBIN u"Final_net_Scores_codep.neta"
 file_NETICA = dir_NETICA + u"Netica.exe"
-dir_trabajo = dir_usr + dir_wrk + dir_dat
+dir_trabajo = dir_usr + dir_wrk_DB + dir_dat_DB
 
 # Tiempo máximo de espera para procesamiento de un archivos de casos completo
 wait_time_case = 360
@@ -104,7 +104,7 @@ netica.Wait("ready", timeout=wait_time_case)
 
 # Localiza y prepara el procesamiento de archivos de datos disponibles
 if socket.gethostname() == "Capsicum": # ROBIN "Equihua"
-    datos = [fl for fl in sorted(os.listdir(dir_ShP)) if fl.startswith("ie_mex_full_dataset")]  # ROBIN "bn_ie_tabfinal" in fl and not "out" in fl]
+    datos = [fl for fl in sorted(os.listdir(dir_ShP)) if fl.startswith("data_all_vars_2004")]  # ROBIN "bn_ie_tabfinal" in fl and not "out" in fl]
     dat_names = ["_".join(["map_rb"] + nm.strip(".csv").split("_")[3:]) for nm in datos ]
 else:
     datos = ["bn_ie_tabfinal_20150830.csv"]
@@ -145,15 +145,16 @@ button.Click()
 
 menu_item = netica.MenuItem(u'&Window->&1 Netica Messages')
 menu_item.Click()
-menu_item = netica.MenuItem(u'&Window->&3 netica.red_todo_TAN_ZVH_auto') # ROBIN Final_net_Scores_codep)
+menu_item = netica.MenuItem(u'&Window->&3 netica.ShP_red_todo_TAN_ZVH_auto') # ROBIN Final_net_Scores_codep)
 menu_item.Click()
 netica.Wait("ready", timeout=wait_time_case)
 
 
 for i in range(0, len(datos)):
+    start = time.time()
 
     # Read data file, if missing data found in the dataset are replaced by "*"
-    working_data = dir_trabajo + "NA_replaced_" + datos[i]
+    working_data = dir_trabajo + "data_all_vars_" + datos[i]
     if (not os.path.isfile(working_data)):
         with open(dir_ShP + datos[i], "r") as infile, \
              open(working_data, "w") as outfile:
@@ -183,7 +184,7 @@ for i in range(0, len(datos)):
     time.sleep(2)
     window = app.window_(title_re="Output cases to:", class_name="#32770")
     combobox = window["Edit"]
-    combobox.TypeKeys(dir_trabajo + dat_names[i] + u".csv")
+    combobox.TypeKeys(dir_trabajo + dat_names[i] + u".csv", with_spaces=True)
     window.Wait("ready")
     if window["&"+ win_save].Exists():
       button = window["&"+ win_save]
@@ -208,10 +209,22 @@ for i in range(0, len(datos)):
         button_dialog_netica.Click()
 
     # Espera hasta que procese todo el archivo antes de pasar al siguiente
-    time.sleep(15)
+    # Espera a que aparezca el archivo de interés
+    while not os.path.exists(dir_trabajo + dat_names[i] + u".csv"):
+        time.sleep(2)
+
+    if os.path.isfile(dir_trabajo + dat_names[i] + u".csv"):
+        # Espera a que se acaben de escribir todos los datos
+        while int(os.stat(dir_trabajo + dat_names[i] + u".csv").st_size / 1024) < 17000:
+            continue
+    else:
+        raise ValueError("%s isn't a file!" % file_path)
+
+    time.sleep(100)
     netica.Wait("ready", timeout=wait_time_case)
 
-    print("Datos del archivo {} procesados".format(datos[i]))
+    print("\nDatos del archivo {} procesados".format(datos[i]))
+    print("Tiempo usado (s): ", time.time() - start)
 
 # Termina NETICA
 app.Kill_()

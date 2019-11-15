@@ -1,5 +1,8 @@
 Todos los ensayos de entrenamiento y  valoración de la correlación los hice con el archivo de Dropbox:
 
+La red preferida resultó ser la que está en el archivo: red_todo_TAN_ZVH_auto.neta
+  en github BN_GitHub\redes_ajuste_MyO\Gamma
+
 [Dropbox]\Datos Redes Bayesianas\Datos_para_mapeo\bn_ie_tabfinal_20150830.csv
 
 El archivo de control para procesar casos está ahí mismo y se llama "control.txt", Espera que la variable de cálculo de valores esperados se llame "zz_delt_vp_1".

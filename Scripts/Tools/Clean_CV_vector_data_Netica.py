@@ -2,6 +2,8 @@
 """
 Created on Sat Sep 12 10:50:39 2015
 
+Elimina paréntesis y saltos de línea y los substituye por comas
+
 @author: Miguel
 """
 
